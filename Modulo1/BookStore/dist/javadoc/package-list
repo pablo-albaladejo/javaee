@@ -1,0 +1,17 @@
+bookstore.integration.book
+bookstore.integration.ddbb.exception
+bookstore.integration.ddbb.factory
+bookstore.integration.ddbb.manager
+bookstore.integration.ddbb.transaction
+bookstore.integration.factory
+bookstore.logic.book
+bookstore.logic.facade
+bookstore.logic.service
+bookstore.logic.transfer.book
+bookstore.logic.transfer.factory
+bookstore.presentation.controller
+bookstore.presentation.controller.events
+bookstore.presentation.main
+bookstore.presentation.view
+bookstore.presentation.view.location
+bookstore.presentation.view.location.message
