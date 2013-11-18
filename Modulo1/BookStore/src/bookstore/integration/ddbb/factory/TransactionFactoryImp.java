@@ -6,7 +6,7 @@ import bookstore.integration.ddbb.transaction.Transaction;
 
 /**
  *
- * Pablo Albaladejo Mestre(pablo.albaladejo.mestre@gmail.com)
+ * <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
  */
 public class TransactionFactoryImp extends TransactionFactory{
 

@@ -5,7 +5,7 @@ import bookstore.presentation.controller.events.BusinessEvent;
 
 /**
  *
- * Pablo Albaladejo Mestre(pablo.albaladejo.mestre@gmail.com)
+ * <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
  */
 public class Main {
     /**

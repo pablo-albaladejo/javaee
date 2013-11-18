@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 /**
  *
- * Pablo Albaladejo Mestre(pablo.albaladejo.mestre@gmail.com)
+ * <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
  */
 public class Transaction implements ITransaction{
     private Connection connection;

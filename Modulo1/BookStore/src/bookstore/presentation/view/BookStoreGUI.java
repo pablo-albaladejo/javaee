@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 
 /**
  *
- * Pablo Albaladejo Mestre(pablo.albaladejo.mestre@gmail.com)
+ * <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
  */
 public abstract class BookStoreGUI extends JFrame{
     static private BookStoreGUI instance;

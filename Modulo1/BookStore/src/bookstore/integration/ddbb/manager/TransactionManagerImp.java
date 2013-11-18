@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 /**
  *
- * Pablo Albaladejo Mestre(pablo.albaladejo.mestre@gmail.com)
+ * <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
  */
 public class TransactionManagerImp extends TransactionManager{
     private HashMap<Long,ITransaction> connectionPool = new HashMap<Long,ITransaction>();

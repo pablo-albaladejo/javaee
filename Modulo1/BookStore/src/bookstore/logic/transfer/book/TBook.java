@@ -2,7 +2,7 @@ package bookstore.logic.transfer.book;
 
 /**
  *
- * Pablo Albaladejo Mestre(pablo.albaladejo.mestre@gmail.com)
+ * <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
  */
 public class TBook implements ITBook{
     private int ID;

@@ -4,7 +4,7 @@ import bookstore.logic.transfer.book.ITBook;
 
 /**
  *
- * Pablo Albaladejo Mestre(pablo.albaladejo.mestre@gmail.com)
+ * <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
  */
 public abstract class TransferFactory {
     static private TransferFactory instance;

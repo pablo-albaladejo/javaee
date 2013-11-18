@@ -5,7 +5,7 @@ import bookstore.integration.ddbb.transaction.ITransaction;
 
 /**
  *
- * Pablo Albaladejo Mestre(pablo.albaladejo.mestre@gmail.com)
+ * <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
  */
 public abstract class TransactionFactory {
     static private TransactionFactory instance;

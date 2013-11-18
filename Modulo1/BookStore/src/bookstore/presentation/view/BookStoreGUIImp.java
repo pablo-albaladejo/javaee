@@ -12,7 +12,7 @@ import bookstore.presentation.view.location.message.MessageCode;
 
 /**
  *
- * Pablo Albaladejo Mestre(pablo.albaladejo.mestre@gmail.com)
+ * <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
  */
 public class BookStoreGUIImp extends BookStoreGUI {
 

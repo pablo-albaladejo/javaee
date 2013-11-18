@@ -7,7 +7,7 @@ import bookstore.logic.facade.IBusinessFacade;
 
 /**
  *
- * Pablo Albaladejo Mestre(pablo.albaladejo.mestre@gmail.com)
+ * <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
  */
 public class ServiceFactoryImp extends ServiceFactory{
 

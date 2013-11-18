@@ -2,7 +2,7 @@ package bookstore.integration.ddbb.exception;
 
 /**
  *
- * Pablo Albaladejo Mestre(pablo.albaladejo.mestre@gmail.com)
+ * <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
  */
 public class TransactionException extends Exception{
     private static final long serialVersionUID = 1L;

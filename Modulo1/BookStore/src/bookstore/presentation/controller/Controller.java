@@ -2,7 +2,7 @@ package bookstore.presentation.controller;
 
 /**
  *
- * Pablo Albaladejo Mestre(pablo.albaladejo.mestre@gmail.com)
+ * <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
  */
 public abstract class Controller {
     static private Controller instance;

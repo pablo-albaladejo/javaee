@@ -4,15 +4,16 @@ import bookstore.logic.book.IBookApplicationService;
 import bookstore.logic.facade.IBusinessFacade;
 
 /**
- *
- * Pablo Albaladejo Mestre(pablo.albaladejo.mestre@gmail.com)
+ * This class implements the Abstract Factory for accesing the Facade Interface
+ * and to the Service Interfaces
+ * <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
  */
 public abstract class ServiceFactory {
     static private ServiceFactory instance;
     
     /**
-     *
-     * @return
+     * The static method to get a valid Factory instance
+     * @return <code>{@link ServiceFactoryImp}</code>
      */
     static public ServiceFactory getInstance(){
         if(instance == null) instance = new ServiceFactoryImp();
@@ -20,13 +21,14 @@ public abstract class ServiceFactory {
     }
     
     /**
-     *
-     * @return
+     * Provides the interface of the Bussiness Facade
+     * @return <code>{@link IBusinessFacade}</code>
      */
     public abstract IBusinessFacade getBusinessFacade();
     
     /**
-     *
+     * Provides the Interface to the Book Service. No to access directly, 
+     * use an Bussiness Facde instance.
      * @return
      */
     public abstract IBookApplicationService getBookService();

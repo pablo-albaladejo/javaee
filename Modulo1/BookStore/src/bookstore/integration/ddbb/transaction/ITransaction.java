@@ -4,7 +4,7 @@ import bookstore.integration.ddbb.exception.TransactionException;
 
 /**
  *
- * Pablo Albaladejo Mestre(pablo.albaladejo.mestre@gmail.com)
+ * <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
  */
 public interface ITransaction {
     /**

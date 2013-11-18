@@ -5,7 +5,7 @@ import bookstore.presentation.view.location.message.SpanishMessage;
 
 /**
  *
- * Pablo Albaladejo Mestre(pablo.albaladejo.mestre@gmail.com)
+ * <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
  */
 public class LocationManagerImp extends LocationManager{
 

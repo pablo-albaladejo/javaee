@@ -2,7 +2,7 @@ package bookstore.presentation.view.location.message;
 
 /**
  *
- * Pablo Albaladejo Mestre(pablo.albaladejo.mestre@gmail.com)
+ * <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
  */
 public class MessageCode {
     /**

@@ -4,7 +4,7 @@ import bookstore.integration.ddbb.exception.TransactionException;
 
 /**
  *
- * Pablo Albaladejo Mestre(pablo.albaladejo.mestre@gmail.com)
+ * <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
  */
 public abstract class TransactionManager {
     
@@ -18,7 +18,7 @@ public abstract class TransactionManager {
      */
     public static final String DDBB_PORT = "3306";
     
-    public static final boolean transactionalDDBB  = true; 
+    public static final boolean transactionalDDBB  = false; 
     
     //DDBB USER
     /**

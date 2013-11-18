@@ -5,7 +5,7 @@ import bookstore.logic.transfer.book.TBook;
 
 /**
  *
- * Pablo Albaladejo Mestre(pablo.albaladejo.mestre@gmail.com)
+ * <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
  */
 public class TransferFactoryImp extends TransferFactory{
     

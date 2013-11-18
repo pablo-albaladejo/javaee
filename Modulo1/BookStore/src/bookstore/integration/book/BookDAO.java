@@ -12,8 +12,9 @@ import bookstore.logic.transfer.book.ITBook;
 import bookstore.logic.transfer.factory.TransferFactory;
 
 /**
+ * Implements the Data Access Object interface defined by {@link IBookDAO} 
  * 
- * Pablo Albaladejo Mestre(pablo.albaladejo.mestre@gmail.com)
+ * <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
  */
 public class BookDAO implements IBookDAO{
 
@@ -22,8 +23,9 @@ public class BookDAO implements IBookDAO{
     private Statement statement;
     
     /**
-     *
-     * @throws TransactionException
+     * Constructs a Book Data Access Object. 
+     * A stament from the Connection with the DDBB is requested to {@link TransactionManager}
+     * @throws  TransactionException if creating the stament throws an exception
      */
     public BookDAO() throws TransactionException{
         this.connection = (Connection)TransactionManager.getInstance().getConexion();
@@ -35,10 +37,12 @@ public class BookDAO implements IBookDAO{
     }
 
     /**
+     *  Adds a new Book to the DDBB
      *
-     * @param Book
-     * @return a
-     * @throws TransactionException
+     * @param   Book The Book transfer to be added
+     * @return  <code>true</code> if the book is propertly added;
+     *          <code>false</code> otherwise
+     * @throws  TransactionException if a DDBB exception occurred
      */
     @Override
     public boolean NewBook(ITBook Book) throws TransactionException {
@@ -66,10 +70,12 @@ public class BookDAO implements IBookDAO{
     }
 
     /**
-     *
-     * @param ISBN
-     * @return
-     * @throws TransactionException
+     *  Removes a Book from the DDBB identified by the ISBN
+     * 
+     * @param   ISBN The string which defines a unique Book identifier
+     * @return  <code>true</code> if the Book is propertly deleted;
+     *          <code>flase</code> otherwise
+     * @throws  TransactionException if a DDBB exception occurred
      */
     @Override
     public boolean DeleteBook(String ISBN) throws TransactionException {
@@ -88,9 +94,10 @@ public class BookDAO implements IBookDAO{
     }
 
     /**
-     *
-     * @return
-     * @throws TransactionException
+     *  Searches all the Books stored at the DDBB
+     * @return  The <code>{@link ITBook}</code> list including all the Books;
+     *          <code>null</code> if no Book is found.     
+     * @throws  TransactionException if a DDBB exception occurred
      */
     @Override
     public List<ITBook> getAllBooks() throws TransactionException {
@@ -111,10 +118,11 @@ public class BookDAO implements IBookDAO{
     }
 
     /**
-     *
-     * @param ISBN
-     * @return
-     * @throws TransactionException
+     *  Searches a Book from the DDBB identified by the ISBN
+     * @param   ISBN The string which defines a unique Book identifier
+     * @return  The <code>{@link ITBook}</code> if it is found;
+     *          <code>null</code> if the Book is not found.
+     * @throws  TransactionException if a DDBB exception occurred
      */
     @Override
     public ITBook getBookByISBN(String ISBN) throws TransactionException {
@@ -138,10 +146,11 @@ public class BookDAO implements IBookDAO{
     }
 
     /**
-     *
-     * @param title
-     * @return
-     * @throws TransactionException
+     * Searches a list of existing Books at the DDBB identified by the Title
+     * @param   title The Book title
+     * @return  The <code>{@link ITBook}</code> list filtered by title;
+     *          <code>null</code> if no Book is found.
+     * @throws  TransactionException if a DDBB exception occurred
      */
     @Override
     public List<ITBook> getBookByTitle(String title) throws TransactionException {
@@ -163,11 +172,12 @@ public class BookDAO implements IBookDAO{
     }
 
     /**
-     *
-     * @param ISBN
-     * @param price
-     * @return
-     * @throws TransactionException
+     * Modifies the price of the Book identified by the provded ISBN
+     * @param ISBN The string which defines a unique Book identifier
+     * @param price The new price to be updated
+     * @return <code>true</code> if the books is updated;
+     *         <code>false</code> otherwise
+     * @throws TransactionException if a DDBB exception occurred
      */
     @Override
     public boolean ModifyBookPrice(String ISBN, double price) throws TransactionException {
@@ -197,10 +207,11 @@ public class BookDAO implements IBookDAO{
     }
 
     /**
-     *
-     * @param Book
-     * @return
-     * @throws TransactionException
+     * Modifies the whole data stored into the DDBB
+     * @param The <code>{@link ITBook}</code> to including the data to be updated
+     * @return <code>true</code> if the books is updated;
+     *         <code>false</code> otherwise 
+     * @throws TransactionException if a DDBB exception occurred
      */
     @Override
     public boolean ModifyBook(ITBook Book) throws TransactionException {

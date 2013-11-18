@@ -9,7 +9,7 @@ import bookstore.presentation.view.BookStoreGUI;
 
 /**
  *
- * Pablo Albaladejo Mestre(pablo.albaladejo.mestre@gmail.com)
+ * <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
  */
 
 public class ControllerImp extends Controller{
