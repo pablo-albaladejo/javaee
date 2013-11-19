@@ -77,9 +77,9 @@ public class BookApplicationService implements IBookApplicationService{
     }
 
     /**
-     * Searches a list of existing Books at the persistence identified by the Title
-     * @param   title The Book title
-     * @return  The <code>{@link ITBook}</code> list filtered by title;
+     * Searches a list of existing Books at the persistence identified by the ISBN
+     * @param   ISBN The Book title
+     * @return  The <code>{@link ITBook}</code> list filtered by ISBN;
      *          <code>null</code> if no Book is found.
      */
     @Override
@@ -139,7 +139,7 @@ public class BookApplicationService implements IBookApplicationService{
 
     /**
      * Modifies the whole data stored into the DDBB
-     * @param The <code>{@link ITBook}</code> to including the data to be updated
+     * @param Book The <code>{@link ITBook}</code> to including the data to be updated
      * @return <code>true</code> if the books is updated;
      *         <code>false</code> otherwise 
      */

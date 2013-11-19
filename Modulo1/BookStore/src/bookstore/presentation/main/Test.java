@@ -6,12 +6,12 @@ import bookstore.logic.transfer.book.ITBook;
 import bookstore.logic.transfer.factory.TransferFactory;
 
 /**
- *
+ * This class is used only for testing propouses
  * <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
  */
 public class Test {
     /**
-     *
+     * Main method
      * @param args
      */
     public static void main(String[] args) {

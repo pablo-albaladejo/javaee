@@ -29,7 +29,7 @@ public abstract class ServiceFactory {
     /**
      * Provides the Interface to the Book Service. No to access directly, 
      * use an Bussiness Facde instance.
-     * @return
+     * @return <code>{@link IBookApplicationService}</code>
      */
     public abstract IBookApplicationService getBookService();
 }

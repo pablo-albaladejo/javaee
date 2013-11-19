@@ -61,7 +61,7 @@ public interface IBookDAO {
     boolean ModifyBookPrice(String ISBN, double price) throws TransactionException;
     /**
      * Modifies the whole data stored into the DDBB
-     * @param The <code>{@link ITBook}</code> to including the data to be updated
+     * @param Book The <code>{@link ITBook}</code> to including the data to be updated
      * @return <code>true</code> if the books is updated;
      *         <code>false</code> otherwise 
      * @throws TransactionException if a DDBB exception occurred

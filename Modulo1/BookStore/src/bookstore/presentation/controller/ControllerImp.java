@@ -8,16 +8,16 @@ import bookstore.presentation.controller.events.GUIEvent;
 import bookstore.presentation.view.BookStoreGUI;
 
 /**
- *
+ * This class extends the abstract class <code>{@link Controller}</code>
  * <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
  */
 
 public class ControllerImp extends Controller{
   
     /**
-     *
-     * @param Event
-     * @param data
+     * This method select the View action depening on the Event
+     * @param event an integer defined at <code>{@link bookstore.presentation.controller.events.BusinessEvent}</code>
+     * @param data an <code>{@link Object}</code> data, to be used at the <code>{@link ControllerImp}</code>
      */
     @Override
     public void action(int Event, Object data){

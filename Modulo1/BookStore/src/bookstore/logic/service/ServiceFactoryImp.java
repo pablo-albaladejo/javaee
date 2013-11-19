@@ -12,8 +12,8 @@ import bookstore.logic.facade.IBusinessFacade;
 public class ServiceFactoryImp extends ServiceFactory{
 
     /**
-     *
-     * @return
+     * Provides a new instance of <code>{@link BusinessFacade}</code>
+     * @return <code>{@link BusinessFacade}</code>
      */
     @Override
     public IBusinessFacade getBusinessFacade() {
@@ -21,8 +21,8 @@ public class ServiceFactoryImp extends ServiceFactory{
     }
 
     /**
-     *
-     * @return
+     * Provides a new instance of <code>{@link BookApplicationService}</code>
+     * @return <code>{@link BookApplicationService}</code>
      */
     @Override
     public IBookApplicationService getBookService() {

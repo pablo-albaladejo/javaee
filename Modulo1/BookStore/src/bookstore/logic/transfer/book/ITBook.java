@@ -1,95 +1,95 @@
 package bookstore.logic.transfer.book;
 
 /**
- *
+ * Specifies the Transfer Pattern of the Book entity
  * <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
  */
 public interface ITBook {
     /**
-     *
-     * @return
+     * ID getter
+     * @return the Book ID
      */
     int getID();
     /**
-     *
-     * @param ID
+     * ID setter
+     * @param ID the Book ID 
      */
     void setID(int ID);
 
     /**
-     *
-     * @return
+     * Title getter
+     * @return the Book Title
      */
     String getTitle();
     /**
-     *
-     * @param title
+     * Title setter
+     * @param title the Book Title
      */
     void setTitle(String title);
 
     /**
-     *
-     * @return
+     * Author getter
+     * @return the Book Author
      */
     String getAuthor();
     /**
-     *
-     * @param author
+     * Author setter
+     * @param author the Book Author
      */
     void setAuthor(String author);
 
     /**
-     *
-     * @return
+     * Editorial getter
+     * @return the Book Editorial
      */
     String getEditorial();
     /**
-     *
-     * @param editorial
+     * Book setter
+     * @param editorial the Book Editorial
      */
     void setEditorial(String editorial);
 
     /**
-     *
-     * @return
+     * ISBN getter
+     * @return the Book ISNB
      */
     String getISBN();
     /**
-     *
-     * @param ISBN
+     * ISBN setter
+     * @param ISBN the Book ISBN
      */
     void setISBN(String ISBN);
 
     /**
-     *
-     * @return
+     * Publication Year getter
+     * @return the Book Publication Year
      */
     int getPublicationYear();
     /**
-     *
-     * @param publicationYear
+     * Publication Year setter
+     * @param publicationYear the Book Publication Year
      */
     void setPublicationYear(int publicationYear);
 
     /**
-     *
-     * @return
+     * Price getter
+     * @return the Book Price
      */
     double getPrice();
     /**
-     *
-     * @param price
+     * Price setter
+     * @param price the Book Price
      */
     void setPrice(double price);
 
-    /**
-     *
-     * @return
+    /** 
+     * Description getter
+     * @return the Book Description
      */
     String getDescription();
     /**
-     *
-     * @param description
+     * Description setter
+     * @param description the Book Description
      */
     void setDescription(String description);
 }

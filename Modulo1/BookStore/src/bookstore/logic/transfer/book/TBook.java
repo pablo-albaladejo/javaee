@@ -1,7 +1,7 @@
 package bookstore.logic.transfer.book;
 
 /**
- *
+ * This class implements the <code>{@link ITBook}</code> interface.
  * <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
  */
 public class TBook implements ITBook{
@@ -15,16 +15,16 @@ public class TBook implements ITBook{
     private String description;
     
     /**
-     *
-     * @return
+     * ID getter
+     * @return the Book ID
      */
     @Override
     public int getID(){
         return this.ID;
     }
     /**
-     *
-     * @param ID
+     * ID setter
+     * @param ID the Book ID 
      */
     @Override
     public void setID(int ID){
@@ -32,16 +32,16 @@ public class TBook implements ITBook{
     }
 
     /**
-     *
-     * @return
+     * Title getter
+     * @return the Book Title
      */
     @Override
     public String getTitle(){
         return this.title;
     }
     /**
-     *
-     * @param title
+     * Title setter
+     * @param title the Book Title
      */
     @Override
     public void setTitle(String title){
@@ -49,16 +49,16 @@ public class TBook implements ITBook{
     }
 
     /**
-     *
-     * @return
+     * Author getter
+     * @return the Book Author
      */
     @Override
     public String getAuthor(){
         return this.author;
     }
     /**
-     *
-     * @param author
+     * Author setter
+     * @param author the Book Author
      */
     @Override
     public void setAuthor(String author){
@@ -66,16 +66,16 @@ public class TBook implements ITBook{
     }
 
     /**
-     *
-     * @return
+     * Editorial getter
+     * @return the Book Editorial
      */
     @Override
     public String getEditorial(){
         return this.editorial;
     }
     /**
-     *
-     * @param editorial
+     * Book setter
+     * @param editorial the Book Editorial
      */
     @Override
     public void setEditorial(String editorial){
@@ -83,16 +83,16 @@ public class TBook implements ITBook{
     }
 
     /**
-     *
-     * @return
+     * ISBN getter
+     * @return the Book ISNB
      */
     @Override
     public String getISBN(){
         return this.ISBN;
     }
     /**
-     *
-     * @param ISBN
+     * ISBN setter
+     * @param ISBN the Book ISBN
      */
     @Override
     public void setISBN(String ISBN){
@@ -100,16 +100,16 @@ public class TBook implements ITBook{
     }
 
     /**
-     *
-     * @return
+     * Publication Year getter
+     * @return the Book Publication Year
      */
     @Override
     public int getPublicationYear(){
         return this.publicationYear;
     }
     /**
-     *
-     * @param publicationYear
+     * Publication Year setter
+     * @param publicationYear the Book Publication Year
      */
     @Override
     public void setPublicationYear(int publicationYear){
@@ -117,33 +117,33 @@ public class TBook implements ITBook{
     }
 
     /**
-     *
-     * @return
+     * Price getter
+     * @return the Book Price
      */
     @Override
     public double getPrice(){
         return this.price;
     }
     /**
-     *
-     * @param price
+     * Price setter
+     * @param price the Book Price
      */
     @Override
     public void setPrice(double price){
         this.price = price;
     }
 
-    /**
-     *
-     * @return
+    /** 
+     * Description getter
+     * @return the Book Description
      */
     @Override
     public String getDescription(){
         return this.description;
     }
     /**
-     *
-     * @param description
+     * Description setter
+     * @param description the Book Description
      */
     @Override
     public void setDescription(String description){
