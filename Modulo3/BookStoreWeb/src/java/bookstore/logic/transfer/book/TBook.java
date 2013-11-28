@@ -160,4 +160,9 @@ public class TBook implements ITBook{
                 this.price + ", " +
                 this.description;
     }
+    
+    @Override
+    public String toXMLString(){
+        return toString();
+    }
 }

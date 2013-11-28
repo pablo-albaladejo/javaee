@@ -1,25 +1,89 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package bookstore.presentation.controller;
 
+import bookstore.logic.service.ServiceFactory;
+import bookstore.logic.transfer.book.ITBook;
+import bookstore.presentation.controller.events.BusinessEvent;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
- * This class implements the Controller by a Singelton pattern
- * <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
+ *
+ * @author <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
  */
-public abstract class Controller {
-    static private Controller instance;
-    
+public class Controller extends HttpServlet {
+
     /**
-     * Provides a instance of the Controller implementation
-     * @return <code>{@link ControllerImp}</code>
+     * Processes requests for both HTTP
+     * <code>GET</code> and
+     * <code>POST</code> methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
      */
-    static public  Controller getInstance(){
-        if(instance == null) instance = new ControllerImp();
-        return instance;
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        
+        switch (Integer.parseInt(request.getParameter("action"))) {
+            case BusinessEvent.GET_ALL_BOOKS:
+                List<ITBook> list = ServiceFactory.getInstance().getBusinessFacade().getAllBooks();
+                out.println(list.get(0).toXMLString());
+                break;
+            default:
+                break;
+        }
     }
-    
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * This method select the View action depening on the Event
-     * @param event an integer defined at <code>{@link bookstore.presentation.controller.events.BusinessEvent}</code>
-     * @param data an <code>{@link Object}</code> data, to be used at the <code>{@link ControllerImp}</code>
+     * Handles the HTTP
+     * <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
      */
-    public abstract void action(int event, Object data);
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Handles the HTTP
+     * <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
 }
