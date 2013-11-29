@@ -92,10 +92,4 @@ public interface ITBook {
      * @param description the Book Description
      */
     void setDescription(String description);
-    
-    /**
-     * Description setter
-     * @return the XML respresentation object as a String
-     */
-    public String toXMLString();
 }

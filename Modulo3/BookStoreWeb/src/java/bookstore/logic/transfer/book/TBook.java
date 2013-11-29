@@ -1,10 +1,12 @@
 package bookstore.logic.transfer.book;
 
 /**
- * This class implements the <code>{@link ITBook}</code> interface.
+ * This class implements the
+ * <code>{@link ITBook}</code> interface.
  * <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
  */
-public class TBook implements ITBook{
+public class TBook implements ITBook {
+
     private int ID;
     private String title;
     private String author;
@@ -13,156 +15,175 @@ public class TBook implements ITBook{
     private int publicationYear;
     private double price;
     private String description;
-    
+
     /**
      * ID getter
+     *
      * @return the Book ID
      */
     @Override
-    public int getID(){
+    public int getID() {
         return this.ID;
     }
+
     /**
      * ID setter
-     * @param ID the Book ID 
+     *
+     * @param ID the Book ID
      */
     @Override
-    public void setID(int ID){
+    public void setID(int ID) {
         this.ID = ID;
     }
 
     /**
      * Title getter
+     *
      * @return the Book Title
      */
     @Override
-    public String getTitle(){
+    public String getTitle() {
         return this.title;
     }
+
     /**
      * Title setter
+     *
      * @param title the Book Title
      */
     @Override
-    public void setTitle(String title){
+    public void setTitle(String title) {
         this.title = title;
     }
 
     /**
      * Author getter
+     *
      * @return the Book Author
      */
     @Override
-    public String getAuthor(){
+    public String getAuthor() {
         return this.author;
     }
+
     /**
      * Author setter
+     *
      * @param author the Book Author
      */
     @Override
-    public void setAuthor(String author){
+    public void setAuthor(String author) {
         this.author = author;
     }
 
     /**
      * Editorial getter
+     *
      * @return the Book Editorial
      */
     @Override
-    public String getEditorial(){
+    public String getEditorial() {
         return this.editorial;
     }
+
     /**
      * Book setter
+     *
      * @param editorial the Book Editorial
      */
     @Override
-    public void setEditorial(String editorial){
+    public void setEditorial(String editorial) {
         this.editorial = editorial;
     }
 
     /**
      * ISBN getter
+     *
      * @return the Book ISNB
      */
     @Override
-    public String getISBN(){
+    public String getISBN() {
         return this.ISBN;
     }
+
     /**
      * ISBN setter
+     *
      * @param ISBN the Book ISBN
      */
     @Override
-    public void setISBN(String ISBN){
+    public void setISBN(String ISBN) {
         this.ISBN = ISBN;
     }
 
     /**
      * Publication Year getter
+     *
      * @return the Book Publication Year
      */
     @Override
-    public int getPublicationYear(){
+    public int getPublicationYear() {
         return this.publicationYear;
     }
+
     /**
      * Publication Year setter
+     *
      * @param publicationYear the Book Publication Year
      */
     @Override
-    public void setPublicationYear(int publicationYear){
+    public void setPublicationYear(int publicationYear) {
         this.publicationYear = publicationYear;
     }
 
     /**
      * Price getter
+     *
      * @return the Book Price
      */
     @Override
-    public double getPrice(){
+    public double getPrice() {
         return this.price;
     }
+
     /**
      * Price setter
+     *
      * @param price the Book Price
      */
     @Override
-    public void setPrice(double price){
+    public void setPrice(double price) {
         this.price = price;
     }
 
-    /** 
+    /**
      * Description getter
+     *
      * @return the Book Description
      */
     @Override
-    public String getDescription(){
+    public String getDescription() {
         return this.description;
     }
+
     /**
      * Description setter
+     *
      * @param description the Book Description
      */
     @Override
-    public void setDescription(String description){
+    public void setDescription(String description) {
         this.description = description;
     }
-    
+
     @Override
-    public String toString(){
-        return this.title + ", " + 
-                this.author + ", " +
-                this.editorial + ", " +
-                this.ISBN + ", " +
-                this.publicationYear + ", " +
-                this.price + ", " +
-                this.description;
-    }
-    
-    @Override
-    public String toXMLString(){
-        return toString();
+    public String toString() {
+        return this.title + ", "
+                + this.author + ", "
+                + this.editorial + ", "
+                + this.ISBN + ", "
+                + this.publicationYear + ", "
+                + this.price + ", "
+                + this.description;
     }
 }
