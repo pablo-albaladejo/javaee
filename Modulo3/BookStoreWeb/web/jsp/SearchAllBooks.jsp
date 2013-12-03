@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : 28-nov-2013, 11:51:35
+    Document   : SearchAllBooks
+    Created on : 02-dic-2013, 23:23:11
     Author     : <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
 --%>
 
@@ -10,8 +10,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Book Store</title>
-    <body>
-        <a href="./jsp/SearchAllBooks.jsp">Search All books</a> 
-        <a href="./jsp/SearchByAuthor.jsp">Search By author</a> 
+        <script src="../js/XHR.js" type="text/javascript"></script>
+    </head>
+    <body onLoad="sendRequest('SearchAllBooks', null);">
+        <div id="content">  
+        </div>
     </body>
 </html>

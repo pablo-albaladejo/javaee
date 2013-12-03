@@ -1,5 +1,6 @@
 package bookstore.integration.factory;
 
+import bookstore.integration.author.IAuthorDAO;
 import bookstore.integration.book.IBookDAO;
 import bookstore.integration.ddbb.exception.TransactionException;
 
@@ -25,4 +26,11 @@ public abstract class DAOFactory {
      * @throws TransactionException if a DDBB exception occurred
      */
     public abstract IBookDAO getBookDAO() throws TransactionException;
+    
+    /**
+     * Provides a DAO from the Author Entity 
+     * @return A {@link IAuthorDAO} object
+     * @throws TransactionException if a DDBB exception occurred
+     */
+    public abstract IAuthorDAO getAuthorDAO() throws TransactionException;
 }

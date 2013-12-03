@@ -2,7 +2,9 @@ package bookstore.logic.facade;
 
 import java.util.List;
 import bookstore.logic.service.ServiceFactory;
+import bookstore.logic.transfer.author.ITAuthor;
 import bookstore.logic.transfer.book.ITBook;
+import java.util.ArrayList;
 
 /**
  * This class implements the <code>{@link IBusinessFacade}</code>. 
@@ -90,6 +92,27 @@ public class BusinessFacade implements IBusinessFacade{
     @Override
     public boolean ModifyBook(ITBook Book) {
         return ServiceFactory.getInstance().getBookService().ModifyBook(Book);
+    }
+    
+     /**
+     * Searches all the Authors stored at the persistence
+     * @return  The <code>{@link ITAuthor}</code> list including all the Authors;
+     *          <code>null</code> if no Author is found.     
+     */
+    @Override
+    public List<ITAuthor> getAllAuthors() {
+        return ServiceFactory.getInstance().getAuthorService().getAllAuthors();
+    }
+    
+      /**
+     * Searches a list of existing Books at the persistence identified by the Author
+     * @param   author The Book author
+     * @return  The <code>{@link ITBook}</code> list filtered by author;
+     *          <code>null</code> if no Book is found.
+     */
+    @Override
+    public List<ITBook> getBookByAuthor(String name){
+        return ServiceFactory.getInstance().getAuthorService().getBookByAuthor(name);
     }
         
 }

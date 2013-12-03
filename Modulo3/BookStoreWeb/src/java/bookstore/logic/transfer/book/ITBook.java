@@ -14,7 +14,7 @@ public interface ITBook {
      * ID setter
      * @param ID the Book ID 
      */
-    void setID(int ID);
+   void setID(int ID);
 
     /**
      * Title getter
@@ -29,14 +29,14 @@ public interface ITBook {
 
     /**
      * Author getter
-     * @return the Book Author
+     * @return the AuthorID
      */
-    String getAuthor();
+    int getAuthorID();
     /**
-     * Author setter
-     * @param author the Book Author
+     * AuthorID setter
+     * @param authorID the AuthorID
      */
-    void setAuthor(String author);
+    void setAuthorID(int authorID);
 
     /**
      * Editorial getter

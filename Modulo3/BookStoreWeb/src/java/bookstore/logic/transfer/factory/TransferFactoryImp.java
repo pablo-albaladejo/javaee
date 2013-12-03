@@ -1,5 +1,7 @@
 package bookstore.logic.transfer.factory;
 
+import bookstore.logic.transfer.author.ITAuthor;
+import bookstore.logic.transfer.author.TAuthor;
 import bookstore.logic.transfer.book.ITBook;
 import bookstore.logic.transfer.book.TBook;
 
@@ -16,5 +18,14 @@ public class TransferFactoryImp extends TransferFactory{
     @Override
     public ITBook getBookTransfer(){
         return new TBook();
+    }
+    
+    /**
+     * Return a Author object wich implements <code>{@link ITAuthor}</code> 
+     * @return <code>{@link ITAuthor}</code>
+     */
+    @Override
+    public ITAuthor getAuthorTransfer(){
+        return new TAuthor();
     }
 }

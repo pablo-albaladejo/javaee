@@ -67,4 +67,13 @@ public interface IBookDAO {
      * @throws TransactionException if a DDBB exception occurred
      */
     boolean ModifyBook(ITBook Book) throws TransactionException;
+    
+    /**
+     * Searches a list of existing Books at the DDBB identified by the AuthorID
+     * @param   authorID The Author ID
+     * @return  The <code>{@link ITBook}</code> list filtered by AuthorID;
+     *          <code>null</code> if no Book is found.
+     * @throws  TransactionException if a DDBB exception occurred
+     */
+    List<ITBook> getBookByAuthorID(int authorID) throws TransactionException;
 }

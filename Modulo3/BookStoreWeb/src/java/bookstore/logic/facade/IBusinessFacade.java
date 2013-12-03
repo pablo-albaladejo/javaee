@@ -1,5 +1,6 @@
 package bookstore.logic.facade;
 
+import bookstore.logic.transfer.author.ITAuthor;
 import java.util.List;
 import bookstore.logic.transfer.book.ITBook;
 
@@ -63,4 +64,19 @@ public interface IBusinessFacade {
      *         <code>false</code> otherwise 
      */
     boolean ModifyBook(ITBook Book);
+    
+    /**
+     * Searches all the Authors stored at the persistence
+     * @return  The <code>{@link ITAuthor}</code> list including all the Authors;
+     *          <code>null</code> if no Author is found.     
+     */
+    List<ITAuthor> getAllAuthors();
+    
+    /**
+     * Searches a list of existing Books at the persistence identified by the Author
+     * @param   author The Book author
+     * @return  The <code>{@link ITBook}</code> list filtered by author;
+     *          <code>null</code> if no Book is found.
+     */
+    List<ITBook> getBookByAuthor(String name);
 }

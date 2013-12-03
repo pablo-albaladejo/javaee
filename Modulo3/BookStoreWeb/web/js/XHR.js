@@ -14,24 +14,18 @@ function sendRequest(action, object) {
         return;
     }
     if(object === null) object = new Array();
-    
-    object.push(new Param('action',action));
-    sendXHR(getUrlEncodedParams(object));
+    sendXHR(action,getUrlEncodedParams(object));
 }
 
 function receiveResponse() {
     if (xhr.readyState === 4) {
-        var response = xhr.responseXML;
-       
-       action = parseInt(response.getElementsByTagName("action").item(0).firstChild.nodeValue);
-        var object = response.getElementsByTagName("data").item(0);
-        
-        update(action,object);
+       //alert(xhr.responseText);
+       document.getElementById("content").innerHTML = xhr.responseText;
     }
 }
 
-function sendXHR(object) {
-    xhr.open("POST", "client", true);
+function sendXHR(action,object) {
+    xhr.open("POST", action  + ".do", true);
     xhr.onreadystatechange = receiveResponse;
     xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
     xhr.send(object);
@@ -42,6 +36,7 @@ function Param(name, value) {
     this.value = value;
 }
 function getUrlEncodedParams(inputData) {
+    
     var str = "";
     var outputData = new Array();
 

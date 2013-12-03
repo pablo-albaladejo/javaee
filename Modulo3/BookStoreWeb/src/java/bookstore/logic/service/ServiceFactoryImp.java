@@ -1,5 +1,7 @@
 package bookstore.logic.service;
 
+import bookstore.logic.author.AuthorApplicationService;
+import bookstore.logic.author.IAuthorApplicationService;
 import bookstore.logic.book.BookApplicationService;
 import bookstore.logic.book.IBookApplicationService;
 import bookstore.logic.facade.BusinessFacade;
@@ -29,4 +31,12 @@ public class ServiceFactoryImp extends ServiceFactory{
         return new BookApplicationService();
     }
     
+    /**
+     * Provides a new instance of <code>{@link AuthorApplicationService}</code>
+     * @return <code>{@link AuthorApplicationService}</code>
+     */
+    @Override
+    public IAuthorApplicationService getAuthorService() {
+        return new AuthorApplicationService();
+    }
 }

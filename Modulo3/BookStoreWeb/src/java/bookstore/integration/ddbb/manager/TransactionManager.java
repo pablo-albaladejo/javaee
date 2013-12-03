@@ -39,6 +39,7 @@ public abstract class TransactionManager {
      *
      */
     public static final String BOOK_ENTITY = "libros";
+    public static final String AUTHOR_ENTITY = "autores";
     
     static private TransactionManager instance;
     
