@@ -1,6 +1,5 @@
 package bookstore.logic.service;
 
-import bookstore.logic.author.IAuthorApplicationService;
 import bookstore.logic.book.IBookApplicationService;
 import bookstore.logic.facade.IBusinessFacade;
 
@@ -33,11 +32,4 @@ public abstract class ServiceFactory {
      * @return <code>{@link IBookApplicationService}</code>
      */
     public abstract IBookApplicationService getBookService();
-    
-    /**
-     * Provides the Interface to the Author Service. No to access directly, 
-     * use an Bussiness Facde instance.
-     * @return <code>{@link IAuthorApplicationService}</code>
-     */
-    public abstract IAuthorApplicationService getAuthorService();
 }

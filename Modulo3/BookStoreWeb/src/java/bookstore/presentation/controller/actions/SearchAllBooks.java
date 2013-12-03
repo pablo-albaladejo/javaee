@@ -36,16 +36,17 @@ public class SearchAllBooks extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        String HTMLresponse = "";
         
         List<ITBook> list = ServiceFactory.getInstance().getBusinessFacade().getAllBooks();
 
         List<String> headers = new ArrayList<String>();
-        headers.add("Titulo");
-        headers.add("Autor");
+        headers.add("Title");
+        headers.add("Author");
         headers.add("Editorial");
         headers.add("ISBN");
-        headers.add("Publicacion");
-        headers.add("Precio");
+        headers.add("Publication Year");
+        headers.add("Price");
         headers.add("Descripcion");
 
         List<List<String>> rows = new ArrayList<>();
@@ -53,7 +54,7 @@ public class SearchAllBooks extends HttpServlet {
         for (ITBook book : list) {
             List<String> cells = new ArrayList<String>();
             cells.add(book.getTitle());
-            cells.add(Integer.toString(book.getAuthorID()));
+            cells.add(book.getAuthor());
             cells.add(book.getEditorial());
             cells.add(book.getISBN());
             cells.add(Integer.toString(book.getPublicationYear()));
@@ -61,8 +62,10 @@ public class SearchAllBooks extends HttpServlet {
             cells.add(book.getDescription());
             rows.add(cells);
         }
-
-        out.println(HTMLHelper.getHTMLTable(headers, rows));
+        HTMLresponse += HTMLHelper.getHTMLTable(headers, rows);
+        
+        HTMLresponse += HTMLHelper.getHTMLActionButton("Back","../");
+        out.println(HTMLresponse);
 
         out.close();
     }

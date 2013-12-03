@@ -5,7 +5,6 @@
 package bookstore.presentation.controller.actions;
 
 import bookstore.logic.service.ServiceFactory;
-import bookstore.logic.transfer.author.ITAuthor;
 import bookstore.logic.transfer.book.ITBook;
 import bookstore.presentation.controller.HTMLHelper;
 import java.io.IOException;
@@ -45,31 +44,33 @@ public class SearchByAuthor extends HttpServlet {
             
             HTMLresponse += HTMLHelper.getHTMLparagraph("Choose an Author:");
                     
-            List<ITAuthor> list = ServiceFactory.getInstance().getBusinessFacade().getAllAuthors();
-
+            List<String> list = ServiceFactory.getInstance().getBusinessFacade().getAllAuthors();
+            
             List<String[]> attributes = new ArrayList<String[]>();
             attributes.add(new String[]{"id", "authors"});
-            attributes.add(new String[]{"onChange", "searchAuthor(this.options[this.value].innerHTML);"});
+            attributes.add(new String[]{"onChange", "searchAuthor(this.options[this.selectedIndex].innerHTML);"});
 
             List<String[]> options = new ArrayList<String[]>();
             options.add(new String[]{"0", ""});
 
-            for (ITAuthor author : list) {
-                options.add(new String[]{Integer.toString(author.getID()), author.getName()});
+            for (String author : list) {
+                options.add(new String[]{"autor", author});
             }
             HTMLresponse += HTMLHelper.getHTMLSelect(options, attributes);
+            HTMLresponse += HTMLHelper.getHTMLActionButton("Back","../");
         } else {//author books
 
             HTMLresponse += HTMLHelper.getHTMLHeader(name, 1);
-
+            
             List<ITBook> list = ServiceFactory.getInstance().getBusinessFacade().getBookByAuthor(name);
-
+            
             List<String> headers = new ArrayList<String>();
-            headers.add("Titulo");
+            headers.add("Title");
+            headers.add("Author");
             headers.add("Editorial");
             headers.add("ISBN");
-            headers.add("Publicacion");
-            headers.add("Precio");
+            headers.add("Publication Year");
+            headers.add("Price");
             headers.add("Descripcion");
 
             List<List<String>> rows = new ArrayList<>();
@@ -77,6 +78,7 @@ public class SearchByAuthor extends HttpServlet {
             for (ITBook book : list) {
                 List<String> cells = new ArrayList<String>();
                 cells.add(book.getTitle());
+                cells.add(book.getAuthor());
                 cells.add(book.getEditorial());
                 cells.add(book.getISBN());
                 cells.add(Integer.toString(book.getPublicationYear()));
@@ -89,9 +91,8 @@ public class SearchByAuthor extends HttpServlet {
             
             List<String[]> attributes = new ArrayList<String[]>();
             attributes.add(new String[]{"onClick", "searchAuthor();"});
-            
             HTMLresponse += HTMLHelper.getHTMLButton("Back",attributes);
-            
+                        
         }
         out.println(HTMLresponse);
     }

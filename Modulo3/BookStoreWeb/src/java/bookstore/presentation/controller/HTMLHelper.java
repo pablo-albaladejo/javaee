@@ -1,6 +1,7 @@
 package bookstore.presentation.controller;
 
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -21,6 +22,20 @@ import org.w3c.dom.Text;
  * <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
  */
 public class HTMLHelper {
+    
+    public static String getHTMLActionButton(String caption, String action) {
+        Element button = openDocument("form");
+        button.setAttribute("action", action);
+
+        Element input = createNode(button, "input");
+        List<String[]> attributes = new ArrayList<String[]>();
+        attributes.add(new String[]{"type", "submit"});
+        attributes.add(new String[]{"value", caption});
+        setAttributes(input, attributes);
+
+        button.appendChild(input);
+        return nodeToString(button);
+    }
 
     public static String getHTMLparagraph(String text) {
         Element paragraph = openDocument("p");

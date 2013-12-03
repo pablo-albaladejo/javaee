@@ -52,7 +52,7 @@ public class BookDAO implements IBookDAO {
         String query = "INSERT INTO " + TransactionManager.BOOK_ENTITY
                 + " (`TITULO`, `AUTOR`, `EDITORIAL`, `ISBN`, `PUBLICACION`, `PRECIO`, `DESCRIPCION`) VALUES ("
                 + "'" + Book.getTitle() + "',"
-                + "'" + Book.getAuthorID() + "', "
+                + "'" + Book.getAuthor() + "', "
                 + "'" + Book.getEditorial() + "', "
                 + "'" + Book.getISBN() + "', "
                 + "'" + Book.getPublicationYear() + "', "
@@ -209,7 +209,7 @@ public class BookDAO implements IBookDAO {
     private void copyResultBookData(ResultSet result, ITBook book) throws SQLException {
         book.setID(result.getInt(1));
         book.setTitle(result.getString(2));
-        book.setAuthorID(result.getInt(3));
+        book.setAuthor(result.getString(3));
         book.setEditorial(result.getString(4));
         book.setISBN(result.getString(5));
         book.setPublicationYear(result.getInt(6));
@@ -253,9 +253,110 @@ public class BookDAO implements IBookDAO {
      */
     @Override
     public List<ITBook> getBookByAuthorID(int authorID) throws TransactionException {
-    List<ITBook> BookList = new ArrayList<ITBook>();
+        List<ITBook> BookList = new ArrayList<ITBook>();
         String query = "SELECT * FROM " + TransactionManager.BOOK_ENTITY
                 + " WHERE AUTOR = '" + authorID + "'";
+        try {
+            this.resultSet = this.statement.executeQuery(query);
+            while (this.resultSet.next()) {
+                ITBook book = TransferFactory.getInstance().getBookTransfer();
+                copyResultBookData(resultSet, book);
+                BookList.add(book);
+            }
+        } catch (SQLException e) {
+            throw new TransactionException(e);
+        } finally {
+            return BookList;
+        }
+    }
+
+    /**
+     * Searches a list of existing Books at the DDBB identified by the Author
+     *
+     * @param author The Book author
+     * @return The <code>{@link ITBook}</code> list filtered by author;
+     * <code>null</code> if no Book is found.
+     * @throws TransactionException if a DDBB exception occurred
+     */
+    @Override
+    public List<ITBook> getBookByAuthor(String author) throws TransactionException {
+        List<ITBook> BookList = new ArrayList<ITBook>();
+        String query = "SELECT * FROM " + TransactionManager.BOOK_ENTITY
+                + " WHERE AUTOR LIKE '" + author + "'";
+        try {
+            this.resultSet = this.statement.executeQuery(query);
+            while (this.resultSet.next()) {
+                ITBook book = TransferFactory.getInstance().getBookTransfer();
+                copyResultBookData(resultSet, book);
+                BookList.add(book);
+            }
+        } catch (SQLException e) {
+            throw new TransactionException(e);
+        } finally {
+            return BookList;
+        }
+    }
+
+    /**
+     * Searches all the Authors stored at the DDBB
+     *
+     * @return The <code>String</code> list including all the Authors;
+     * <code>null</code> if no Authors is found.
+     * @throws TransactionException if a DDBB exception occurred
+     */
+    @Override
+    public List<String> getAllAuthors() throws TransactionException {
+        List<String> list = new ArrayList<String>();
+        String query = "SELECT DISTINCT AUTOR FROM " + TransactionManager.BOOK_ENTITY;
+
+        try {
+            this.resultSet = this.statement.executeQuery(query);
+            while (this.resultSet.next()) {
+                list.add(resultSet.getString(1));
+            }
+        } catch (SQLException e) {
+            throw new TransactionException(e);
+        } finally {
+            return list;
+        }
+    }
+
+    /**
+     * Searches all the Editorials stored at the DDBB
+     *
+     * @return The <code>String</code> list including all the Editorials;
+     * <code>null</code> if no Editorial is found.
+     * @throws TransactionException if a DDBB exception occurred
+     */
+    @Override
+    public List<String> getAllEditorials() throws TransactionException {
+        List<String> list = new ArrayList<String>();
+        String query = "SELECT DISTINCT EDITORIAL FROM " + TransactionManager.BOOK_ENTITY;
+
+        try {
+            this.resultSet = this.statement.executeQuery(query);
+            while (this.resultSet.next()) {
+                list.add(resultSet.getString(1));
+            }
+        } catch (SQLException e) {
+            throw new TransactionException(e);
+        } finally {
+            return list;
+        }
+    }
+
+    /**
+     * Searches a list of existing Books at the DDBB identified by the Editorial
+     *
+     * @param author The Book author
+     * @return The <code>{@link ITBook}</code> list filtered by Editorial;
+     * <code>null</code> if no Book is found.
+     * @throws TransactionException if a DDBB exception occurred
+     */
+    public List<ITBook> getBookByEditorial(String editorial) throws TransactionException {
+        List<ITBook> BookList = new ArrayList<ITBook>();
+        String query = "SELECT * FROM " + TransactionManager.BOOK_ENTITY
+                + " WHERE EDITORIAL LIKE '" + editorial + "'";
         try {
             this.resultSet = this.statement.executeQuery(query);
             while (this.resultSet.next()) {

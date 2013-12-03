@@ -13,5 +13,6 @@
     <body>
         <a href="./jsp/SearchAllBooks.jsp">Search All books</a> 
         <a href="./jsp/SearchByAuthor.jsp">Search By author</a> 
+        <a href="./jsp/SearchByEditorial.jsp">Search By editorial</a> 
     </body>
 </html>

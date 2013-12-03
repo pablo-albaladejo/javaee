@@ -29,14 +29,14 @@ public interface ITBook {
 
     /**
      * Author getter
-     * @return the AuthorID
+     * @return the Author
      */
-    int getAuthorID();
+    String getAuthor();
     /**
-     * AuthorID setter
-     * @param authorID the AuthorID
+     * Author setter
+     * @param author the Author
      */
-    void setAuthorID(int authorID);
+    void setAuthor(String author);
 
     /**
      * Editorial getter

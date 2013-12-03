@@ -1,6 +1,5 @@
 package bookstore.logic.transfer.factory;
 
-import bookstore.logic.transfer.author.ITAuthor;
 import bookstore.logic.transfer.book.ITBook;
 
 /**
@@ -25,10 +24,5 @@ public abstract class TransferFactory {
      * @return <code>{@link ITBook}</code>
      */
     abstract public ITBook getBookTransfer();
-    
-    /**
-     * Provides an object of the Author entity Transfer pattern
-     * @return <code>{@link ITAuthor}</code>
-     */
-    abstract public ITAuthor getAuthorTransfer();
+
 }

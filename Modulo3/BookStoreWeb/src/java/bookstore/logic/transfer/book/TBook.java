@@ -9,7 +9,7 @@ public class TBook implements ITBook {
 
     private int ID;
     private String title;
-    private int authorID;
+    private String author;
     private String editorial;
     private String ISBN;
     private int publicationYear;
@@ -58,20 +58,20 @@ public class TBook implements ITBook {
 
     /**
      * Author getter
-     * @return the AuthorID
+     * @return the Author
      */
     @Override
-    public int getAuthorID() {
-        return this.authorID;
+    public String getAuthor() {
+        return this.author;
     }
 
     /**
-     * AuthorID setter
-     * @param authorID the AuthorID
+     * Author setter
+     * @param author the Author
      */
     @Override
-    public void setAuthorID(int authorID) {
-        this.authorID = authorID;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     /**
@@ -178,7 +178,7 @@ public class TBook implements ITBook {
     public String toString() {
         return  this.ID + ", "
                 + this.title + ", "
-                + Integer.toString(this.authorID) + ", "
+                + this.author + ", "
                 + this.editorial + ", "
                 + this.ISBN + ", "
                 + this.publicationYear + ", "

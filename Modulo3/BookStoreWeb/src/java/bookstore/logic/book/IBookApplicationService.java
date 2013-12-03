@@ -59,4 +59,34 @@ public interface IBookApplicationService {
      *         <code>false</code> otherwise 
      */
     boolean ModifyBook(ITBook Book);
+    
+    /**
+     * Searches all the Authors stored at the persistence
+     * @return  The <code>String</code> list including all the Authors;
+     *          <code>null</code> if no Author is found.     
+     */
+    public List<String> getAllAuthors();
+    
+    /**
+     * Searches a list of existing Books at the persistence identified by the Author
+     * @param   author The Book author
+     * @return  The <code>{@link ITBook}</code> list filtered by author;
+     *          <code>null</code> if no Book is found.
+     */
+    public List<ITBook> getBookByAuthor(String name);
+    
+    /**
+     * Searches all the Editorials stored at the persistence
+     * @return  The <code>String</code> list including all the Editorials;
+     *          <code>null</code> if no Author is found.     
+     */
+    public List<String> getAllEditorials();
+    
+     /**
+     * Searches a list of existing Books at the persistence identified by the Editorial
+     * @param   editorial The Book author
+     * @return  The <code>{@link ITBook}</code> list filtered by editorial;
+     *          <code>null</code> if no Book is found.
+     */
+    public List<ITBook> getBookByEditorial(String editorial);
 }
