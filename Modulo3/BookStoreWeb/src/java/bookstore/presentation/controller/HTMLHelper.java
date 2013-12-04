@@ -87,7 +87,7 @@ public class HTMLHelper {
 
     public static String getHTMLTable(List<String> headers, List<List<String>> rows) {
         Element table = openDocument("table");
-        table.setAttribute("border", "1"); //TO BE REMOVED!!
+        //table.setAttribute("border", "1"); //TO BE REMOVED!!
 
         //Headers
         Element tr = createNode(table, "tr");
@@ -97,8 +97,11 @@ public class HTMLHelper {
         table.appendChild(tr);
 
         //rows
+        boolean odd = true;
         for (List<String> row : rows) {
             tr = createNode(table, "tr");
+            String css = "odd"; if(!odd) css ="even"; odd = !odd;
+            tr.setAttribute("class", css);
             //cells
             for (String cell : row) {
                 Element td = createNode(table, "td");
