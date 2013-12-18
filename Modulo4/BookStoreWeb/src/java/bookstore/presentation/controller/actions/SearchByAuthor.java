@@ -3,7 +3,6 @@ package bookstore.presentation.controller.actions;
 import bookstore.logic.bean.book.IBeanBook;
 import bookstore.logic.service.ServiceFactory;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
