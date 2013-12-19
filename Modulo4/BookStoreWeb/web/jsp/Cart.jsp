@@ -1,41 +1,28 @@
 <%-- 
-    Document   : SearchAllBooks
-    Created on : 02-dic-2013, 23:23:11
-    Author     : <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
+    Document   : Cart
+    Created on : 19-dic-2013, 11:10:56
+    Author     : palbaladejo
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<jsp:useBean id="myCart" scope="session" class="bookstore.logic.bean.cart.CartBean" />
 <!DOCTYPE html>
 <html>
     <head>
     <%@ include file="header.jsp" %>
     </head>
     <body>
-        <c:if test="${not empty requestScope.author}">
-        <h1>Author: ${requestScope.author}</h1>
-        </c:if>
-        <c:if test="${not empty requestScope.editorial}">
-        <h1>Editorial: ${requestScope.editorial}</h1>
-        </c:if>
-        <c:if test="${not empty requestScope.title}">
-        <h1>Title: ${requestScope.title}</h1>
-        </c:if>
-        <c:if test="${not empty requestScope.ISBN}">
-        <h1>ISBN: ${requestScope.ISBN}</h1>
-        </c:if>
+        <h1>My Cart</h1>
         <table>
             <tr>
                 <th>Title</th>
                 <th>Author</th>
                 <th>Editorial</th>
                 <th>ISBN</th>
-                <th>Publication Year</th>
                 <th>Price</th>
-                <th>Descripcion</th>
-                <th>Add to Cart</th>
+                <th>Remove from Cart</th>
             </tr>
-            <c:forEach var="book" items="${requestScope.list}" varStatus="counter" >
+            <c:forEach var="book" items="${sessionScope.myCart.list}" varStatus="counter" >
             <c:choose>
             <c:when test="${counter.count mod 2 == 0 || counter.count == 0}">
             <tr class ="even">
@@ -48,12 +35,16 @@
                 <td><jsp:getProperty name="book" property="author" /></td>
                 <td><jsp:getProperty name="book" property="editorial" /></td>
                 <td><jsp:getProperty name="book" property="ISBN" /></td>
-                <td><jsp:getProperty name="book" property="publicationYear" /></td>
                 <td><jsp:getProperty name="book" property="price" /></td>
-                <td><jsp:getProperty name="book" property="description" /></td>
-                <td><img src="./rsc/images/cart_add.png" onClick="sendByPOSTParameter('./ViewCart.do', 'addItem', <jsp:getProperty name="book" property="ISBN" />);"/></td>
+                <td><img src="./rsc/images/cart_remove.png" onClick="sendByPOSTParameter('./ViewCart.do', 'removeItem', <jsp:getProperty name="book" property="ISBN" />);"/></td>
             </tr>
             </c:forEach>
+        </table>
+        <table>
+            <tr class ="footer">
+                <td>Items</td><td><jsp:getProperty name="myCart" property="itemCount" /></td>
+                <td>Total</td><td><jsp:getProperty name="myCart" property="price" /></td>
+            </tr>
         </table>
         <%@ include file="footer.jsp" %>
     </body>

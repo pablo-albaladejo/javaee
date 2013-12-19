@@ -1,6 +1,6 @@
 <%-- 
-    Document   : AuthorSearchForm
-    Created on : 18-dic-2013, 17:41:43
+    Document   : EditorialSeachForm
+    Created on : 19-dic-2013, 15:17:58
     Author     : palbaladejo
 --%>
 
@@ -13,11 +13,11 @@
     <%@ include file="header.jsp" %>
     </head>
     <body>
-        <p>Choose an Author:</p>
-        <select id="authors" onChange="sendByPOSTParameter('./SearchByAuthor.do','authorName',this.options[this.selectedIndex].innerHTML);">
+        <p>Choose an Editorial</p>
+        <select id="authors" onChange="sendByPOSTParameter('./SearchByEditorial.do','editorialName',this.options[this.selectedIndex].innerHTML);">
             <option value="0"/>
             <c:forEach var="name" items="${list}">
-                <option value="author">${name}</option>
+                <option value="editorial">${name}</option>
             </c:forEach>
         </select>
         <%@ include file="footer.jsp" %>

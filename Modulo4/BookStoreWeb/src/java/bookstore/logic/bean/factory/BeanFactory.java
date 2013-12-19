@@ -1,6 +1,7 @@
 package bookstore.logic.bean.factory;
 
-import bookstore.logic.bean.book.IBeanBook;
+import bookstore.logic.bean.book.IBookBean;
+import bookstore.logic.bean.cart.ICartBean;
 
 /**
  * Implements the Abstract Factory and Singeltone Pattern
@@ -21,8 +22,9 @@ public abstract class BeanFactory {
     
     /**
      * Provides an object of the Book entity Bean pattern
-     * @return <code>{@link IBeanBook}</code>
+     * @return <code>{@link IBookBean}</code>
      */
-    abstract public IBeanBook getBookBean();
+    abstract public IBookBean getBookBean();
+    abstract public ICartBean getCartBean();
 
 }

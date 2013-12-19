@@ -1,6 +1,6 @@
 package bookstore.presentation.controller.actions;
 
-import bookstore.logic.bean.book.IBeanBook;
+import bookstore.logic.bean.book.IBookBean;
 import bookstore.logic.service.ServiceFactory;
 import java.io.IOException;
 import java.util.List;
@@ -29,7 +29,7 @@ public class SearchByAuthor extends HttpServlet {
         String authorName = request.getParameter("authorName");
         
         if(authorName != null){
-            List<IBeanBook> list = ServiceFactory.getInstance().getBusinessFacade().getBookByAuthor(authorName);
+            List<IBookBean> list = ServiceFactory.getInstance().getBusinessFacade().getBookByAuthor(authorName);
             request.setAttribute("author", authorName);
             request.setAttribute("list", list);
             

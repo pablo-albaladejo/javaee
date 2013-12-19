@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Specifies the Transfer Pattern of the Book entity
  * <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
  */
-public interface IBeanBook extends Serializable{
+public interface IBookBean extends Serializable{
     
     /**
      * ID getter

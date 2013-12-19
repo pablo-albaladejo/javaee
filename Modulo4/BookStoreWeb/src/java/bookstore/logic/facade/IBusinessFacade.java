@@ -1,7 +1,7 @@
 package bookstore.logic.facade;
 
 import java.util.List;
-import bookstore.logic.bean.book.IBeanBook;
+import bookstore.logic.bean.book.IBookBean;
 
 /**
  * This interface provides a unifiqued view of all the model logic to the
@@ -17,7 +17,7 @@ public interface IBusinessFacade {
      * @return  <code>true</code> if the book is propertly added;
      * <code>false</code> otherwise
      */
-    boolean NewBook(IBeanBook Book);
+    boolean NewBook(IBookBean Book);
 
     /**
      * Removes a Book from the persistence identified by the ISBN
@@ -31,29 +31,29 @@ public interface IBusinessFacade {
     /**
      * Searches all the Books stored at the persistence
      *
-     * @return The <code>{@link IBeanBook}</code> list including all the Books;
+     * @return The <code>{@link IBookBean}</code> list including all the Books;
      * <code>null</code> if no Book is found.
      */
-    List<IBeanBook> getAllBooks();
+    List<IBookBean> getAllBooks();
 
     /**
      * Searches a Book from the persistence identified by the ISBN
      *
      * @param ISBN The string which defines a unique Book identifier
-     * @return The <code>{@link IBeanBook}</code> if it is found; <code>null</code>
+     * @return The <code>{@link IBookBean}</code> if it is found; <code>null</code>
      * if the Book is not found.
      */
-    IBeanBook getBookByISBN(String ISBN);
+    IBookBean getBookByISBN(String ISBN);
 
     /**
      * Searches a list of existing Books at the persistence identified by the
      * Title
      *
      * @param title The Book title
-     * @return The <code>{@link IBeanBook}</code> list filtered by title;
+     * @return The <code>{@link IBookBean}</code> list filtered by title;
      * <code>null</code> if no Book is found.
      */
-    List<IBeanBook> getBookByTitle(String title);
+    List<IBookBean> getBookByTitle(String title);
 
     /**
      * Modifies the price of the Book identified by the provded ISBN
@@ -69,12 +69,12 @@ public interface IBusinessFacade {
     /**
      * Modifies the whole data stored into the DDBB
      *
-     * @param Book The <code>{@link IBeanBook}</code> to including the data to be
+     * @param Book The <code>{@link IBookBean}</code> to including the data to be
      * updated
      * @return <code>true</code> if the books is updated; <code>false</code>
      * otherwise
      */
-    boolean ModifyBook(IBeanBook Book);
+    boolean ModifyBook(IBookBean Book);
 
     /**
      * Searches all the Authors stored at the persistence
@@ -89,10 +89,10 @@ public interface IBusinessFacade {
      * Author
      *
      * @param author The Book author
-     * @return The <code>{@link IBeanBook}</code> list filtered by author;
+     * @return The <code>{@link IBookBean}</code> list filtered by author;
      * <code>null</code> if no Book is found.
      */
-    List<IBeanBook> getBookByAuthor(String name);
+    List<IBookBean> getBookByAuthor(String name);
 
     /**
      * Searches all the Editorials stored at the persistence
@@ -107,8 +107,8 @@ public interface IBusinessFacade {
      * Editorial
      *
      * @param editorial The Book author
-     * @return The <code>{@link IBeanBook}</code> list filtered by editorial;
+     * @return The <code>{@link IBookBean}</code> list filtered by editorial;
      * <code>null</code> if no Book is found.
      */
-    List<IBeanBook> getBookByEditorial(String editorial);
+    List<IBookBean> getBookByEditorial(String editorial);
 }

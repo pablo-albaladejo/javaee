@@ -5,7 +5,7 @@
 package bookstore.presentation.controller.actions;
 
 import bookstore.logic.service.ServiceFactory;
-import bookstore.logic.bean.book.IBeanBook;
+import bookstore.logic.bean.book.IBookBean;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -32,7 +32,7 @@ public class SearchAllBooks extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        List<IBeanBook> list = ServiceFactory.getInstance().getBusinessFacade().getAllBooks();
+        List<IBookBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllBooks();
         request.setAttribute("list", list);
               
         request.getRequestDispatcher("/jsp/BooksList.jsp").forward(request, response);

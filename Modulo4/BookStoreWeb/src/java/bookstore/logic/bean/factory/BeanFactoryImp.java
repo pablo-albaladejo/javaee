@@ -1,7 +1,9 @@
 package bookstore.logic.bean.factory;
 
-import bookstore.logic.bean.book.IBeanBook;
-import bookstore.logic.bean.book.BeanBook;
+import bookstore.logic.bean.book.IBookBean;
+import bookstore.logic.bean.book.BookBean;
+import bookstore.logic.bean.cart.CartBean;
+import bookstore.logic.bean.cart.ICartBean;
 
 /**
  * This class implements the <code>{@link BeanFactory}</code>
@@ -10,11 +12,20 @@ import bookstore.logic.bean.book.BeanBook;
 public class BeanFactoryImp extends BeanFactory{
     
     /**
-     * Return a Book object wich implements <code>{@link IBeanBook}</code> 
-     * @return <code>{@link IBeanBook}</code>
+     * Return a Book object wich implements <code>{@link IBookBean}</code> 
+     * @return <code>{@link IBookBean}</code>
      */
     @Override
-    public IBeanBook getBookBean(){
-        return new BeanBook();
+    public IBookBean getBookBean(){
+        return new BookBean();
+    }
+    
+    /**
+     * Return a Cart object wich implements <code>{@link ICartBean}</code> 
+     * @return <code>{@link ICartBean}</code>
+     */
+    @Override
+    public ICartBean getCartBean() {
+        return new CartBean();
     }
 }

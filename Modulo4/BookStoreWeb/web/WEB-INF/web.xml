@@ -9,6 +9,26 @@
         <servlet-name>SearchByAuthor</servlet-name>
         <servlet-class>bookstore.presentation.controller.actions.SearchByAuthor</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewCart</servlet-name>
+        <servlet-class>bookstore.presentation.controller.actions.ViewCart</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchByEditorial</servlet-name>
+        <servlet-class>bookstore.presentation.controller.actions.SearchByEditorial</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchByTitle</servlet-name>
+        <servlet-class>bookstore.presentation.controller.actions.SearchByTitle</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchByISBN</servlet-name>
+        <servlet-class>bookstore.presentation.controller.actions.SearchByISBN</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManageDDBB</servlet-name>
+        <servlet-class>bookstore.presentation.controller.actions.ManageDDBB</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>FrontController</servlet-name>
         <url-pattern>*.do</url-pattern>
@@ -28,6 +48,26 @@
     <servlet-mapping>
         <servlet-name>SearchByAuthor</servlet-name>
         <url-pattern>/SearchByAuthor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewCart</servlet-name>
+        <url-pattern>/ViewCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchByEditorial</servlet-name>
+        <url-pattern>/SearchByEditorial</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchByTitle</servlet-name>
+        <url-pattern>/SearchByTitle</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchByISBN</servlet-name>
+        <url-pattern>/SearchByISBN</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageDDBB</servlet-name>
+        <url-pattern>/ManageDDBB</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -2,7 +2,7 @@ package bookstore.logic.facade;
 
 import java.util.List;
 import bookstore.logic.service.ServiceFactory;
-import bookstore.logic.bean.book.IBeanBook;
+import bookstore.logic.bean.book.IBookBean;
 
 /**
  * This class implements the
@@ -20,7 +20,7 @@ public class BusinessFacade implements IBusinessFacade {
      * <code>false</code> otherwise
      */
     @Override
-    public boolean NewBook(IBeanBook Book) {
+    public boolean NewBook(IBookBean Book) {
         return ServiceFactory.getInstance().getBookService().NewBook(Book);
     }
 
@@ -39,11 +39,11 @@ public class BusinessFacade implements IBusinessFacade {
     /**
      * Searches all the Books stored at the persistence
      *
-     * @return The <code>{@link IBeanBook}</code> list including all the Books;
+     * @return The <code>{@link IBookBean}</code> list including all the Books;
      * <code>null</code> if no Book is found.
      */
     @Override
-    public List<IBeanBook> getAllBooks() {
+    public List<IBookBean> getAllBooks() {
         return ServiceFactory.getInstance().getBookService().getAllBooks();
     }
 
@@ -51,11 +51,11 @@ public class BusinessFacade implements IBusinessFacade {
      * Searches a Book from the persistence identified by the ISBN
      *
      * @param ISBN The string which defines a unique Book identifier
-     * @return The <code>{@link IBeanBook}</code> if it is found; <code>null</code>
+     * @return The <code>{@link IBookBean}</code> if it is found; <code>null</code>
      * if the Book is not found.
      */
     @Override
-    public IBeanBook getBookByISBN(String ISBN) {
+    public IBookBean getBookByISBN(String ISBN) {
         return ServiceFactory.getInstance().getBookService().getBookByISBN(ISBN);
     }
 
@@ -64,11 +64,11 @@ public class BusinessFacade implements IBusinessFacade {
      * Title
      *
      * @param title The Book title
-     * @return The <code>{@link IBeanBook}</code> list filtered by title;
+     * @return The <code>{@link IBookBean}</code> list filtered by title;
      * <code>null</code> if no Book is found.
      */
     @Override
-    public List<IBeanBook> getBookByTitle(String title) {
+    public List<IBookBean> getBookByTitle(String title) {
         return ServiceFactory.getInstance().getBookService().getBookByTitle(title);
     }
 
@@ -88,13 +88,13 @@ public class BusinessFacade implements IBusinessFacade {
     /**
      * Modifies the whole data stored into the DDBB
      *
-     * @param Book The <code>{@link IBeanBook}</code> to including the data to be
+     * @param Book The <code>{@link IBookBean}</code> to including the data to be
      * updated
      * @return <code>true</code> if the books is updated; <code>false</code>
      * otherwise
      */
     @Override
-    public boolean ModifyBook(IBeanBook Book) {
+    public boolean ModifyBook(IBookBean Book) {
         return ServiceFactory.getInstance().getBookService().ModifyBook(Book);
     }
 
@@ -114,11 +114,11 @@ public class BusinessFacade implements IBusinessFacade {
      * Author
      *
      * @param author The Book author
-     * @return The <code>{@link IBeanBook}</code> list filtered by author;
+     * @return The <code>{@link IBookBean}</code> list filtered by author;
      * <code>null</code> if no Book is found.
      */
     @Override
-    public List<IBeanBook> getBookByAuthor(String name) {
+    public List<IBookBean> getBookByAuthor(String name) {
         return ServiceFactory.getInstance().getBookService().getBookByAuthor(name);
     }
 
@@ -138,11 +138,11 @@ public class BusinessFacade implements IBusinessFacade {
      * Editorial
      *
      * @param editorial The Book editorial
-     * @return The <code>{@link IBeanBook}</code> list filtered by editorial;
+     * @return The <code>{@link IBookBean}</code> list filtered by editorial;
      * <code>null</code> if no Book is found.
      */
     @Override
-    public List<IBeanBook> getBookByEditorial(String editorial) {
+    public List<IBookBean> getBookByEditorial(String editorial) {
         return ServiceFactory.getInstance().getBookService().getBookByEditorial(editorial);
     }
 }

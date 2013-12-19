@@ -1,11 +1,13 @@
 package bookstore.logic.bean.book;
 
+import java.util.Objects;
+
 /**
  * This class implements the
- * <code>{@link IBeanBook}</code> interface.
+ * <code>{@link IBookBean}</code> interface.
  * <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
  */
-public class BeanBook implements IBeanBook {
+public class BookBean implements IBookBean {
 
     private int ID;
     private String title;
@@ -20,7 +22,7 @@ public class BeanBook implements IBeanBook {
      * Empty default contructor
      */
     
-    public BeanBook() {
+    public BookBean() {
     }
 
     /**
@@ -34,7 +36,7 @@ public class BeanBook implements IBeanBook {
      * @param price
      * @param description
      */
-    public BeanBook(int ID, String title, String author, String editorial, String ISBN, int publicationYear, double price, String description) {
+    public BookBean(int ID, String title, String author, String editorial, String ISBN, int publicationYear, double price, String description) {
         this.ID = ID;
         this.title = title;
         this.author = author;
@@ -214,4 +216,25 @@ public class BeanBook implements IBeanBook {
                 + this.price + ", "
                 + this.description;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!(obj instanceof BookBean)) return false;
+        return (this.ISBN == null ? ((BookBean)obj).ISBN == null : this.ISBN.equals(((BookBean)obj).ISBN));
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 47 * hash + this.ID;
+        hash = 47 * hash + Objects.hashCode(this.title);
+        hash = 47 * hash + Objects.hashCode(this.author);
+        hash = 47 * hash + Objects.hashCode(this.editorial);
+        hash = 47 * hash + Objects.hashCode(this.ISBN);
+        hash = 47 * hash + this.publicationYear;
+        hash = 47 * hash + (int) (Double.doubleToLongBits(this.price) ^ (Double.doubleToLongBits(this.price) >>> 32));
+        hash = 47 * hash + Objects.hashCode(this.description);
+        return hash;
+    }
+    
 }
