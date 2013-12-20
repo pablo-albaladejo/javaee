@@ -34,10 +34,12 @@ h1{
     color: #858d66;
     font-style: italic;
 }
-
 p{
     color: #828282;
     font-weight: bold;
     font-style: italic; 
+}
+p.message{
+    color: red;  
 }
 

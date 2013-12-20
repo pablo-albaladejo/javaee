@@ -4,7 +4,7 @@ function sendByPOSTParameter(action, parameter, value) {
     myForm.action = action;
     myForm.method = "POST";
     
-    myControl = document.createElement("input");
+    var myControl = document.createElement("input");
     myControl.setAttribute("type", "hidden");
     myControl.setAttribute("name", parameter);
     myControl.setAttribute("value", value);

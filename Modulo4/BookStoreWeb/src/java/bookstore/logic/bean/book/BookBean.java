@@ -23,6 +23,14 @@ public class BookBean implements IBookBean {
      */
     
     public BookBean() {
+        /*this.ID = -1;
+        this.title = "";
+        this.author = "";
+        this.editorial = "";
+        this.ISBN = "";
+        this.publicationYear = 0;
+        this.price = 0.0;
+        this.description = "";*/
     }
 
     /**

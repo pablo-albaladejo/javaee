@@ -57,14 +57,19 @@
                             <td>Select By</td>
                             <td><input type="submit" value="Author" onClick="javascript:f_selectAuthor();"/></td>
                             <td><input type="submit" value="Editorial" onClick="javascript:f_selectEditorial();"/></td>
+                            <td></td>
                         </tr>
                         <tr  class="odd">
                             <td>View Cart</td>
                             <td><img src="./rsc/images/cart.png" onClick="sendByPOST('./ViewCart.do');"/></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                         <tr class="footer">
                             <td>DDBB</td>
                             <td><input type="submit" value="Manage" onClick="javascript:f_selectManageDDBB();"/></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     </table>
                 </form>
