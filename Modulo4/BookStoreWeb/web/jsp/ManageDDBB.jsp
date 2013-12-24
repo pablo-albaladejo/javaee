@@ -14,24 +14,30 @@
             document.getElementById(formName).submit();   
         }
         function deleteBook(ISBN){
-            var myForm = document.getElementById("book_" + ISBN);
+            var myForm = createForm("./ManageDDBB.do","POST");
             
-            var myActionControl = document.createElement("input");
-            myActionControl.setAttribute("type", "hidden");
-            myActionControl.setAttribute("name", "action");
-            myActionControl.setAttribute("value", "DELETE_BOOK");
-            myForm.appendChild(myActionControl);
-    
-            var myActionControl = document.createElement("input");
-            myActionControl.setAttribute("type", "hidden");
-            myActionControl.setAttribute("name", "ISBN");
-            myActionControl.setAttribute("value", ISBN);
-            myForm.appendChild(myActionControl);
+            myForm.appendChild(createActionControl("action","DELETE_BOOK"));
+            myForm.appendChild(createActionControl("ISBN",ISBN));
     
             document.body.appendChild(myForm);
             myForm.submit();
         }
         
+        function editBook(ISBN){
+            var myForm = createForm("./ManageDDBB.do","POST");
+            
+            myForm.appendChild(createActionControl("action","EDIT_BOOK"));
+            myForm.appendChild(createActionControl("ISBN",ISBN));
+            myForm.appendChild(createActionControl("title",document.getElementById("title_"+ISBN).value));
+            myForm.appendChild(createActionControl("author",document.getElementById("author_"+ISBN).value));
+            myForm.appendChild(createActionControl("editorial",document.getElementById("editorial_"+ISBN).value));
+            myForm.appendChild(createActionControl("publicationYear",document.getElementById("publicationYear_"+ISBN).value));
+            myForm.appendChild(createActionControl("price",document.getElementById("price_"+ISBN).value));    
+            myForm.appendChild(createActionControl("description",document.getElementById("description_"+ISBN).value));
+            
+            document.body.appendChild(myForm);
+            myForm.submit();
+        }       
     </script>
         
     </head>
@@ -54,7 +60,6 @@
                 <th>Remove</th>
             </tr>
             <c:forEach var="book" items="${requestScope.list}" varStatus="counter" >
-                <form id="book_<jsp:getProperty name="book" property="ISBN" />" action="./ManageDDBB.do" method="POST">
                 <c:choose>
                 <c:when test="${counter.count mod 2 == 0 || counter.count == 0}">
                 <tr class ="even">
@@ -64,17 +69,16 @@
                 </c:otherwise>
                 </c:choose>
                     <input type="hidden" name="ISBN" value ="<jsp:getProperty name="book" property="ISBN" />"/>
-                    <td><input type="text" name="title" value="<jsp:getProperty name="book" property="title" />"/></td>
-                    <td><input type="text" name="author" value="<jsp:getProperty name="book" property="author" />"/></td>
-                    <td><input type="text" name="editorial" value="<jsp:getProperty name="book" property="editorial" />"/></td>
+                    <td><input type="text" name="title"  id="title_<jsp:getProperty name="book" property="ISBN" />" value="<jsp:getProperty name="book" property="title" />"/></td>
+                    <td><input type="text" name="author" id="author_<jsp:getProperty name="book" property="ISBN" />" value="<jsp:getProperty name="book" property="author" />"/></td>
+                    <td><input type="text" name="editorial" id="editorial_<jsp:getProperty name="book" property="ISBN" />"value="<jsp:getProperty name="book" property="editorial" />"/></td>
                     <td><jsp:getProperty name="book" property="ISBN" /></td>
-                    <td><input type="text" name="publicationYear" value="<jsp:getProperty name="book" property="publicationYear" />"/></td>
-                    <td><input type="text" name="price" value="<jsp:getProperty name="book" property="price" />"/></td>
-                    <td><input type="text" name="description" value="<jsp:getProperty name="book" property="description" />"/></td>
+                    <td><input type="text" name="publicationYear" id="publicationYear_<jsp:getProperty name="book" property="ISBN" />"value="<jsp:getProperty name="book" property="publicationYear" />"/></td>
+                    <td><input type="text" name="price" id="price_<jsp:getProperty name="book" property="ISBN" />" value="<jsp:getProperty name="book" property="price" />"/></td>
+                    <td><input type="text" name="description" id="description_<jsp:getProperty name="book" property="ISBN" />"value="<jsp:getProperty name="book" property="description" />"/></td>
                     <td><img src="./rsc/images/edit.png" onClick="editBook('<jsp:getProperty name="book" property="ISBN" />')"/></td>
                     <td><img src="./rsc/images/remove.png" onClick="deleteBook('<jsp:getProperty name="book" property="ISBN" />')"/></td>
                 </tr>
-                </form>
                 </c:forEach>
         </table>
         <h2>Insert new Book</h2>

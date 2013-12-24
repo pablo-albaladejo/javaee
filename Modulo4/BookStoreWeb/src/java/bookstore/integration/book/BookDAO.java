@@ -229,8 +229,14 @@ public class BookDAO implements IBookDAO {
     @Override
     public boolean ModifyBook(IBookBean Book) throws TransactionException {
         boolean updateActionResult = false;
-        String query = "UPDATE " + TransactionManager.BOOK_ENTITY
-                + " SET PRECIO = " + Book.getPrice() + " WHERE ISBN = '" + Book.getISBN() + "'";
+        String query = "UPDATE " + TransactionManager.BOOK_ENTITY + " SET "
+                + "AUTOR = '" + Book.getAuthor() + "', "
+                + "TITULO = '" + Book.getTitle() + "', "
+                + "EDITORIAL = '" + Book.getEditorial() + "', "
+                + "PUBLICACION = '" + Book.getPublicationYear() + "', "
+                + "PRECIO = '" + Book.getPrice() + "', "
+                + "DESCRIPCION = '" + Book.getDescription() + "' "
+                + "WHERE ISBN = '" + Book.getISBN() + "'";
         try {
             int numRows = this.statement.executeUpdate(query);
             if (numRows > 0) {
