@@ -3,8 +3,16 @@
     <!-- Front Controller -->
     <filter>
         <filter-name>Encoding</filter-name>
-        <filter-class>bookstore.web.filters.Encoding</filter-class>
+        <filter-class>bookstore.web.filter.Encoding</filter-class>
     </filter>
+    <filter>
+        <filter-name>Timing</filter-name>
+        <filter-class>bookstore.web.filter.Timing</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>Timing</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <filter-mapping>
         <filter-name>Encoding</filter-name>
         <url-pattern>/*</url-pattern>
@@ -15,27 +23,27 @@
     </servlet>
     <servlet>
         <servlet-name>SearchByAuthor</servlet-name>
-        <servlet-class>bookstore.web.actions.SearchByAuthor</servlet-class>
+        <servlet-class>bookstore.web.action.SearchByAuthor</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ViewCart</servlet-name>
-        <servlet-class>bookstore.web.actions.ViewCart</servlet-class>
+        <servlet-class>bookstore.web.action.ViewCart</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SearchByEditorial</servlet-name>
-        <servlet-class>bookstore.web.actions.SearchByEditorial</servlet-class>
+        <servlet-class>bookstore.web.action.SearchByEditorial</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SearchByTitle</servlet-name>
-        <servlet-class>bookstore.web.actions.SearchByTitle</servlet-class>
+        <servlet-class>bookstore.web.action.SearchByTitle</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SearchByISBN</servlet-name>
-        <servlet-class>bookstore.web.actions.SearchByISBN</servlet-class>
+        <servlet-class>bookstore.web.action.SearchByISBN</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ManageDDBB</servlet-name>
-        <servlet-class>bookstore.web.actions.ManageDDBB</servlet-class>
+        <servlet-class>bookstore.web.action.ManageDDBB</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>FrontController</servlet-name>
@@ -44,7 +52,7 @@
     <!-- Servlets -->
     <servlet>
         <servlet-name>SearchAllBooks</servlet-name>
-        <servlet-class>bookstore.web.actions.SearchAllBooks</servlet-class>
+        <servlet-class>bookstore.web.action.SearchAllBooks</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>SearchAllBooks</servlet-name>
@@ -82,10 +90,4 @@
             30
         </session-timeout>
     </session-config>
-    <jsp-config>
-    <jsp-property-group>
-        <url-pattern>*.jsp</url-pattern>
-        <page-encoding>UTF-8</page-encoding>
-    </jsp-property-group>
-</jsp-config>
 </web-app>

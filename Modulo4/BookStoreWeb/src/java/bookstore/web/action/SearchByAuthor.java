@@ -1,4 +1,4 @@
-package bookstore.web.actions;
+package bookstore.web.action;
 
 import bookstore.logic.bean.book.IBookBean;
 import bookstore.logic.service.ServiceFactory;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author palbaladejo
+ * @author Pablo Albaladejo Mestre <pablo.albaladejo.mestre@gmail.com>
  */
 public class SearchByAuthor extends HttpServlet {
 

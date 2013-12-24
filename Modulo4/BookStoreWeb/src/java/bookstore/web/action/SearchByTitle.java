@@ -1,4 +1,4 @@
-package bookstore.web.actions;
+package bookstore.web.action;
 
 import bookstore.logic.bean.book.IBookBean;
 import bookstore.logic.service.ServiceFactory;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Pablo Albaladejo Mestre <pablo.albaladejo.mestre@gmail.com>
  */
-public class SearchByEditorial extends HttpServlet {
+public class SearchByTitle extends HttpServlet {
 
     /** 
      * Handles the HTTP <code>POST</code> method.
@@ -25,23 +25,18 @@ public class SearchByEditorial extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-
-        String editorialName = request.getParameter("editorialName");
         
-        if(editorialName != null){
-            //editorialName = new String(editorialName.getBytes("ISO-8859-1"), "UTF-8");
-            List<IBookBean> list = ServiceFactory.getInstance().getBusinessFacade().getBookByEditorial(editorialName);
-            request.setAttribute("editorial", editorialName);
+        
+        String title = request.getParameter("title");
+        if(title != null){
+            List<IBookBean> list =ServiceFactory.getInstance().getBusinessFacade().getBookByTitle(title);
+            request.setAttribute("title", title);
             request.setAttribute("list", list);
             
             request.getRequestDispatcher("/jsp/BooksList.jsp").forward(request, response);
         }else{
-            List<String> list = ServiceFactory.getInstance().getBusinessFacade().getAllEditorials();
-            request.setAttribute("list", list);
-        
-            request.getRequestDispatcher("/jsp/EditorialSearchForm.jsp").forward(request, response);
+            request.getRequestDispatcher("/jsp/SearchByTitleForm.jsp").forward(request, response);
         }
     }
-
 
 }

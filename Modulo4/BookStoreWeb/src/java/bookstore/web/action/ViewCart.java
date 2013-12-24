@@ -1,4 +1,4 @@
-package bookstore.web.actions;
+package bookstore.web.action;
 
 import bookstore.logic.bean.book.IBookBean;
 import bookstore.logic.bean.cart.ICartBean;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author palbaladejo
+ * @author Pablo Albaladejo Mestre <pablo.albaladejo.mestre@gmail.com>
  */
 
 public class ViewCart extends HttpServlet {
@@ -46,7 +46,8 @@ public class ViewCart extends HttpServlet {
         //Item removal from the Cart
         String removeItem = request.getParameter("removeItem");
         if(removeItem != null){
-            IBookBean book = ServiceFactory.getInstance().getBusinessFacade().getBookByISBN(removeItem);
+            IBookBean book = BeanFactory.getInstance().getBookBean();
+            book.setISBN(removeItem);
             if(book != null) myCart.remove(book);
         }
 

@@ -71,11 +71,11 @@
                     <input type="hidden" name="ISBN" value ="<jsp:getProperty name="book" property="ISBN" />"/>
                     <td><input type="text" name="title"  id="title_<jsp:getProperty name="book" property="ISBN" />" value="<jsp:getProperty name="book" property="title" />"/></td>
                     <td><input type="text" name="author" id="author_<jsp:getProperty name="book" property="ISBN" />" value="<jsp:getProperty name="book" property="author" />"/></td>
-                    <td><input type="text" name="editorial" id="editorial_<jsp:getProperty name="book" property="ISBN" />"value="<jsp:getProperty name="book" property="editorial" />"/></td>
+                    <td><input type="text" name="editorial" id="editorial_<jsp:getProperty name="book" property="ISBN" />" value="<jsp:getProperty name="book" property="editorial" />"/></td>
                     <td><jsp:getProperty name="book" property="ISBN" /></td>
-                    <td><input type="text" name="publicationYear" id="publicationYear_<jsp:getProperty name="book" property="ISBN" />"value="<jsp:getProperty name="book" property="publicationYear" />"/></td>
+                    <td><input type="text" name="publicationYear" id="publicationYear_<jsp:getProperty name="book" property="ISBN" />" value="<jsp:getProperty name="book" property="publicationYear" />"/></td>
                     <td><input type="text" name="price" id="price_<jsp:getProperty name="book" property="ISBN" />" value="<jsp:getProperty name="book" property="price" />"/></td>
-                    <td><input type="text" name="description" id="description_<jsp:getProperty name="book" property="ISBN" />"value="<jsp:getProperty name="book" property="description" />"/></td>
+                    <td><input type="text" name="description" id="description_<jsp:getProperty name="book" property="ISBN" />" value="<jsp:getProperty name="book" property="description" />"/></td>
                     <td><img src="./rsc/images/edit.png" onClick="editBook('<jsp:getProperty name="book" property="ISBN" />')"/></td>
                     <td><img src="./rsc/images/remove.png" onClick="deleteBook('<jsp:getProperty name="book" property="ISBN" />')"/></td>
                 </tr>

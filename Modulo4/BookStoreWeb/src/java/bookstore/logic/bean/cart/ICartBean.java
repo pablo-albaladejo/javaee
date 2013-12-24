@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  *
- * @author palbaladejo
+ * @author Pablo Albaladejo Mestre <pablo.albaladejo.mestre@gmail.com>
  */
 public interface ICartBean extends Serializable{
     List<IBookBean> getList();

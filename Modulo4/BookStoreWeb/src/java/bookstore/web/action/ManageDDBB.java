@@ -1,4 +1,4 @@
-package bookstore.web.actions;
+package bookstore.web.action;
 
 import bookstore.logic.bean.book.IBookBean;
 import bookstore.logic.bean.factory.BeanFactory;
