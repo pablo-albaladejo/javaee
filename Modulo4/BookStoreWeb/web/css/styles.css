@@ -43,3 +43,8 @@ p.message{
     color: red;  
 }
 
+marquee {
+    color: #828282;
+    font-weight: bold;
+    font-style: italic; 
+}

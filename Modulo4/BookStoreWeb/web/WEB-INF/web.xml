@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
-    <!-- Front Controller -->
+    <context-param>
+        <param-name>BookSuggestion</param-name>
+        <param-value>9788437619538</param-value>
+    </context-param>
     <filter>
         <filter-name>Encoding</filter-name>
         <filter-class>bookstore.web.filter.Encoding</filter-class>
@@ -49,7 +52,6 @@
         <servlet-name>FrontController</servlet-name>
         <url-pattern>*.do</url-pattern>
     </servlet-mapping>
-    <!-- Servlets -->
     <servlet>
         <servlet-name>SearchAllBooks</servlet-name>
         <servlet-class>bookstore.web.action.SearchAllBooks</servlet-class>

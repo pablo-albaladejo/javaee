@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="BookSuggestion" scope="application" class="java.lang.String"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -42,6 +43,9 @@
             }
         </script>
     <body>
+        <marquee>
+            Today's book suggestion: ${BookSuggestion}
+        </marquee>
         <div id="content">
             <center>
                 <h1>Select one action</h1>
