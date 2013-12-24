@@ -1,6 +1,7 @@
-package bookstore.presentation.controller;
+package bookstore.web;
 
 import java.io.IOException;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
  */
 public class FrontController extends HttpServlet {
-
+   
     /**
      * Handles the HTTP
      * <code>POST</code> method.

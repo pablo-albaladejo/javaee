@@ -1,4 +1,4 @@
-package bookstore.presentation.controller.actions;
+package bookstore.web.actions;
 
 import bookstore.logic.bean.book.IBookBean;
 import bookstore.logic.bean.factory.BeanFactory;
@@ -37,6 +37,9 @@ public class ManageDDBB extends HttpServlet {
                 case "DELETE_BOOK":
                     view = deleteBook(request, response);
                     break;
+                case "EDIT_BOOK":
+                    view = editBook(request, response);
+                    break;
                 default:
                     view = list(request, response);
                     break;
@@ -48,26 +51,78 @@ public class ManageDDBB extends HttpServlet {
      request.getRequestDispatcher(view).forward(request, response);   
     }
     
-    private String addBook(HttpServletRequest request, HttpServletResponse response){
+    private String editBook(HttpServletRequest request, HttpServletResponse response){
+        
         String message;
         
         String ISBN = request.getParameter("ISBN");
-        if(ISBN != null && !ISBN.equals("")){
+        String title = request.getParameter("title");
+        String author = request.getParameter("author");
+        String editorial = request.getParameter("editorial");
+        String publicationYear = request.getParameter("publicationYear");
+        String price = request.getParameter("price");
+        String description = request.getParameter("description");
+        
+        if(isValid(ISBN) && isValid(title) && isValid(author) && isValid(editorial)
+                && isValid(publicationYear) && isValid(price) && isValid(description)){
             try{
-                String title = request.getParameter("titile");
-                String author = request.getParameter("author");
-                String editorial = request.getParameter("editorial");
-                int publicationYear = Integer.parseInt(request.getParameter("publicationYear"));
-                double price = Double.parseDouble(request.getParameter("price"));
-                String description = request.getParameter("description");
-
+                int publicationYearInt = Integer.parseInt(publicationYear);
+                double priceDouble = Double.parseDouble(price);
+                
                 IBookBean book = BeanFactory.getInstance().getBookBean();
                 book.setTitle(title);
                 book.setAuthor(author);
                 book.setEditorial(editorial);
                 book.setISBN(ISBN);
-                book.setPublicationYear(publicationYear);
-                book.setPrice(price);
+                book.setPublicationYear(publicationYearInt);
+                book.setPrice(priceDouble);
+                book.setDescription(description);
+                
+                boolean result = ServiceFactory.getInstance().getBusinessFacade().ModifyBook(book);
+                message = "Book " + ISBN + " ";
+                if(result){
+                    message += "edited successfully";
+                }else{
+                    message += "not edited";
+                }
+            }catch(Exception e){
+                message = "Error: Invalid inputs. Book not edited.";
+            }
+
+        }else{
+            message = "Error: ISBN can not be empty";
+        }
+        request.setAttribute("message", message);
+        
+        List<IBookBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllBooks();
+        request.setAttribute("list", list);
+        return "/jsp/ManageDDBB.jsp";
+    }
+    
+    private String addBook(HttpServletRequest request, HttpServletResponse response){
+        String message;
+        
+        String ISBN = request.getParameter("ISBN");
+        String title = request.getParameter("title");
+        String author = request.getParameter("author");
+        String editorial = request.getParameter("editorial");
+        String publicationYear = request.getParameter("publicationYear");
+        String price = request.getParameter("price");
+        String description = request.getParameter("description");
+        
+        if(isValid(ISBN) && isValid(title) && isValid(author) && isValid(editorial)
+                && isValid(publicationYear) && isValid(price) && isValid(description)){
+            try{
+                int publicationYearInt = Integer.parseInt(publicationYear);
+                double priceDouble = Double.parseDouble(price);
+                
+                IBookBean book = BeanFactory.getInstance().getBookBean();
+                book.setTitle(title);
+                book.setAuthor(author);
+                book.setEditorial(editorial);
+                book.setISBN(ISBN);
+                book.setPublicationYear(publicationYearInt);
+                book.setPrice(priceDouble);
                 book.setDescription(description);
                 
                 boolean result = ServiceFactory.getInstance().getBusinessFacade().NewBook(book);
@@ -117,6 +172,10 @@ public class ManageDDBB extends HttpServlet {
         List<IBookBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllBooks();
         request.setAttribute("list", list);
         return "/jsp/ManageDDBB.jsp";
+    }
+    
+    private boolean isValid(String value){
+        return value != null && !value.equals("");
     }
 
 }
