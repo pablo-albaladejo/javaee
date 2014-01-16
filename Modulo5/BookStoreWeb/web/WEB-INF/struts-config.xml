@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+<struts-config>
+    <action-mappings>
+        <action path="/SearchAllBooks" type="bookstore.web.action.SearchAllBooks">
+            <forward name="BooksList" path="/jsp/BooksList.jsp" />
+        </action>
+        <action path="/SearchByTitle" type="bookstore.web.action.SearchByTitle">
+            <forward name="BooksList" path="/jsp/BooksList.jsp" />
+            <forward name="SearchByTitleForm" path="/jsp/SearchByTitleForm.jsp" />
+        </action>
+        <action path="/SearchByISBN" type="bookstore.web.action.SearchByISBN">
+            <forward name="BooksList" path="/jsp/BooksList.jsp" />
+            <forward name="ISBNSearchForm" path="/jsp/ISBNSearchForm.jsp" />
+        </action>
+        <action path="/SearchByAuthor" type="bookstore.web.action.SearchByAuthor">
+            <forward name="BooksList" path="/jsp/BooksList.jsp" />
+            <forward name="AuthorSearchForm" path="/jsp/AuthorSearchForm.jsp" />
+        </action>
+        <action path="/SearchByEditorial" type="bookstore.web.action.SearchByEditorial">
+            <forward name="BooksList" path="/jsp/BooksList.jsp" />
+            <forward name="EditorialSearchForm" path="/jsp/EditorialSearchForm.jsp" />
+        </action>
+        <action path="/ViewCart" type="bookstore.web.action.ViewCart">
+            <forward name="Cart" path="/jsp/Cart.jsp" />
+        </action>
+        <action path="/ManageDDBB" type="bookstore.web.action.ManageDDBB">
+            <forward name="ManageDDBB" path="/jsp/ManageDDBB.jsp" />
+        </action>
+    </action-mappings>
+</struts-config>

@@ -4,5 +4,5 @@
     Author     : Pablo Albaladejo Mestre <pablo.albaladejo.mestre@gmail.com>
 --%>
         <form action="./">
-            <input type="submit" value="Home"></input>
+            <input type="submit" value="Home"/>
         </form>

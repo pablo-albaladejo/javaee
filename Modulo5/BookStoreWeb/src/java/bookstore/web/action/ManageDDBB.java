@@ -3,30 +3,33 @@ package bookstore.web.action;
 import bookstore.logic.bean.book.IBookBean;
 import bookstore.logic.bean.factory.BeanFactory;
 import bookstore.logic.service.ServiceFactory;
-import java.io.IOException;
 import java.util.List;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
 
 /**
  *
  * @author Pablo Albaladejo Mestre <pablo.albaladejo.mestre@gmail.com>
  */
-public class ManageDDBB extends HttpServlet {
+public class ManageDDBB extends Action {
 
-    /** 
-     * Handles the HTTP <code>POST</code> method.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+    /**
+     * Process the specified HTTP request, and create the corresponding HTTP response (or forward to another web component that will create it), with provision for handling exceptions thrown by the business logic. 
+     * Return an ActionForward instance describing where and how control should be forwarded, or null if the response has already been completed.
+     * @param mapping The ActionMapping used to select this instance
+     * @param form The optional ActionForm bean for this request (if any)
+     * @param request The HTTP request we are processing
+     * @param response The HTTP response we are creating 
+     * @return The forward to which control should be transferred, or null if the response has been completed. 
+     * @throws Exception - if the application business logic throws an exception
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        String view = "/jsp/ManageDDBB.jsp";
+    public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String view = "ManageDDBB";
         
         String action = request.getParameter("action");
         if(action != null){
@@ -48,7 +51,7 @@ public class ManageDDBB extends HttpServlet {
             view = list(request, response);
         }
         
-     request.getRequestDispatcher(view).forward(request, response);   
+        return mapping.findForward(view);
     }
     
     private String editBook(HttpServletRequest request, HttpServletResponse response){
@@ -96,7 +99,7 @@ public class ManageDDBB extends HttpServlet {
         
         List<IBookBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllBooks();
         request.setAttribute("list", list);
-        return "/jsp/ManageDDBB.jsp";
+        return "ManageDDBB";
     }
     
     private String addBook(HttpServletRequest request, HttpServletResponse response){
@@ -143,7 +146,7 @@ public class ManageDDBB extends HttpServlet {
         
         List<IBookBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllBooks();
         request.setAttribute("list", list);
-        return "/jsp/ManageDDBB.jsp";
+        return "ManageDDBB";
     }
     
     private String deleteBook(HttpServletRequest request, HttpServletResponse response){
@@ -165,13 +168,13 @@ public class ManageDDBB extends HttpServlet {
         
         List<IBookBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllBooks();
         request.setAttribute("list", list);
-        return "/jsp/ManageDDBB.jsp";
+        return "ManageDDBB";
     }
     
     private String list(HttpServletRequest request, HttpServletResponse response){
         List<IBookBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllBooks();
         request.setAttribute("list", list);
-        return "/jsp/ManageDDBB.jsp";
+        return "ManageDDBB";
     }
     
     private boolean isValid(String value){

@@ -22,71 +22,20 @@
     </filter-mapping>
     <servlet>
         <servlet-name>FrontController</servlet-name>
-        <servlet-class>bookstore.web.FrontController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SearchByAuthor</servlet-name>
-        <servlet-class>bookstore.web.action.SearchByAuthor</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ViewCart</servlet-name>
-        <servlet-class>bookstore.web.action.ViewCart</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SearchByEditorial</servlet-name>
-        <servlet-class>bookstore.web.action.SearchByEditorial</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SearchByTitle</servlet-name>
-        <servlet-class>bookstore.web.action.SearchByTitle</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SearchByISBN</servlet-name>
-        <servlet-class>bookstore.web.action.SearchByISBN</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ManageDDBB</servlet-name>
-        <servlet-class>bookstore.web.action.ManageDDBB</servlet-class>
+        <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+        <init-param>
+            <param-name>config</param-name>
+            <param-value>/WEB-INF/struts-config.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>FrontController</servlet-name>
         <url-pattern>*.do</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>SearchAllBooks</servlet-name>
-        <servlet-class>bookstore.web.action.SearchAllBooks</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>SearchAllBooks</servlet-name>
-        <url-pattern>/SearchAllBooks</url-pattern>
-    </servlet-mapping>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
-    <servlet-mapping>
-        <servlet-name>SearchByAuthor</servlet-name>
-        <url-pattern>/SearchByAuthor</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ViewCart</servlet-name>
-        <url-pattern>/ViewCart</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SearchByEditorial</servlet-name>
-        <url-pattern>/SearchByEditorial</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SearchByTitle</servlet-name>
-        <url-pattern>/SearchByTitle</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SearchByISBN</servlet-name>
-        <url-pattern>/SearchByISBN</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ManageDDBB</servlet-name>
-        <url-pattern>/ManageDDBB</url-pattern>
-    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
