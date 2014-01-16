@@ -24,7 +24,7 @@ public class SearchByAuthor extends Action {
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating 
      * @return The forward to which control should be transferred, or null if the response has been completed. 
-     * @throws Exception - if the application business logic throws an exception
+     * @throws Exception if the application business logic throws an exception
      */
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
