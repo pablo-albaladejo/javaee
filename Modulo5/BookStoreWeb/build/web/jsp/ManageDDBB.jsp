@@ -5,11 +5,12 @@
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix="html" uri="http://jakarta.apache.org/struts/tags-html" %>
 <!DOCTYPE html>
 <html>
     <head>
     <%@ include file="/jsp/header.jsp" %>
-    <script language="JavaScript" type="text/javascript">
+     <script language="JavaScript" type="text/javascript">
         function addBook(formName){            
             document.getElementById(formName).submit();   
         }
@@ -39,7 +40,6 @@
             myForm.submit();
         }       
     </script>
-        
     </head>
     <body>
         <h1>Manage DDBB</h1>
@@ -59,7 +59,7 @@
                 <th>Edit</th>
                 <th>Remove</th>
             </tr>
-            <c:forEach var="book" items="${requestScope.list}" varStatus="counter" >
+            <c:forEach var="book" items="${ManageDDBBActionForm.list}" varStatus="counter" >
                 <c:choose>
                 <c:when test="${counter.count mod 2 == 0 || counter.count == 0}">
                 <tr class ="even">
@@ -68,6 +68,7 @@
                 <tr class ="odd">
                 </c:otherwise>
                 </c:choose>
+                <html:form action="ManageDDBB">
                     <input type="hidden" name="ISBN" value ="<jsp:getProperty name="book" property="ISBN" />"/>
                     <td><input type="text" name="title"  id="title_<jsp:getProperty name="book" property="ISBN" />" value="<jsp:getProperty name="book" property="title" />"/></td>
                     <td><input type="text" name="author" id="author_<jsp:getProperty name="book" property="ISBN" />" value="<jsp:getProperty name="book" property="author" />"/></td>
@@ -79,10 +80,11 @@
                     <td><img src="./rsc/images/edit.png" onClick="editBook('<jsp:getProperty name="book" property="ISBN" />')"/></td>
                     <td><img src="./rsc/images/remove.png" onClick="deleteBook('<jsp:getProperty name="book" property="ISBN" />')"/></td>
                 </tr>
-                </c:forEach>
+                </html:form>
+            </c:forEach>
         </table>
         <h2>Insert new Book</h2>
-        <form id="addBook" action="./ManageDDBB.do" method="POST">
+        <html:form action="ManageDDBB" >
             <input type="hidden" name="action" value="ADD_BOOK"/>
             <table>
                 <tr>
@@ -106,7 +108,7 @@
                     <td><img src="./rsc/images/add.png" onClick="addBook('addBook');"/></td>
                 </tr>
             </table>
-        </form>
+        </html:form>
         <%@ include file="/jsp/footer.jsp" %>
     </body>
 </html>
