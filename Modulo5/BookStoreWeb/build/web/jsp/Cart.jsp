@@ -36,7 +36,7 @@
                 <td><jsp:getProperty name="book" property="editorial" /></td>
                 <td><jsp:getProperty name="book" property="ISBN" /></td>
                 <td><jsp:getProperty name="book" property="price" /></td>
-                <td><img src="./rsc/images/cart_remove.png" onClick="sendByPOSTParameter('./ViewCart.do', 'removeItem', <jsp:getProperty name="book" property="ISBN" />);"/></td>
+                <td><input type="submit" value=" " class="removeCart" onClick="sendByPOSTParameter('./ViewCart.do', 'removeItem', <jsp:getProperty name="book" property="ISBN" />);"/></td>
             </tr>
             </c:forEach>
         </table>

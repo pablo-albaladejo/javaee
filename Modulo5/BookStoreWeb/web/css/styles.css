@@ -48,3 +48,43 @@ marquee {
     font-weight: bold;
     font-style: italic; 
 }
+
+input.addBook{
+    border: none; 
+    background: url('../rsc/images/add.png'); 
+    height: 39px; 
+    width: 39px;    
+}
+
+input.editBook{
+    border: none; 
+    background: url('../rsc/images/edit.png'); 
+    height: 39px; 
+    width: 39px;    
+}
+
+input.removeBook{
+    border: none; 
+    background: url('../rsc/images/remove.png'); 
+    height: 39px; 
+    width: 39px;    
+}
+
+input.cart{
+    border: none; 
+    background: url('../rsc/images/cart.png'); 
+    height: 45px; 
+    width: 46px;    
+}
+input.addCart{
+    border: none; 
+    background: url('../rsc/images/cart_add.png'); 
+    height: 47px; 
+    width: 52px;    
+}
+input.removeCart{
+    border: none; 
+    background: url('../rsc/images/cart_remove.png'); 
+    height: 46px; 
+    width: 52px;    
+}

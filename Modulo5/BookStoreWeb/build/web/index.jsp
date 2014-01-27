@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="bean" uri="http://jakarta.apache.org/struts/tags-bean" %>
 <jsp:useBean id="BookSuggestion" scope="application" class="java.lang.String"/>
 <!DOCTYPE html>
 <html>
@@ -36,19 +37,30 @@
                 document.getElementById("controller").submit();
                 return;
             }
-            function f_selectManageDDBB() {
-                document.getElementById("controller").action="ManageDDBB.do";
+            function f_AddBook() {
+                document.getElementById("controller").action="AddBook.do";
+                document.getElementById("controller").submit();
+                return;
+            }
+            function f_ModifyBook() {
+                document.getElementById("controller").action="ModifyBookList.do";
+                document.getElementById("controller").submit();
+                return;
+            }
+            function f_ViewCart() {
+                document.getElementById("controller").action="ViewCart.do";
                 document.getElementById("controller").submit();
                 return;
             }
         </script>
+    </head>
     <body>
         <marquee>
-            Today's book suggestion: ${BookSuggestion}
+           <bean:message key="book_suggestion"/> : ${BookSuggestion}
         </marquee>
         <div id="content">
             <center>
-                <h1>Select one action</h1>
+                <h1><bean:message key="select_one_action"/></h1>
                 <form id="controller" method="POST">
                     <table>
                         <tr class="odd">
@@ -65,15 +77,15 @@
                         </tr>
                         <tr  class="odd">
                             <td>View Cart</td>
-                            <td><img src="./rsc/images/cart.png" onClick="sendByPOST('./ViewCart.do');"/></td>
+                            <td><input type="submit" value=" " onClick="javascript:f_ViewCart();" class="cart"/></td>
                             <td></td>
                             <td></td>
                         </tr>
                         <tr class="footer">
                             <td>DDBB</td>
-                            <td><input type="submit" value="Manage" onClick="javascript:f_selectManageDDBB();"/></td>
+                            <td><input type="submit" value="Add" onClick="javascript:f_AddBook();"/></td>
                             <td></td>
-                            <td></td>
+                            <td><input type="submit" value="Modify" onClick="javascript:f_ModifyBook();"/></td>
                         </tr>
                     </table>
                 </form>

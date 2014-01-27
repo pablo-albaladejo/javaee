@@ -1,22 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package bookstore.web.actionform;
 
-import bookstore.logic.bean.book.IBookBean;
-import java.util.List;
-import org.apache.struts.action.ActionForm;
+import org.apache.struts.validator.ValidatorForm;
 
 /**
  *
  * @author Pablo Albaladejo Mestre <pablo.albaladejo.mestre@gmail.com>
  */
-public class ManageDDBBActionForm extends ActionForm{
-    
-    private List<IBookBean> list;
+public class BookValidatorForm extends ValidatorForm{
     
     private String title;
     private String author;
@@ -80,14 +70,5 @@ public class ManageDDBBActionForm extends ActionForm{
 
     public void setDescription(String description) {
         this.description = description;
-    }  
-
-    public List<IBookBean> getList() {
-        return list;
-    }
-
-    public void setList(List<IBookBean> list) {
-        this.list = list;
-    }
-    
+    }      
 }

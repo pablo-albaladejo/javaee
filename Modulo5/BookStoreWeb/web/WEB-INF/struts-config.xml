@@ -4,9 +4,24 @@
           "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
 <struts-config>
     <form-beans>
-        <form-bean name="ManageDDBBActionForm" type="bookstore.web.actionform.ManageDDBBActionForm"/>
+        <form-bean name="BookValidatorForm" type="bookstore.web.actionform.BookValidatorForm"/>
     </form-beans>
     <action-mappings>
+         <action path="/AddBook" type="bookstore.web.action.AddBookAction"
+            name ="BookValidatorForm" input="/jsp/AddBook.jsp" scope="request">
+            <forward name="AddBook" path="/jsp/AddBook.jsp" />
+            <forward name="ModifyBookList" path="/jsp/ModifyBookList.jsp" />
+        </action>
+        <action path="/ModifyBookList" type="bookstore.web.action.ModifyBookListAction">
+            <forward name="ModifyBookList" path="/jsp/ModifyBookList.jsp" />
+            <forward name="DeleteBook" path="/jsp/ModifyBookList.jsp" />
+            <forward name="EditBook" path="/jsp/EditBook.jsp" />
+        </action>
+        <action path="/EditBook" type="bookstore.web.action.EditBookAction"
+            name ="BookValidatorForm" input="/jsp/EditBook.jsp">
+            <forward name="EditBook" path="/jsp/EditBook.jsp" />
+            <forward name="ModifyBookList" path="/jsp/ModifyBookList.jsp" />
+        </action>
         <action path="/SearchAllBooks" type="bookstore.web.action.SearchAllBooksAction">
             <forward name="BooksList" path="/jsp/BooksList.jsp" />
         </action>
@@ -29,9 +44,13 @@
         <action path="/ViewCart" type="bookstore.web.action.ViewCartAction">
             <forward name="Cart" path="/jsp/Cart.jsp" />
         </action>
-        <action path="/ManageDDBB" type="bookstore.web.action.ManageDDBBAction"
-            name ="ManageDDBBActionForm" input="/jsp/ManageDDBB.jsp">
-            <forward name="ManageDDBB" path="/jsp/ManageDDBB.jsp" />
-        </action>
     </action-mappings>
+    
+    <message-resources parameter="bookstore.util.ApplicationResources" />
+    
+    <plug-in className="org.apache.struts.validator.ValidatorPlugIn" >
+        <set-property
+                value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml"
+                property="pathnames"/>
+    </plug-in>
 </struts-config>

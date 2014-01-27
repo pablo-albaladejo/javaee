@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE form-validation PUBLIC
+          "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1.3//EN"
+          "http://jakarta.apache.org/commons/dtds/validator_1_1_3.dtd">
+
+<form-validation>
+    <formset>
+        <form name="BookValidatorForm">
+            <field property="title" depends="required">
+                <arg0 key="title" />
+            </field>
+            <field property="author" depends="required">
+                <arg0 key="author" />
+            </field>
+            <field property="editorial" depends="required">
+                <arg0 key="editorial" />
+            </field>
+            <field property="ISBN" depends="required">
+                <arg0 key="ISBN" />
+            </field>
+            <field property="publicationYear" depends="required,integer">
+                <arg0 key="publicationYear" />
+            </field>
+            <field property="price" depends="required,float,floatRange">
+                <arg0 key="price" />
+                <arg1 key="${var:min}" name="floatRange" resource="false"/>
+                <arg2 key="${var:max}" name="floatRange" resource="false"/>
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>1000</var-value>
+                </var>
+            </field>
+            <field property="description" depends="required">
+                <arg0 key="description" />
+            </field>
+        </form>
+    </formset>
+</form-validation>
