@@ -1,5 +1,6 @@
 package bookstore.web.action;
 
+import bookstore.web.action.exceptions.AlreadyExistsException;
 import bookstore.logic.bean.book.IBookBean;
 import bookstore.logic.bean.factory.BeanFactory;
 import bookstore.logic.service.ServiceFactory;
@@ -44,7 +45,7 @@ public class AddBookAction extends Action {
         return mapping.findForward(view);
     }
     
-    private String addBook(HttpServletRequest request, HttpServletResponse response,BookValidatorForm form){
+    private String addBook(HttpServletRequest request, HttpServletResponse response,BookValidatorForm form) throws Exception{
         String message,view;
                      
         IBookBean book = BeanFactory.getInstance().getBookBean();
@@ -56,18 +57,15 @@ public class AddBookAction extends Action {
         book.setPrice(form.getPrice());
         book.setDescription(form.getDescription());
 
-        boolean result = ServiceFactory.getInstance().getBusinessFacade().NewBook(book);
-        message = "Book " + form.getISBN() + " ";
+        boolean result = ServiceFactory.getInstance().getBusinessFacade().NewBook(book);        
         if(result){
-            message += "added successfully";
             request.setAttribute("list", ServiceFactory.getInstance().getBusinessFacade().getAllBooks());
             view = "ModifyBookList";
         }else{
-            message += "not added";
-            view = "AddBook";
+            throw new AlreadyExistsException();
+            //throw new Exception();
         }
         
-        request.setAttribute("message", message);
         return view;
     }
 }

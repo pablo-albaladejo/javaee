@@ -16,9 +16,6 @@
     </head>
     <body>
         <h1><bean:message key="manage_ddbb"/></h1>
-        <c:if test="${not empty requestScope.message}">
-        <p class="message">${requestScope.message}</p>
-        </c:if>
         <h2><bean:message key="insert_new_book"/></h2>
         <html:form action="AddBook" onsubmit="return validateBookValidatorForm(this);" >
             <input type="hidden" name="action" value="ADD_BOOK"/>

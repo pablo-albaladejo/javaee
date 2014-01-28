@@ -31,9 +31,7 @@ public class SetLocaleAction extends Action {
      */
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String test = request.getParameter("locale");
         setLocale(request, new Locale(request.getParameter("locale")));
-
         return mapping.findForward("SetLocale");
     }
     

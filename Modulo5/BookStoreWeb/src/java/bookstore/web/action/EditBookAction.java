@@ -10,7 +10,6 @@ import bookstore.logic.bean.book.IBookBean;
 import bookstore.logic.bean.factory.BeanFactory;
 import bookstore.logic.service.ServiceFactory;
 import bookstore.web.actionform.BookValidatorForm;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.Action;
@@ -65,18 +64,12 @@ public class EditBookAction extends Action{
         book.setDescription(form.getDescription());
           
          Boolean result = ServiceFactory.getInstance().getBookService().ModifyBook(book);
-         
-         String message = "Book " + book.getISBN() + " ";
         if(result){
             request.setAttribute("list", ServiceFactory.getInstance().getBusinessFacade().getAllBooks());
             view = "ModifyBookList";
-            message += "edited successfully";
         }else{
             view = "EditBook";
-            message += "not edited";
         }
-
-        request.setAttribute("message", message);
         return view;
      }
 }

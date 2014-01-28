@@ -51,22 +51,8 @@ public class ModifyBookListAction extends Action {
     }
     
     private String deleteBook(HttpServletRequest request, HttpServletResponse response){
-        String message = "";
         String ISBN = request.getParameter("ISBN");
-        if(ISBN != null && !ISBN.equals("")){
-            boolean result = ServiceFactory.getInstance().getBusinessFacade().DeleteBook(ISBN);
-            message = "Book " + ISBN + " ";
-            if(result){
-                message += "deleted successfully";
-            }else{
-                message += "not deleted";
-            }
-        }else{
-            message = "Error: ISBN can not be empty";
-        }
-        
-        request.setAttribute("message", message);
-        
+        ServiceFactory.getInstance().getBusinessFacade().DeleteBook(ISBN);
         List<IBookBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllBooks();
         request.setAttribute("list", list);
         return "DeleteBook";

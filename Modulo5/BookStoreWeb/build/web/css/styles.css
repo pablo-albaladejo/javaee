@@ -104,3 +104,13 @@ input.localeEN{
     height: 45px; 
     width: 58px;    
 }
+
+h2.error{
+    color: red;
+    font-weight: bold;
+}
+
+li.error{
+    color: red;
+    font-style: italic; 
+}

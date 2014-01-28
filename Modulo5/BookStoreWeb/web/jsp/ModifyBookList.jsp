@@ -34,21 +34,18 @@
     </head>
     <body>
         <h1><bean:message key="manage_ddbb"/></h1>
-        <c:if test="${not empty requestScope.message}">
-        <p class ="message">${requestScope.message}</p>
-        </c:if>
         <h2><bean:message key="modify_book_list"/></h2>
         <table>
             <tr>
-                    <th><bean:message key="title"/></th>
-                    <th><bean:message key="author"/></th>
-                    <th><bean:message key="editorial"/></th>
-                    <th><bean:message key="ISBN"/></th>
-                    <th><bean:message key="publicationYear"/></th>
-                    <th><bean:message key="price"/></th>
-                    <th><bean:message key="description"/></th>
-                    <th><bean:message key="edit"/></th>
-                    <th><bean:message key="remove"/></th>
+                <th><bean:message key="title"/></th>
+                <th><bean:message key="author"/></th>
+                <th><bean:message key="editorial"/></th>
+                <th><bean:message key="ISBN"/></th>
+                <th><bean:message key="publicationYear"/></th>
+                <th><bean:message key="price"/></th>
+                <th><bean:message key="description"/></th>
+                <th><bean:message key="edit"/></th>
+                <th><bean:message key="remove"/></th>
             </tr>
             <c:forEach var="book" items="${requestScope.list}" varStatus="counter" >
                 <c:choose>
