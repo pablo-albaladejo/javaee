@@ -5,16 +5,17 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="bean" uri="http://jakarta.apache.org/struts/tags-bean" %>
 <!DOCTYPE html>
 <html>
     <head>
     <%@ include file="header.jsp" %>
     </head>
     <body>
-        <p>Write a ISBN</p>
+        <p><bean:message key="write_a_ISBN"/></p>
         <form action = "./SearchByISBN.do" method="POST">
             <input type="text" name="ISBN"/>
-            <input type="submit" value="Search"/>
+            <input type="submit" value="<bean:message key="search"/>"/>
         </form>
         <%@ include file="footer.jsp" %>
     </body>

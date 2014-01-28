@@ -88,3 +88,19 @@ input.removeCart{
     height: 46px; 
     width: 52px;    
 }
+input.localeES{
+    border: none;
+    float: right;
+    margin: 2px;
+    background: url('../rsc/images/es.png'); 
+    height: 45px; 
+    width: 58px;    
+}
+input.localeEN{
+    border: none;
+    float: right;
+    margin: 2px;
+    background: url('../rsc/images/en.png'); 
+    height: 45px; 
+    width: 58px;    
+}

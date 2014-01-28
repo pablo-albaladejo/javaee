@@ -4,7 +4,8 @@
     Author     : Pablo Albaladejo Mestre <pablo.albaladejo.mestre@gmail.com>
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="bean" uri="http://jakarta.apache.org/struts/tags-bean" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -32,22 +33,22 @@
     </script>
     </head>
     <body>
-        <h1>Manage DDBB</h1>
+        <h1><bean:message key="manage_ddbb"/></h1>
         <c:if test="${not empty requestScope.message}">
         <p class ="message">${requestScope.message}</p>
         </c:if>
-        <h2>Modify Book list</h2>
+        <h2><bean:message key="modify_book_list"/></h2>
         <table>
             <tr>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Editorial</th>
-                <th>ISBN</th>
-                <th>Publication Year</th>
-                <th>Price</th>
-                <th>Descripcion</th>
-                <th>Edit</th>
-                <th>Remove</th>
+                    <th><bean:message key="title"/></th>
+                    <th><bean:message key="author"/></th>
+                    <th><bean:message key="editorial"/></th>
+                    <th><bean:message key="ISBN"/></th>
+                    <th><bean:message key="publicationYear"/></th>
+                    <th><bean:message key="price"/></th>
+                    <th><bean:message key="description"/></th>
+                    <th><bean:message key="edit"/></th>
+                    <th><bean:message key="remove"/></th>
             </tr>
             <c:forEach var="book" items="${requestScope.list}" varStatus="counter" >
                 <c:choose>

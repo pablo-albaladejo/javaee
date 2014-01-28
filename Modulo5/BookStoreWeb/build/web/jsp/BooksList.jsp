@@ -14,16 +14,16 @@
     </head>
     <body>
         <c:if test="${not empty requestScope.author}">
-        <h1><bean:message key="author"/>< ${requestScope.author}</h1>
+        <h1><bean:message key="author"/> ${requestScope.author}</h1>
         </c:if>
         <c:if test="${not empty requestScope.editorial}">
-        <h1><bean:message key="editorial"/>< ${requestScope.editorial}</h1>
+        <h1><bean:message key="editorial"/> ${requestScope.editorial}</h1>
         </c:if>
         <c:if test="${not empty requestScope.title}">
-        <h1><bean:message key="title"/>< ${requestScope.title}</h1>
+        <h1><bean:message key="title"/> ${requestScope.title}</h1>
         </c:if>
         <c:if test="${not empty requestScope.ISBN}">
-        <h1><bean:message key="ISBN"/>< ${requestScope.ISBN}</h1>
+        <h1><bean:message key="ISBN"/> ${requestScope.ISBN}</h1>
         </c:if>
         <table>
             <tr>

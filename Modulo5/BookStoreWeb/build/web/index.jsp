@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="bean" uri="http://jakarta.apache.org/struts/tags-bean" %>
+<%@taglib prefix="html" uri="http://jakarta.apache.org/struts/tags-html" %>
 <jsp:useBean id="BookSuggestion" scope="application" class="java.lang.String"/>
 <!DOCTYPE html>
 <html>
@@ -52,9 +53,18 @@
                 document.getElementById("controller").submit();
                 return;
             }
+            function f_SetLocale(locale) {
+                document.getElementById("setLocale").appendChild(createActionControl("locale",locale));
+                document.getElementById("setLocale").submit();
+                return;
+            }
         </script>
     </head>
     <body>
+        <form id="setLocale" action="SetLocale.do">
+            <input type="submit" value=" " onClick="javascript:f_SetLocale('ES');" class="localeES"/>
+            <input type="submit" value=" " onClick="javascript:f_SetLocale('EN');" class="localeEN"/>
+        </form>
         <marquee>
            <bean:message key="book_suggestion"/> : ${BookSuggestion}
         </marquee>
@@ -64,28 +74,28 @@
                 <form id="controller" method="POST">
                     <table>
                         <tr class="odd">
-                            <td>Search</td>
-                            <td><input type="submit" value="All books" onClick="javascript:f_searchAllBooks();"/></td>
-                            <td><input type="submit" value="Title" onClick="javascript:f_searchTitle();"/></td>
-                            <td><input type="submit" value="ISBN" onClick="javascript:f_searchISBN();"/></td>
+                            <td><bean:message key="search"/></td>
+                            <td><input type="submit" value="<bean:message key="all_books"/>" onClick="javascript:f_searchAllBooks();"/></td>
+                            <td><input type="submit" value="<bean:message key="title"/>" onClick="javascript:f_searchTitle();"/></td>
+                            <td><input type="submit" value="<bean:message key="ISBN"/>" onClick="javascript:f_searchISBN();"/></td>
                         </tr>
                         <tr class="even">
-                            <td>Select By</td>
-                            <td><input type="submit" value="Author" onClick="javascript:f_selectAuthor();"/></td>
-                            <td><input type="submit" value="Editorial" onClick="javascript:f_selectEditorial();"/></td>
+                            <td><bean:message key="select_by"/></td>
+                            <td><input type="submit" value="<bean:message key="author"/>" onClick="javascript:f_selectAuthor();"/></td>
+                            <td><input type="submit" value="<bean:message key="editorial"/>" onClick="javascript:f_selectEditorial();"/></td>
                             <td></td>
                         </tr>
                         <tr  class="odd">
-                            <td>View Cart</td>
+                            <td><bean:message key="view_cart"/></td>
                             <td><input type="submit" value=" " onClick="javascript:f_ViewCart();" class="cart"/></td>
                             <td></td>
                             <td></td>
                         </tr>
                         <tr class="footer">
-                            <td>DDBB</td>
-                            <td><input type="submit" value="Add" onClick="javascript:f_AddBook();"/></td>
+                            <td><bean:message key="ddbb"/></td>
+                            <td><input type="submit" value="<bean:message key="add"/>" onClick="javascript:f_AddBook();"/></td>
                             <td></td>
-                            <td><input type="submit" value="Modify" onClick="javascript:f_ModifyBook();"/></td>
+                            <td><input type="submit" value="<bean:message key="modify"/>" onClick="javascript:f_ModifyBook();"/></td>
                         </tr>
                     </table>
                 </form>
