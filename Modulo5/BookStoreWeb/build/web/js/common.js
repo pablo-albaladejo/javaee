@@ -26,4 +26,23 @@ function createForm(action, method){
     return myForm;
 }
 
+function deleteBook(ISBN){
+    var myForm = createForm("./ModifyBookList.do","POST");
+
+    myForm.appendChild(createActionControl("action","DELETE_BOOK"));
+    myForm.appendChild(createActionControl("ISBN",ISBN));
+
+    document.body.appendChild(myForm);
+    myForm.submit();
+}
+
+function editBook(ISBN){
+    var myForm = createForm("./ModifyBookList.do","POST");
+
+    myForm.appendChild(createActionControl("action","EDIT_BOOK"));
+    myForm.appendChild(createActionControl("ISBN",ISBN));
+
+    document.body.appendChild(myForm);
+    myForm.submit();
+}
 

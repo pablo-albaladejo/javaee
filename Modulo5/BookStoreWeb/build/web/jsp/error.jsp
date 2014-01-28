@@ -10,7 +10,6 @@
 <html>
     <head>
         <%@ include file="/jsp/header.jsp" %>
-        <html:javascript formName="BookValidatorForm" />
     </head>
     <body>
         <html:errors/>

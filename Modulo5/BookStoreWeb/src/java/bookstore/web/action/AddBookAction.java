@@ -46,7 +46,7 @@ public class AddBookAction extends Action {
     }
     
     private String addBook(HttpServletRequest request, HttpServletResponse response,BookValidatorForm form) throws Exception{
-        String message,view;
+        String view;
                      
         IBookBean book = BeanFactory.getInstance().getBookBean();
         book.setTitle(form.getTitle());
