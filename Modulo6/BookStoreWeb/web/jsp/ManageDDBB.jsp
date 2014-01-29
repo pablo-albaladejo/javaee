@@ -76,8 +76,8 @@
                     <td><input type="text" name="publicationYear" id="publicationYear_<jsp:getProperty name="book" property="ISBN" />" value="<jsp:getProperty name="book" property="publicationYear" />"/></td>
                     <td><input type="text" name="price" id="price_<jsp:getProperty name="book" property="ISBN" />" value="<jsp:getProperty name="book" property="price" />"/></td>
                     <td><input type="text" name="description" id="description_<jsp:getProperty name="book" property="ISBN" />" value="<jsp:getProperty name="book" property="description" />"/></td>
-                    <td><img src="./rsc/images/edit.png" onClick="editBook('<jsp:getProperty name="book" property="ISBN" />')"/></td>
-                    <td><img src="./rsc/images/remove.png" onClick="deleteBook('<jsp:getProperty name="book" property="ISBN" />')"/></td>
+                    <td><input type="button" onClick="editBook('<jsp:getProperty name="book" property="ISBN" />')" class="editBook"/></td>
+                    <td><input type="button" onClick="deleteBook('<jsp:getProperty name="book" property="ISBN" />')" class="removeBook"/></td>
                 </tr>
                 </c:forEach>
         </table>
@@ -103,7 +103,7 @@
                     <td><input type="text" name="publicationYear"/></td>
                     <td><input type="text" name="price"/></td>
                     <td><input type="text" name="description"/></td>
-                    <td><img src="./rsc/images/add.png" onClick="addBook('addBook');"/></td>
+                    <td><input type="submit" value=" " class="addBook"></td>
                 </tr>
             </table>
         </form>

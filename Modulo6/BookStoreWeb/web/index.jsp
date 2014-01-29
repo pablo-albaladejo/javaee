@@ -41,6 +41,11 @@
                 document.getElementById("controller").submit();
                 return;
             }
+            function f_ViewCart() {
+                document.getElementById("controller").action="ViewCart.do";
+                document.getElementById("controller").submit();
+                return;
+            }
         </script>
     <body>
         <marquee>
@@ -65,7 +70,7 @@
                         </tr>
                         <tr  class="odd">
                             <td>View Cart</td>
-                            <td><img src="./rsc/images/cart.png" onClick="sendByPOST('./ViewCart.do');"/></td>
+                            <td><input type="submit" value=" " onClick="javascript:f_ViewCart();" class="cart"/></td>
                             <td></td>
                             <td></td>
                         </tr>

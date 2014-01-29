@@ -51,7 +51,7 @@
                 <td><jsp:getProperty name="book" property="publicationYear" /></td>
                 <td><jsp:getProperty name="book" property="price" /></td>
                 <td><jsp:getProperty name="book" property="description" /></td>
-                <td><img src="./rsc/images/cart_add.png" onClick="sendByPOSTParameter('./ViewCart.do', 'addItem', <jsp:getProperty name="book" property="ISBN" />);"/></td>
+                <td><input type="submit" value=" " class="addCart" onClick="sendByPOSTParameter('./ViewCart.do', 'addItem', <jsp:getProperty name="book" property="ISBN" />);"/></td>
             </tr>
             </c:forEach>
         </table>
