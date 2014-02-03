@@ -5,7 +5,7 @@
 package bookstore.web.action;
 
 import bookstore.logic.service.ServiceFactory;
-import bookstore.logic.bean.book.IBookBean;
+import bookstore.model.book.IBookBean;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;

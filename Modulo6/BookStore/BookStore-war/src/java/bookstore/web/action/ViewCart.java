@@ -1,8 +1,8 @@
 package bookstore.web.action;
 
-import bookstore.logic.bean.book.IBookBean;
-import bookstore.logic.bean.cart.ICartBean;
-import bookstore.logic.bean.factory.BeanFactory;
+import bookstore.model.book.IBookBean;
+import bookstore.model.cart.ICartBean;
+import bookstore.model.factory.BeanFactory;
 import bookstore.logic.service.ServiceFactory;
 import java.io.IOException;
 import javax.servlet.ServletException;

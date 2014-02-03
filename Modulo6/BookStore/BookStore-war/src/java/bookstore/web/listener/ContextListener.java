@@ -1,6 +1,6 @@
 package bookstore.web.listener;
 
-import bookstore.logic.bean.book.IBookBean;
+import bookstore.model.book.IBookBean;
 import bookstore.logic.service.ServiceFactory;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
