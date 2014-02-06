@@ -7,7 +7,12 @@ import bookstore.presentation.controller.events.GUIEvent;
 import bookstore.presentation.view.BookStoreGUI;
 import ejb.logic.facade.BusinessFacade;
 import ejb.logic.facade.IBusinessFacade;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 
 /**
  * This class extends the abstract class <code>{@link Controller}</code>
@@ -16,8 +21,16 @@ import javax.ejb.EJB;
 
 public class ControllerImp extends Controller{
 
-    @EJB(beanName="Facade")
-    public static IBusinessFacade facade = new BusinessFacade();
+    private IBusinessFacade facade;
+
+    public ControllerImp() {
+        try {
+            Context ctx = new InitialContext();
+            facade = (IBusinessFacade)ctx.lookup("java:global/BookstoreEAR/BookstoreEAR-ejb/Facade");
+        } catch (NamingException ex) {
+            ex.printStackTrace();
+        }
+    }
         
     /**
      * This method select the View action depening on the Event
