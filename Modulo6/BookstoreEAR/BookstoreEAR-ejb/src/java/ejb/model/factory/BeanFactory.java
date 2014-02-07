@@ -1,7 +1,6 @@
 package ejb.model.factory;
 
 import ejb.model.book.IBookBean;
-import ejb.model.cart.ICartBean;
 
 /**
  * Implements the Abstract Factory and Singeltone Pattern
@@ -25,6 +24,4 @@ public abstract class BeanFactory {
      * @return <code>{@link IBookBean}</code>
      */
     abstract public IBookBean getBookBean();
-    abstract public ICartBean getCartBean();
-
 }

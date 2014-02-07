@@ -1,4 +1,4 @@
-package ejb.persistence.factory;
+package ejb.integration.factory;
 
 import ejb.integration.book.IBookDAO;
 import ejb.persistence.ddbb.exception.TransactionException;

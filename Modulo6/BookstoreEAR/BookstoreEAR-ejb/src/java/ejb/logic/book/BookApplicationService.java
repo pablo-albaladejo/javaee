@@ -1,6 +1,6 @@
 package ejb.logic.book;
 
-import ejb.persistence.factory.DAOFactory;
+import ejb.integration.factory.DAOFactory;
 import ejb.persistence.ddbb.exception.TransactionException;
 import ejb.persistence.ddbb.manager.TransactionManager;
 import java.util.List;

@@ -1,4 +1,4 @@
-package ejb.persistence.factory;
+package ejb.integration.factory;
 
 import ejb.integration.book.BookDAO;
 import ejb.integration.book.IBookDAO;

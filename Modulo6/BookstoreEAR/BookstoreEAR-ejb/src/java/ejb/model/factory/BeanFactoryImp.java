@@ -19,13 +19,4 @@ public class BeanFactoryImp extends BeanFactory{
     public IBookBean getBookBean(){
         return new BookBean();
     }
-    
-    /**
-     * Return a Cart object wich implements <code>{@link ICartBean}</code> 
-     * @return <code>{@link ICartBean}</code>
-     */
-    @Override
-    public ICartBean getCartBean() {
-        return new CartBean();
-    }
 }
