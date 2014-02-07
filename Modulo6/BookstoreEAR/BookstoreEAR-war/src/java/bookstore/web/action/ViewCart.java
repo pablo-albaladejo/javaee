@@ -20,6 +20,9 @@ public class ViewCart extends HttpServlet {
     @EJB(beanName="Facade")
     private IBusinessFacade facade;
     
+    @EJB(beanName="Cart")
+    private ICartBean myCart;
+    
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -31,15 +34,7 @@ public class ViewCart extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        ICartBean myCart = (ICartBean)request.getSession().getAttribute("myCart");
-        
-        //if the cart object does not exits at session, it is created.
-        if(myCart == null){
-            myCart = BeanFactory.getInstance().getCartBean();
-            request.getSession().setAttribute("myCart", myCart);
-        }
-        
+               
         //Item addition into the Cart
         String addItem = request.getParameter("addItem");
         if(addItem != null){
@@ -54,7 +49,11 @@ public class ViewCart extends HttpServlet {
             book.setISBN(removeItem);
             if(book != null) myCart.remove(book);
         }
-
+        
+        request.setAttribute("myCartList", myCart.getList());
+        request.setAttribute("myCartItemCount", myCart.getItemCount());
+        request.setAttribute("myCartPrice", myCart.getPrice());
+        
         //view cart
         request.getRequestDispatcher("/jsp/Cart.jsp").forward(request, response);
     }
