@@ -5,6 +5,7 @@
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<jsp:useBean id="myCart" scope="session" class="ejb.bean.cart.ICartBean" />
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,7 +22,7 @@
                 <th>Price</th>
                 <th>Remove from Cart</th>
             </tr>
-            <c:forEach var="book" items="${requestScope.myCartList}" varStatus="counter" >
+            <c:forEach var="book" items="${sessionScope.myCart.list}" varStatus="counter" >
             <c:choose>
             <c:when test="${counter.count mod 2 == 0 || counter.count == 0}">
             <tr class ="even">
@@ -41,8 +42,8 @@
         </table>
         <table>
             <tr class ="footer">
-                <td>Items</td><td>${requestScope.myCartItemCount}</td>
-                <td>Total</td><td>${requestScope.myCartPrice}</td>
+                <td>Items</td><td><jsp:getProperty name="myCart" property="itemCount" />A</td>
+                <td>Total</td><td><jsp:getProperty name="myCart" property="price" /></td>
             </tr>
         </table>
         <%@ include file="footer.jsp" %>

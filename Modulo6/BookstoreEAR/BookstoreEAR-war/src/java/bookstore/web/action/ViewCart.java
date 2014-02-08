@@ -1,11 +1,14 @@
 package bookstore.web.action;
 
 import ejb.logic.facade.IBusinessFacade;
-import ejb.model.book.IBookBean;
-import ejb.model.cart.ICartBean;
-import ejb.model.factory.BeanFactory;
+import ejb.bean.book.IBookBean;
+import ejb.bean.cart.ICartBean;
+import ejb.bean.factory.BeanFactory;
 import java.io.IOException;
 import javax.ejb.EJB;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,10 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ViewCart extends HttpServlet {
     @EJB(beanName="Facade")
     private IBusinessFacade facade;
-    
-    @EJB(beanName="Cart")
-    private ICartBean myCart;
-    
+        
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -34,7 +34,20 @@ public class ViewCart extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-               
+        ICartBean myCart;
+        
+        if(request.getSession().getAttribute("myCart")==null){
+            try {
+                Context ctx = new InitialContext();
+                myCart = (ICartBean)ctx.lookup("java:global/BookstoreEAR/BookstoreEAR-ejb/Cart");
+                request.getSession().setAttribute("myCart", myCart);
+            } catch (NamingException ex) {
+                ex.printStackTrace();
+            }
+        }
+        
+        myCart = (ICartBean)request.getSession().getAttribute("myCart");
+        
         //Item addition into the Cart
         String addItem = request.getParameter("addItem");
         if(addItem != null){
@@ -49,11 +62,7 @@ public class ViewCart extends HttpServlet {
             book.setISBN(removeItem);
             if(book != null) myCart.remove(book);
         }
-        
-        request.setAttribute("myCartList", myCart.getList());
-        request.setAttribute("myCartItemCount", myCart.getItemCount());
-        request.setAttribute("myCartPrice", myCart.getPrice());
-        
+                
         //view cart
         request.getRequestDispatcher("/jsp/Cart.jsp").forward(request, response);
     }

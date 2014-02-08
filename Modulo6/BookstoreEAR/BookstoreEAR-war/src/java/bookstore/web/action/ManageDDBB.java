@@ -1,8 +1,8 @@
 package bookstore.web.action;
 
 import ejb.logic.facade.IBusinessFacade;
-import ejb.model.book.IBookBean;
-import ejb.model.factory.BeanFactory;
+import ejb.bean.book.IBookBean;
+import ejb.bean.factory.BeanFactory;
 import java.io.IOException;
 import java.util.List;
 import javax.ejb.EJB;

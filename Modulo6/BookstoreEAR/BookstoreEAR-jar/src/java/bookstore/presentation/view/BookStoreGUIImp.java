@@ -2,8 +2,8 @@ package bookstore.presentation.view;
 
 import java.util.List;
 import javax.swing.JOptionPane;
-import ejb.model.book.IBookBean;
-import ejb.model.factory.BeanFactory;
+import ejb.bean.book.IBookBean;
+import ejb.bean.factory.BeanFactory;
 import bookstore.presentation.controller.Controller;
 import bookstore.presentation.controller.events.BusinessEvent;
 import bookstore.presentation.controller.events.GUIEvent;

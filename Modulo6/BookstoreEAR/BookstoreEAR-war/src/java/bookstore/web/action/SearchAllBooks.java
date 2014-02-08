@@ -5,8 +5,7 @@
 package bookstore.web.action;
 
 import ejb.logic.facade.IBusinessFacade;
-import ejb.model.book.IBookBean;
-import ejb.model.cart.ICartBean;
+import ejb.bean.book.IBookBean;
 import java.io.IOException;
 import java.util.List;
 import javax.ejb.EJB;

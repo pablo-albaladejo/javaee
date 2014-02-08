@@ -1,7 +1,7 @@
 package bookstore.web.listener;
 
 import ejb.logic.facade.IBusinessFacade;
-import ejb.model.book.IBookBean;
+import ejb.bean.book.IBookBean;
 import javax.ejb.EJB;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;

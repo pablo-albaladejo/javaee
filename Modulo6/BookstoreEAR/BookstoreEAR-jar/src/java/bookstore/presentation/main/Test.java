@@ -1,12 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package bookstore.presentation.main;
 
 import ejb.logic.facade.IBusinessFacade;
-import ejb.model.book.IBookBean;
-import ejb.model.factory.BeanFactory;
+import ejb.bean.book.IBookBean;
+import ejb.bean.factory.BeanFactory;
 import java.util.List;
 import javax.ejb.EJB;
 
