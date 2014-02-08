@@ -1,6 +1,6 @@
-package ejb.model.cart;
+package ejb.bean.cart;
 
-import ejb.model.book.IBookBean;
+import ejb.bean.book.IBookBean;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateful;

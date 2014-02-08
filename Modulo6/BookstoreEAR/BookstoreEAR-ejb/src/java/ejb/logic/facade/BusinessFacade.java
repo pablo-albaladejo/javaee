@@ -2,7 +2,7 @@ package ejb.logic.facade;
 
 import java.util.List;
 import ejb.logic.service.ServiceFactory;
-import ejb.model.book.IBookBean;
+import ejb.bean.book.IBookBean;
 import javax.ejb.Stateless;
 
 /**

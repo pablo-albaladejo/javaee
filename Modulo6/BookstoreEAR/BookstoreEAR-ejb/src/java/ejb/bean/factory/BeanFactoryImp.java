@@ -1,9 +1,9 @@
-package ejb.model.factory;
+package ejb.bean.factory;
 
-import ejb.model.book.IBookBean;
-import ejb.model.book.BookBean;
-import ejb.model.cart.CartBean;
-import ejb.model.cart.ICartBean;
+import ejb.bean.book.IBookBean;
+import ejb.bean.book.BookBean;
+import ejb.bean.cart.CartBean;
+import ejb.bean.cart.ICartBean;
 
 /**
  * This class implements the <code>{@link BeanFactory}</code>

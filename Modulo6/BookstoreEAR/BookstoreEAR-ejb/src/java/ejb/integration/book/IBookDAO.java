@@ -2,7 +2,7 @@ package ejb.integration.book;
 
 import ejb.persistence.ddbb.exception.TransactionException;
 import java.util.List;
-import ejb.model.book.IBookBean;
+import ejb.bean.book.IBookBean;
 
 /**
  * This class defines the Interface of the Book integration

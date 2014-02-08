@@ -8,8 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import ejb.model.book.IBookBean;
-import ejb.model.factory.BeanFactory;
+import ejb.bean.book.IBookBean;
+import ejb.bean.factory.BeanFactory;
 
 /**
  * Implements the Data Access Object interface defined by {@link IBookDAO}

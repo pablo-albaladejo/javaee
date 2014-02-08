@@ -1,4 +1,4 @@
-package ejb.model.book;
+package ejb.bean.book;
 
 import java.util.Objects;
 

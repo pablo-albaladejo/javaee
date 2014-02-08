@@ -1,6 +1,6 @@
-package ejb.model.factory;
+package ejb.bean.factory;
 
-import ejb.model.book.IBookBean;
+import ejb.bean.book.IBookBean;
 
 /**
  * Implements the Abstract Factory and Singeltone Pattern

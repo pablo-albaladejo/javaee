@@ -4,7 +4,7 @@ import ejb.integration.factory.DAOFactory;
 import ejb.persistence.ddbb.exception.TransactionException;
 import ejb.persistence.ddbb.manager.TransactionManager;
 import java.util.List;
-import ejb.model.book.IBookBean;
+import ejb.bean.book.IBookBean;
 
 /**
  * This class implements the
