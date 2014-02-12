@@ -1,0 +1,12 @@
+ejb.bean.book
+ejb.bean.cart
+ejb.bean.factory
+ejb.integration.book
+ejb.integration.factory
+ejb.logic.book
+ejb.logic.facade
+ejb.logic.service
+ejb.persistence.ddbb.exception
+ejb.persistence.ddbb.factory
+ejb.persistence.ddbb.manager
+ejb.persistence.ddbb.transaction
