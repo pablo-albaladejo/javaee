@@ -19,15 +19,21 @@ public class Test {
     private static IBusinessFacade facade;
     
     public static void main(String[] args) {
+        
             IBookBean Book1 = BeanFactory.getInstance().getBookBean();            
+            Book1.setID(100);
             Book1.setTitle("Titulo");
             Book1.setAuthor("Autor 1");
             Book1.setEditorial("Editorial 1");
-            Book1.setISBN("ISNB 1");
+            Book1.setISBN("ISNB 100");
             Book1.setPrice(1.0);
             Book1.setPublicationYear(1);
             Book1.setDescription("Descripcion 1");
             
+            facade.NewBook(Book1);
+            //facade.NewBook(Book1);
+            
+            /*
             IBookBean Book2 = BeanFactory.getInstance().getBookBean();
             Book2.setTitle("Titulo");
             Book2.setAuthor("Autor 2");
@@ -81,7 +87,7 @@ public class Test {
             
             //Para comprobar que se han insertado los dos libros            
             listaLibros();
-            
+            /*
             //SEARCH BY TITLE
             listaLibrosPorTitulo(Book1.getTitle());
                         
@@ -152,7 +158,7 @@ public class Test {
                     System.out.println("Libro encontrado!");
                     System.out.println("FUNCION CONSULTA ISBN OK!!");
                 }
-            }
+            }*/
 	}
         
         private static void listaLibros(){

@@ -2,7 +2,6 @@ package ejb.integration.factory;
 
 import ejb.integration.book.BookDAO;
 import ejb.integration.book.IBookDAO;
-import ejb.persistence.ddbb.exception.TransactionException;
 
 /**
  * This class implements the Data Access Object Factory. 
@@ -14,10 +13,9 @@ public class DAOFactoryImp extends DAOFactory{
     /**
      * Provides a DAO from the Book Entity 
      * @return A {@link IBookDAO} object
-     * @throws TransactionException if a DDBB exception occurred
      */
     @Override
-    public IBookDAO getBookDAO() throws TransactionException{
+    public IBookDAO getBookDAO(){
         return new BookDAO();
     }    
 }

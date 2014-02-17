@@ -1,15 +1,27 @@
 package ejb.bean.book;
 
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 /**
  * This class implements the
  * <code>{@link IBookBean}</code> interface.
  * <p>Pablo Albaladejo Mestre (pablo.albaladejo.mestre@gmail.com)</p>
  */
+@Entity
+@Table(name = "libros")
+@NamedQueries({
+    @NamedQuery(name = "BookBean.findAll", query = "SELECT n FROM BookBean n")})
 public class BookBean implements IBookBean {
 
-    private int ID;
+    private Integer ID;
     private String title;
     private String author;
     private String editorial;
@@ -23,14 +35,6 @@ public class BookBean implements IBookBean {
      */
     
     public BookBean() {
-        /*this.ID = -1;
-        this.title = "";
-        this.author = "";
-        this.editorial = "";
-        this.ISBN = "";
-        this.publicationYear = 0;
-        this.price = 0.0;
-        this.description = "";*/
     }
 
     /**
@@ -61,6 +65,8 @@ public class BookBean implements IBookBean {
      * @return the Book ID
      */
     @Override
+    @Id
+    @Column(name = "ID")
     public int getID() {
         return this.ID;
     }
@@ -81,6 +87,7 @@ public class BookBean implements IBookBean {
      * @return the Book Title
      */
     @Override
+    @Column(name = "TITULO")
     public String getTitle() {
         return this.title;
     }
@@ -100,6 +107,7 @@ public class BookBean implements IBookBean {
      * @return the Author
      */
     @Override
+    @Column(name = "AUTOR")
     public String getAuthor() {
         return this.author;
     }
@@ -119,6 +127,7 @@ public class BookBean implements IBookBean {
      * @return the Book Editorial
      */
     @Override
+    @Column(name = "EDITORIAL")
     public String getEditorial() {
         return this.editorial;
     }
@@ -139,6 +148,7 @@ public class BookBean implements IBookBean {
      * @return the Book ISNB
      */
     @Override
+    @Column(name = "ISBN")
     public String getISBN() {
         return this.ISBN;
     }
@@ -159,6 +169,7 @@ public class BookBean implements IBookBean {
      * @return the Book Publication Year
      */
     @Override
+    @Column(name = "PUBLICACION")
     public int getPublicationYear() {
         return this.publicationYear;
     }
@@ -179,6 +190,7 @@ public class BookBean implements IBookBean {
      * @return the Book Price
      */
     @Override
+    @Column(name = "PRECIO")
     public double getPrice() {
         return this.price;
     }
@@ -199,6 +211,7 @@ public class BookBean implements IBookBean {
      * @return the Book Description
      */
     @Override
+    @Column(name = "DESCRIPCION")
     public String getDescription() {
         return this.description;
     }

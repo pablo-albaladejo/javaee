@@ -1,9 +1,19 @@
 package ejb.logic.facade;
 
+import ejb.bean.book.BookBean;
 import java.util.List;
 import ejb.logic.service.ServiceFactory;
 import ejb.bean.book.IBookBean;
+import ejb.bean.factory.BeanFactory;
+import ejb.persistence.exception.TransactionException;
+import ejb.persistence.manager.PersistenceManager;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 
 /**
  * This class implements the
@@ -13,8 +23,10 @@ import javax.ejb.Stateless;
  */
 @Stateless(name="Facade")
 public class BusinessFacade implements IBusinessFacade {
-
+    
+    
     public BusinessFacade() {
+        
     }
 
     /**
@@ -26,7 +38,25 @@ public class BusinessFacade implements IBusinessFacade {
      */
     @Override
     public boolean NewBook(IBookBean Book) {
-        return ServiceFactory.getInstance().getBookService().NewBook(Book);
+        try {
+            ServiceFactory.getInstance().getBookService().NewBook(Book);
+        } catch (TransactionException ex) {
+            Logger.getLogger(BusinessFacade.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return true;
+        /*boolean result = false;
+        EntityTransaction transaction = PersistenceManager.getInstance().getEntityManager().getTransaction();
+        transaction.begin();
+        try{
+            ServiceFactory.getInstance().getBookService().NewBook(Book);
+            transaction.commit();
+            result = true;
+        }catch (TransactionException e){
+            transaction.rollback();
+        }catch (Exception e){
+            
+        }
+        return result;*/
     }
 
     /**

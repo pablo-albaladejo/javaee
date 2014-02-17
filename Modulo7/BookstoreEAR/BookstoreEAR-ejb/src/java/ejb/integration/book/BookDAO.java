@@ -1,15 +1,15 @@
 package ejb.integration.book;
 
-import ejb.persistence.ddbb.exception.TransactionException;
-import ejb.persistence.ddbb.manager.TransactionManager;
-import java.sql.Statement;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import ejb.bean.book.BookBean;
 import java.util.List;
 import ejb.bean.book.IBookBean;
-import ejb.bean.factory.BeanFactory;
+import ejb.persistence.exception.TransactionException;
+import ejb.persistence.manager.PersistenceManager;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  * Implements the Data Access Object interface defined by {@link IBookDAO}
@@ -18,58 +18,45 @@ import ejb.bean.factory.BeanFactory;
  */
 public class BookDAO implements IBookDAO {
 
-    private ResultSet resultSet;
-    private Connection connection;
-    private Statement statement;
-
     /**
      * Constructs a Book Data Access Object. A stament from the Connection with
      * the DDBB is requested to {@link TransactionManager}
      *
-     * @throws TransactionException if creating the stament throws an exception
      */
-    public BookDAO() throws TransactionException {
-        this.connection = (Connection) TransactionManager.getInstance().getConexion();
-        try {
-            this.statement = connection.createStatement();
-        } catch (SQLException ex) {
-            throw new TransactionException(ex);
-        }
+    public BookDAO(){
     }
 
     /**
      * Adds a new Book to the DDBB
      *
      * @param Book The Book transfer to be added
-     * @return  <code>true</code> if the book is propertly added;
      * <code>false</code> otherwise
      * @throws TransactionException if a DDBB exception occurred
      */
     @Override
-    public boolean NewBook(IBookBean Book) throws TransactionException {
-        boolean InsertActionResult = false;
-
-        String query = "INSERT INTO " + TransactionManager.BOOK_ENTITY
-                + " (`TITULO`, `AUTOR`, `EDITORIAL`, `ISBN`, `PUBLICACION`, `PRECIO`, `DESCRIPCION`) VALUES ("
-                + "'" + Book.getTitle() + "',"
-                + "'" + Book.getAuthor() + "', "
-                + "'" + Book.getEditorial() + "', "
-                + "'" + Book.getISBN() + "', "
-                + "'" + Book.getPublicationYear() + "', "
-                + "'" + Book.getPrice() + "', "
-                + "'" + Book.getDescription() + "'"
-                + ")";
-
-        try {
-            int numRows = this.statement.executeUpdate(query);
-            if (numRows > 0) {
-                InsertActionResult = true;
-            }
-        } catch (SQLException ex) {
-            throw new TransactionException(ex);
-        } finally {
-            return InsertActionResult;
-        }
+    public void NewBook(IBookBean Book) throws TransactionException {
+//        try{
+//            PersistenceManager.getInstance().getEntityManager().persist(Book);
+//        } catch (Exception e){
+//            System.out.println("ERROR EN EL DAO "+e);
+//            throw new TransactionException(e.getLocalizedMessage());
+//        }
+                    BookBean Book1 = new BookBean();
+            Book1.setID(100);
+            Book1.setTitle("Titulo");
+            Book1.setAuthor("Autor 1");
+            Book1.setEditorial("Editorial 1");
+            Book1.setISBN("ISNB 100");
+            Book1.setPrice(1.0);
+            Book1.setPublicationYear(1);
+            Book1.setDescription("Descripcion 1");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("BookstorePU");
+        EntityManager em  = emf.createEntityManager();
+        EntityTransaction et = em.getTransaction();
+        et.begin();
+        em.persist(Book1);
+        et.commit();
+        
     }
 
     /**
@@ -78,11 +65,11 @@ public class BookDAO implements IBookDAO {
      * @param ISBN The string which defines a unique Book identifier
      * @return  <code>true</code> if the Book is propertly deleted;
      * <code>flase</code> otherwise
-     * @throws TransactionException if a DDBB exception occurred
      */
     @Override
-    public boolean DeleteBook(String ISBN) throws TransactionException {
-        boolean deleteActionResult = false;
+    public boolean DeleteBook(String ISBN) {
+        return false;
+        /*boolean deleteActionResult = false;
         String query = "DELETE FROM " + TransactionManager.BOOK_ENTITY
                 + " WHERE ISBN = '" + ISBN + "'";
 
@@ -95,7 +82,7 @@ public class BookDAO implements IBookDAO {
             throw new TransactionException(ex);
         } finally {
             return deleteActionResult;
-        }
+        }*/
     }
 
     /**
@@ -103,24 +90,11 @@ public class BookDAO implements IBookDAO {
      *
      * @return The <code>{@link IBookBean}</code> list including all the Books;
      * <code>null</code> if no Book is found.
-     * @throws TransactionException if a DDBB exception occurred
      */
     @Override
-    public List<IBookBean> getAllBooks() throws TransactionException {
-        List<IBookBean> BookList = new ArrayList<IBookBean>();
-        String query = "SELECT * FROM " + TransactionManager.BOOK_ENTITY;
-        try {
-            this.resultSet = this.statement.executeQuery(query);
-            while (this.resultSet.next()) {
-                IBookBean book = BeanFactory.getInstance().getBookBean();
-                copyResultBookData(resultSet, book);
-                BookList.add(book);
-            }
-        } catch (SQLException e) {
-            throw new TransactionException(e);
-        } finally {
-            return BookList;
-        }
+    public List<IBookBean> getAllBooks() {
+        Query q = PersistenceManager.getInstance().getEntityManager().createNamedQuery("BookBean.findAll");
+        return q.getResultList();
     }
 
     /**
@@ -129,11 +103,11 @@ public class BookDAO implements IBookDAO {
      * @param ISBN The string which defines a unique Book identifier
      * @return The <code>{@link IBookBean}</code> if it is found; <code>null</code>
      * if the Book is not found.
-     * @throws TransactionException if a DDBB exception occurred
      */
     @Override
-    public IBookBean getBookByISBN(String ISBN) throws TransactionException {
-        IBookBean Book = null;
+    public IBookBean getBookByISBN(String ISBN) {
+        return null;
+        /*IBookBean Book = null;
 
         String query = "SELECT * FROM " + TransactionManager.BOOK_ENTITY
                 + " WHERE ISBN = '" + ISBN + "'";
@@ -149,7 +123,7 @@ public class BookDAO implements IBookDAO {
             throw new TransactionException(e);
         } finally {
             return Book;
-        }
+        }*/
     }
 
     /**
@@ -158,11 +132,11 @@ public class BookDAO implements IBookDAO {
      * @param title The Book title
      * @return The <code>{@link IBookBean}</code> list filtered by title;
      * <code>null</code> if no Book is found.
-     * @throws TransactionException if a DDBB exception occurred
      */
     @Override
-    public List<IBookBean> getBookByTitle(String title) throws TransactionException {
-        List<IBookBean> BookList = new ArrayList<IBookBean>();
+    public List<IBookBean> getBookByTitle(String title) {
+        return null;
+        /*List<IBookBean> BookList = new ArrayList<IBookBean>();
         String query = "SELECT * FROM " + TransactionManager.BOOK_ENTITY
                 + " WHERE TITULO LIKE '%" + title + "%'";
         try {
@@ -176,7 +150,7 @@ public class BookDAO implements IBookDAO {
             throw new TransactionException(e);
         } finally {
             return BookList;
-        }
+        }*/
     }
 
     /**
@@ -186,11 +160,11 @@ public class BookDAO implements IBookDAO {
      * @param price The new price to be updated
      * @return <code>true</code> if the books is updated; <code>false</code>
      * otherwise
-     * @throws TransactionException if a DDBB exception occurred
      */
     @Override
-    public boolean ModifyBookPrice(String ISBN, double price) throws TransactionException {
-        boolean updateActionResult = false;
+    public boolean ModifyBookPrice(String ISBN, double price) {
+        return false;
+        /*boolean updateActionResult = false;
         String query = "UPDATE " + TransactionManager.BOOK_ENTITY
                 + " SET PRECIO = " + price + " WHERE ISBN = '" + ISBN + "'";
 
@@ -203,20 +177,8 @@ public class BookDAO implements IBookDAO {
             throw new TransactionException(ex);
         } finally {
             return updateActionResult;
-        }
+        }*/
     }
-
-    private void copyResultBookData(ResultSet result, IBookBean book) throws SQLException {
-        book.setID(result.getInt(1));
-        book.setTitle(result.getString(2));
-        book.setAuthor(result.getString(3));
-        book.setEditorial(result.getString(4));
-        book.setISBN(result.getString(5));
-        book.setPublicationYear(result.getInt(6));
-        book.setPrice(result.getDouble(7));
-        book.setDescription(result.getString(8));
-    }
-
     /**
      * Modifies the whole data stored into the DDBB
      *
@@ -224,11 +186,11 @@ public class BookDAO implements IBookDAO {
      * updated
      * @return <code>true</code> if the books is updated; <code>false</code>
      * otherwise
-     * @throws TransactionException if a DDBB exception occurred
      */
     @Override
-    public boolean ModifyBook(IBookBean Book) throws TransactionException {
-        boolean updateActionResult = false;
+    public boolean ModifyBook(IBookBean Book) {
+        return false;
+        /*boolean updateActionResult = false;
         String query = "UPDATE " + TransactionManager.BOOK_ENTITY + " SET "
                 + "AUTOR = '" + Book.getAuthor() + "', "
                 + "TITULO = '" + Book.getTitle() + "', "
@@ -246,7 +208,7 @@ public class BookDAO implements IBookDAO {
             throw new TransactionException(ex);
         } finally {
             return updateActionResult;
-        }
+        }*/
     }
 
     /**
@@ -255,11 +217,11 @@ public class BookDAO implements IBookDAO {
      * @param authorID The Author ID
      * @return The <code>{@link IBookBean}</code> list filtered by AuthorID;
      * <code>null</code> if no Book is found.
-     * @throws TransactionException if a DDBB exception occurred
      */
     @Override
-    public List<IBookBean> getBookByAuthorID(int authorID) throws TransactionException {
-        List<IBookBean> BookList = new ArrayList<IBookBean>();
+    public List<IBookBean> getBookByAuthorID(int authorID) {
+        return null;
+        /*List<IBookBean> BookList = new ArrayList<IBookBean>();
         String query = "SELECT * FROM " + TransactionManager.BOOK_ENTITY
                 + " WHERE AUTOR = '" + authorID + "'";
         try {
@@ -273,7 +235,7 @@ public class BookDAO implements IBookDAO {
             throw new TransactionException(e);
         } finally {
             return BookList;
-        }
+        }*/
     }
 
     /**
@@ -282,11 +244,11 @@ public class BookDAO implements IBookDAO {
      * @param author The Book author
      * @return The <code>{@link IBookBean}</code> list filtered by author;
      * <code>null</code> if no Book is found.
-     * @throws TransactionException if a DDBB exception occurred
      */
     @Override
-    public List<IBookBean> getBookByAuthor(String author) throws TransactionException {
-        List<IBookBean> BookList = new ArrayList<IBookBean>();
+    public List<IBookBean> getBookByAuthor(String author) {
+        return null;
+        /*List<IBookBean> BookList = new ArrayList<IBookBean>();
         String query = "SELECT * FROM " + TransactionManager.BOOK_ENTITY
                 + " WHERE AUTOR LIKE '" + author + "'";
         try {
@@ -300,7 +262,7 @@ public class BookDAO implements IBookDAO {
             throw new TransactionException(e);
         } finally {
             return BookList;
-        }
+        }*/
     }
 
     /**
@@ -308,11 +270,11 @@ public class BookDAO implements IBookDAO {
      *
      * @return The <code>String</code> list including all the Authors;
      * <code>null</code> if no Authors is found.
-     * @throws TransactionException if a DDBB exception occurred
      */
     @Override
-    public List<String> getAllAuthors() throws TransactionException {
-        List<String> list = new ArrayList<String>();
+    public List<String> getAllAuthors(){
+        return null;
+        /*List<String> list = new ArrayList<String>();
         String query = "SELECT DISTINCT AUTOR FROM " + TransactionManager.BOOK_ENTITY;
 
         try {
@@ -324,7 +286,7 @@ public class BookDAO implements IBookDAO {
             throw new TransactionException(e);
         } finally {
             return list;
-        }
+        }*/
     }
 
     /**
@@ -332,11 +294,11 @@ public class BookDAO implements IBookDAO {
      *
      * @return The <code>String</code> list including all the Editorials;
      * <code>null</code> if no Editorial is found.
-     * @throws TransactionException if a DDBB exception occurred
      */
     @Override
-    public List<String> getAllEditorials() throws TransactionException {
-        List<String> list = new ArrayList<String>();
+    public List<String> getAllEditorials() {
+        return null;
+        /*List<String> list = new ArrayList<String>();
         String query = "SELECT DISTINCT EDITORIAL FROM " + TransactionManager.BOOK_ENTITY;
 
         try {
@@ -348,7 +310,7 @@ public class BookDAO implements IBookDAO {
             throw new TransactionException(e);
         } finally {
             return list;
-        }
+        }*/
     }
 
     /**
@@ -357,10 +319,10 @@ public class BookDAO implements IBookDAO {
      * @param author The Book author
      * @return The <code>{@link IBookBean}</code> list filtered by Editorial;
      * <code>null</code> if no Book is found.
-     * @throws TransactionException if a DDBB exception occurred
      */
-    public List<IBookBean> getBookByEditorial(String editorial) throws TransactionException {
-        List<IBookBean> BookList = new ArrayList<IBookBean>();
+    public List<IBookBean> getBookByEditorial(String editorial){
+        return null;
+        /*List<IBookBean> BookList = new ArrayList<IBookBean>();
         String query = "SELECT * FROM " + TransactionManager.BOOK_ENTITY
                 + " WHERE EDITORIAL LIKE '" + editorial + "'";
         try {
@@ -374,6 +336,6 @@ public class BookDAO implements IBookDAO {
             throw new TransactionException(e);
         } finally {
             return BookList;
-        }
+        }*/
     }
 }

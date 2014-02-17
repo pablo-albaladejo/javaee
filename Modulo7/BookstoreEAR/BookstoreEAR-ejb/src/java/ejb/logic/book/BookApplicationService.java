@@ -1,10 +1,9 @@
 package ejb.logic.book;
 
 import ejb.integration.factory.DAOFactory;
-import ejb.persistence.ddbb.exception.TransactionException;
-import ejb.persistence.ddbb.manager.TransactionManager;
 import java.util.List;
 import ejb.bean.book.IBookBean;
+import ejb.persistence.exception.TransactionException;
 
 /**
  * This class implements the
@@ -13,29 +12,17 @@ import ejb.bean.book.IBookBean;
  */
 public class BookApplicationService implements IBookApplicationService {
 
+    
+    
     /**
      * Adds a new Book to the DDBB
      *
      * @param Book The Book transfer to be added
-     * @return  <code>true</code> if the book is propertly added;
-     * <code>false</code> otherwise
+     * @throws TransactionException if a DDBB exception occurred
      */
     @Override
-    public boolean NewBook(IBookBean Book) {
-        boolean result = false;
-        try {
-            if (this.getBookByISBN(Book.getISBN()) == null) {
-                TransactionManager.getInstance().begin();
-                result = DAOFactory.getInstance().getBookDAO().NewBook(Book);
-                TransactionManager.getInstance().commit();
-            } else {
-                result = false;
-            }
-        } catch (TransactionException te) {
-            result = false;
-        } finally {
-            return result;
-        }
+    public void NewBook(IBookBean Book) throws TransactionException{
+        DAOFactory.getInstance().getBookDAO().NewBook(Book);
     }
 
     /**
@@ -47,16 +34,7 @@ public class BookApplicationService implements IBookApplicationService {
      */
     @Override
     public boolean DeleteBook(String ISBN) {
-        boolean result = false;
-        try {
-            TransactionManager.getInstance().begin();
-            result = DAOFactory.getInstance().getBookDAO().DeleteBook(ISBN);
-            TransactionManager.getInstance().commit();
-        } catch (TransactionException te) {//Book not found
-            result = false;
-        } finally {
-            return result;
-        }
+        return DAOFactory.getInstance().getBookDAO().DeleteBook(ISBN);
     }
 
     /**
@@ -67,16 +45,7 @@ public class BookApplicationService implements IBookApplicationService {
      */
     @Override
     public List<IBookBean> getAllBooks() {
-        List<IBookBean> list = null;
-        try {
-            TransactionManager.getInstance().begin();
-            list = DAOFactory.getInstance().getBookDAO().getAllBooks();
-            TransactionManager.getInstance().close();
-        } catch (TransactionException e) {// Error connecting to DDBB
-            list = null;
-        } finally {
-            return list;
-        }
+        return DAOFactory.getInstance().getBookDAO().getAllBooks();
     }
 
     /**
@@ -89,16 +58,7 @@ public class BookApplicationService implements IBookApplicationService {
      */
     @Override
     public IBookBean getBookByISBN(String ISBN) {
-        IBookBean book = null;
-        try {
-            TransactionManager.getInstance().begin();
-            book = DAOFactory.getInstance().getBookDAO().getBookByISBN(ISBN);
-            TransactionManager.getInstance().close();
-        } catch (TransactionException ex) { //Book not found
-            book = null;
-        } finally {
-            return book;
-        }
+        return DAOFactory.getInstance().getBookDAO().getBookByISBN(ISBN);
     }
 
     /**
@@ -111,16 +71,7 @@ public class BookApplicationService implements IBookApplicationService {
      */
     @Override
     public List<IBookBean> getBookByTitle(String title) {
-        List<IBookBean> list = null;
-        try {
-            TransactionManager.getInstance().begin();
-            list = DAOFactory.getInstance().getBookDAO().getBookByTitle(title);
-            TransactionManager.getInstance().close();
-        } catch (TransactionException e1) {
-            list = null;
-        } finally {
-            return list;
-        }
+        return DAOFactory.getInstance().getBookDAO().getBookByTitle(title);
     }
 
     /**
@@ -133,16 +84,7 @@ public class BookApplicationService implements IBookApplicationService {
      */
     @Override
     public boolean ModifyBookPrice(String ISBN, double price) {
-        boolean result = false;
-        try {
-            TransactionManager.getInstance().begin();
-            result = DAOFactory.getInstance().getBookDAO().ModifyBookPrice(ISBN, price);
-            TransactionManager.getInstance().commit();
-        } catch (TransactionException ex) {
-            result = false;//Libro no encontrado
-        } finally {
-            return result;
-        }
+        return DAOFactory.getInstance().getBookDAO().ModifyBookPrice(ISBN, price);
     }
 
     /**
@@ -155,14 +97,7 @@ public class BookApplicationService implements IBookApplicationService {
      */
     @Override
     public boolean ModifyBook(IBookBean Book) {
-        boolean result = false;
-        try {
-            result = DAOFactory.getInstance().getBookDAO().ModifyBook(Book);
-        } catch (TransactionException ex) {
-            result = false;
-        } finally {
-            return result;
-        }
+        return DAOFactory.getInstance().getBookDAO().ModifyBook(Book);
     }
 
     /**
@@ -173,38 +108,20 @@ public class BookApplicationService implements IBookApplicationService {
      */
     @Override
     public List<String> getAllAuthors() {
-        List<String> list = null;
-        try {
-            TransactionManager.getInstance().begin();
-            list = DAOFactory.getInstance().getBookDAO().getAllAuthors();
-            TransactionManager.getInstance().close();
-        } catch (TransactionException e) {
-            list = null;
-        } finally {
-            return list;
-        }
+        return DAOFactory.getInstance().getBookDAO().getAllAuthors();
     }
 
     /**
      * Searches a list of existing Books at the persistence identified by the
      * Author
      *
-     * @param author The Book author
+     * @param name The Book author
      * @return The <code>{@link IBookBean}</code> list filtered by author;
      * <code>null</code> if no Book is found.
      */
     @Override
     public List<IBookBean> getBookByAuthor(String name) {
-        List<IBookBean> list = null;
-        try {
-            TransactionManager.getInstance().begin();
-            list = DAOFactory.getInstance().getBookDAO().getBookByAuthor(name);
-            TransactionManager.getInstance().close();
-        } catch (TransactionException e) {
-            list = null;
-        } finally {
-            return list;
-        }
+        return DAOFactory.getInstance().getBookDAO().getBookByAuthor(name);
     }
 
     /**
@@ -215,16 +132,7 @@ public class BookApplicationService implements IBookApplicationService {
      */
     @Override
     public List<String> getAllEditorials() {
-        List<String> list = null;
-        try {
-            TransactionManager.getInstance().begin();
-            list = DAOFactory.getInstance().getBookDAO().getAllEditorials();
-            TransactionManager.getInstance().close();
-        } catch (TransactionException e) {
-            list = null;
-        } finally {
-            return list;
-        }
+        return DAOFactory.getInstance().getBookDAO().getAllEditorials();
     }
     
     /**
@@ -237,15 +145,6 @@ public class BookApplicationService implements IBookApplicationService {
      */
     @Override
     public List<IBookBean> getBookByEditorial(String editorial) {
-        List<IBookBean> list = null;
-        try {
-            TransactionManager.getInstance().begin();
-            list = DAOFactory.getInstance().getBookDAO().getBookByEditorial(editorial);
-            TransactionManager.getInstance().close();
-        } catch (TransactionException e) {
-            list = null;
-        } finally {
-            return list;
-        }
+      return DAOFactory.getInstance().getBookDAO().getBookByEditorial(editorial);
     }
 }

@@ -2,6 +2,7 @@ package ejb.logic.book;
 
 import java.util.List;
 import ejb.bean.book.IBookBean;
+import ejb.persistence.exception.TransactionException;
 
 /**
  * This interface provides the available Book methods
@@ -12,10 +13,10 @@ public interface IBookApplicationService {
      *  Adds a new Book to the DDBB
      *
      * @param   Book The Book transfer to be added
-     * @return  <code>true</code> if the book is propertly added;
-     *          <code>false</code> otherwise
+     * @throws TransactionException if a DDBB exception occurred
      */
-    boolean NewBook(IBookBean Book);
+    void NewBook(IBookBean Book) throws TransactionException;
+    
     /**
      *  Removes a Book from the persistence identified by the ISBN
      * 

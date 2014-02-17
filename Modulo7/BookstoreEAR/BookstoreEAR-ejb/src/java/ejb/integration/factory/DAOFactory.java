@@ -1,7 +1,6 @@
 package ejb.integration.factory;
 
 import ejb.integration.book.IBookDAO;
-import ejb.persistence.ddbb.exception.TransactionException;
 
 /**
  * This class implements the Abstract Factory for DAO objects
@@ -22,7 +21,6 @@ public abstract class DAOFactory {
     /**
      * Provides a DAO from the Book Entity 
      * @return A {@link IBookDAO} object
-     * @throws TransactionException if a DDBB exception occurred
      */
-    public abstract IBookDAO getBookDAO() throws TransactionException;
+    public abstract IBookDAO getBookDAO();
 }
