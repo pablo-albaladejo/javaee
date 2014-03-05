@@ -28,6 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "BookBean.findByAuthor", query = "SELECT b FROM BookBean b WHERE b.author like :author"),
     @NamedQuery(name = "BookBean.findByEditorial", query = "SELECT b FROM BookBean b WHERE b.editorial like :editorial"),
     @NamedQuery(name = "BookBean.modifyPrice", query = "UPDATE BookBean b SET b.price= :price WHERE b.ISBN= :ISBN"),
+    @NamedQuery(name = "BookBean.modifyBook", query = "UPDATE BookBean b SET b.author = :author, b.title= :title, b.editorial= :editorial, b.publicationYear= :publicationYear, b.price= :price, b.description = :description WHERE b.ISBN= :ISBN"),
     @NamedQuery(name = "BookBean.findAllAuthors", query = "SELECT DISTINCT b.author FROM BookBean AS b"),
     @NamedQuery(name = "BookBean.findAllEditorials", query = "SELECT DISTINCT b.editorial FROM BookBean AS b")
     
