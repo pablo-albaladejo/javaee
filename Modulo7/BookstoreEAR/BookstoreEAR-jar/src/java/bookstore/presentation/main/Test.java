@@ -18,7 +18,7 @@ public class Test {
     @EJB(beanName="Facade")
     private static IBusinessFacade facade;
     
-    public static void main(String[] args) {
+    public static void main(String[] args) {        
             IBookBean Book1 = BeanFactory.getInstance().getBookBean();            
             Book1.setTitle("Titulo");
             Book1.setAuthor("Autor 1");
