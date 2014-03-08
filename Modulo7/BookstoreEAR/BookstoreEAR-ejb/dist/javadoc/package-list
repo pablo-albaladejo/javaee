@@ -1,0 +1,12 @@
+ejb.dto.bean.book
+ejb.dto.bean.cart
+ejb.dto.domain.book
+ejb.dto.factory
+ejb.dto.mapper
+ejb.integration.book
+ejb.integration.factory
+ejb.logic.book
+ejb.logic.facade
+ejb.logic.service
+ejb.persistence.database.exception
+ejb.persistence.database.manager
