@@ -1,6 +1,5 @@
 package ejb.persistence.database.manager;
 
-import ejb.bean.book.IBookBean;
 import ejb.persistence.database.exception.TransactionException;
 import java.util.HashMap;
 import java.util.List;
@@ -20,15 +19,13 @@ class TransactionManagerImp extends TransactionManager{
     private HashMap<Long,EntityManager> conectionPool = new HashMap<Long,EntityManager>();
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory(PersistenceUnit);
     
-    private EntityManager getEntityManager(){
+    private synchronized EntityManager getEntityManager(){
         EntityManager em = null;
         if(conectionPool.containsKey(Thread.currentThread().getId())){
             em = conectionPool.get(Thread.currentThread().getId());
-            System.out.println("Conexión exisitente ("+em.hashCode() +") de en hilo" + Thread.currentThread().getId());
         }else{
             em = emf.createEntityManager();
             conectionPool.put(Thread.currentThread().getId(),em);
-            System.out.println("Conexión creada ("+em.hashCode() +") de en hilo" + Thread.currentThread().getId());
         }
         return em;
     }

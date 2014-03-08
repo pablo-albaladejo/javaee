@@ -1,8 +1,8 @@
 package ejb.integration.book;
 
+import ejb.dto.domain.book.IBookDO;
 import ejb.persistence.database.exception.TransactionException;
 import java.util.List;
-import ejb.bean.book.IBookBean;
 
 /**
  * This class defines the Interface of the Book integration
@@ -18,7 +18,7 @@ public interface IBookDAO {
      * <code>false</code> otherwise
      * @throws TransactionException if a DDBB exception occurred
      */
-    boolean NewBook(IBookBean Book) throws TransactionException;
+    boolean NewBook(IBookDO Book) throws TransactionException;
 
     /**
      * Removes a Book from the DDBB identified by the ISBN
@@ -33,31 +33,31 @@ public interface IBookDAO {
     /**
      * Searches all the Books stored at the DDBB
      *
-     * @return The <code>{@link IBookBean}</code> list including all the Books;
+     * @return The <code>{@link IBookDO}</code> list including all the Books;
      * <code>null</code> if no Book is found.
      * @throws TransactionException if a DDBB exception occurred
      */
-    List<IBookBean> getAllBooks() throws TransactionException;
+    List<IBookDO> getAllBooks() throws TransactionException;
 
     /**
      * Searches a Book from the DDBB identified by the ISBN
      *
      * @param ISBN The string which defines a unique Book identifier
-     * @return The <code>{@link IBookBean}</code> if it is found; <code>null</code>
+     * @return The <code>{@link IBookDO}</code> if it is found; <code>null</code>
      * if the Book is not found.
      * @throws TransactionException if a DDBB exception occurred
      */
-    IBookBean getBookByISBN(String ISBN) throws TransactionException;
+    IBookDO getBookByISBN(String ISBN) throws TransactionException;
 
     /**
      * Searches a list of existing Books at the DDBB identified by the Title
      *
      * @param title The Book title
-     * @return The <code>{@link IBookBean}</code> list filtered by title;
+     * @return The <code>{@link IBookDO}</code> list filtered by title;
      * <code>null</code> if no Book is found.
      * @throws TransactionException if a DDBB exception occurred
      */
-    List<IBookBean> getBookByTitle(String title) throws TransactionException;
+    List<IBookDO> getBookByTitle(String title) throws TransactionException;
 
     /**
      * Modifies the price of the Book identified by the provded ISBN
@@ -73,33 +73,23 @@ public interface IBookDAO {
     /**
      * Modifies the whole data stored into the DDBB
      *
-     * @param Book The <code>{@link IBookBean}</code> to including the data to be
+     * @param Book The <code>{@link IBookDO}</code> to including the data to be
      * updated
      * @return <code>true</code> if the books is updated; <code>false</code>
      * otherwise
      * @throws TransactionException if a DDBB exception occurred
      */
-    boolean ModifyBook(IBookBean Book) throws TransactionException;
-
-    /**
-     * Searches a list of existing Books at the DDBB identified by the AuthorID
-     *
-     * @param authorID The Author ID
-     * @return The <code>{@link IBookBean}</code> list filtered by AuthorID;
-     * <code>null</code> if no Book is found.
-     * @throws TransactionException if a DDBB exception occurred
-     */
-    List<IBookBean> getBookByAuthorID(int authorID) throws TransactionException;
+    boolean ModifyBook(IBookDO Book) throws TransactionException;
 
     /**
      * Searches a list of existing Books at the DDBB identified by the Author
      *
      * @param author The Book author
-     * @return The <code>{@link IBookBean}</code> list filtered by author;
+     * @return The <code>{@link IBookDO}</code> list filtered by author;
      * <code>null</code> if no Book is found.
      * @throws TransactionException if a DDBB exception occurred
      */
-    List<IBookBean> getBookByAuthor(String author) throws TransactionException;
+    List<IBookDO> getBookByAuthor(String author) throws TransactionException;
 
     /**
      * Searches all the Authors stored at the DDBB
@@ -123,9 +113,9 @@ public interface IBookDAO {
      * Searches a list of existing Books at the DDBB identified by the Editorial
      *
      * @param editorial The Book Editorial
-     * @return The <code>{@link IBookBean}</code> list filtered by Editorial;
+     * @return The <code>{@link IBookDO}</code> list filtered by Editorial;
      * <code>null</code> if no Book is found.
      * @throws TransactionException if a DDBB exception occurred
      */
-    List<IBookBean> getBookByEditorial(String editorial) throws TransactionException;
+    List<IBookDO> getBookByEditorial(String editorial) throws TransactionException;
 }

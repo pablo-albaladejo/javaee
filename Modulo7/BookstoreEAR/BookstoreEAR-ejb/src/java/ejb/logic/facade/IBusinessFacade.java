@@ -1,7 +1,7 @@
 package ejb.logic.facade;
 
+import ejb.dto.bean.book.IBookBean;
 import java.util.List;
-import ejb.bean.book.IBookBean;
 import javax.ejb.Remote;
 
 /**

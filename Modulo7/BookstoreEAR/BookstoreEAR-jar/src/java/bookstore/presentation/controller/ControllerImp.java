@@ -1,10 +1,10 @@
 package bookstore.presentation.controller;
 
 import java.util.List;
-import ejb.bean.book.IBookBean;
 import bookstore.presentation.controller.events.BusinessEvent;
 import bookstore.presentation.controller.events.GUIEvent;
 import bookstore.presentation.view.BookStoreGUI;
+import ejb.dto.bean.book.IBookBean;
 import ejb.logic.facade.IBusinessFacade;
 import javax.naming.Context;
 import javax.naming.InitialContext;

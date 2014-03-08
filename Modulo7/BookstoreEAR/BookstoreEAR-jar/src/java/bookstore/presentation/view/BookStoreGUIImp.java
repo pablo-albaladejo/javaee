@@ -2,13 +2,13 @@ package bookstore.presentation.view;
 
 import java.util.List;
 import javax.swing.JOptionPane;
-import ejb.bean.book.IBookBean;
-import ejb.bean.factory.BeanFactory;
 import bookstore.presentation.controller.Controller;
 import bookstore.presentation.controller.events.BusinessEvent;
 import bookstore.presentation.controller.events.GUIEvent;
 import bookstore.presentation.view.location.LocationManager;
 import bookstore.presentation.view.location.message.MessageCode;
+import ejb.dto.bean.book.IBookBean;
+import ejb.dto.factory.DTOFactory;
 
 /**
  *
@@ -242,7 +242,7 @@ public class BookStoreGUIImp extends BookStoreGUI {
     }//GEN-LAST:event_DeleteButtonActionPerformed
 
     private void AddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddButtonActionPerformed
-        IBookBean Book = BeanFactory.getInstance().getBookBean();
+        IBookBean Book = DTOFactory.getInstance().getBookBean();
         try{
             Book.setTitle(this.TitleTextField.getText());
             Book.setAuthor(this.AuthorTextField.getText());
@@ -273,7 +273,7 @@ public class BookStoreGUIImp extends BookStoreGUI {
     }//GEN-LAST:event_BooksTableMouseReleased
 
     private void ModifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifyButtonActionPerformed
-        IBookBean Book = BeanFactory.getInstance().getBookBean();
+        IBookBean Book = DTOFactory.getInstance().getBookBean();
         try{
             Book.setTitle(this.TitleTextField.getText());
             Book.setAuthor(this.AuthorTextField.getText());

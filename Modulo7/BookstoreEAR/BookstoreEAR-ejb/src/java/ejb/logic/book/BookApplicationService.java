@@ -1,7 +1,9 @@
 package ejb.logic.book;
 
+import ejb.dto.bean.book.IBookBean;
+import ejb.dto.domain.book.IBookDO;
+import ejb.dto.mapper.DTOMapper;
 import java.util.List;
-import ejb.bean.book.IBookBean;
 import ejb.integration.factory.DAOFactory;
 import ejb.persistence.database.manager.TransactionManager;
 import ejb.persistence.database.exception.TransactionException;
@@ -21,18 +23,17 @@ public class BookApplicationService implements IBookApplicationService {
      * <code>false</code> otherwise
      */
     @Override
-    public boolean NewBook(IBookBean Book) {
+    public boolean NewBook(IBookBean bean) {
+        IBookDO domain = DTOMapper.getInstance().getBookDO(bean);
         boolean result = false;
         try {
             TransactionManager.getInstance().begin();
-            result = DAOFactory.getInstance().getBookDAO().NewBook(Book);
+            result = DAOFactory.getInstance().getBookDAO().NewBook(domain);
             TransactionManager.getInstance().commit();
             TransactionManager.getInstance().close();
         } catch (TransactionException te) {
-            TransactionManager.getInstance().close();
-            if(this.getBookByISBN(Book.getISBN()) != null){
+            if(this.getBookByISBN(domain.getISBN()) != null){
                 //Book not added because ISBN already existis
-                TransactionManager.getInstance().close();
                 result = false;
             }else{
                 //Error in transaction
@@ -76,14 +77,14 @@ public class BookApplicationService implements IBookApplicationService {
      */
     @Override
     public List<IBookBean> getAllBooks() {
-        List<IBookBean> list = null;
+        List<IBookDO> DomainList = null;
         try {
-            list = DAOFactory.getInstance().getBookDAO().getAllBooks();
+            DomainList = DAOFactory.getInstance().getBookDAO().getAllBooks();
             TransactionManager.getInstance().close();
         } catch (TransactionException e) {// Error connecting to DDBB
-            list = null;
+            DomainList = null;
         }
-        return list;
+        return DTOMapper.getInstance().getBookBean(DomainList);
     }
 
     /**
@@ -96,14 +97,15 @@ public class BookApplicationService implements IBookApplicationService {
      */
     @Override
     public IBookBean getBookByISBN(String ISBN) {
-        IBookBean book;
+        IBookBean bean;
         try {
-            book = DAOFactory.getInstance().getBookDAO().getBookByISBN(ISBN);
+            IBookDO book = DAOFactory.getInstance().getBookDAO().getBookByISBN(ISBN);
+            bean = DTOMapper.getInstance().getBookBean(book);
             TransactionManager.getInstance().close();
         } catch (TransactionException ex) {
-            book = null;
+            bean = null;
         }
-        return book;
+        return bean;
     }
 
     /**
@@ -116,14 +118,15 @@ public class BookApplicationService implements IBookApplicationService {
      */
     @Override
     public List<IBookBean> getBookByTitle(String title) {
-        List<IBookBean> list = null;
+        List<IBookBean> bean_list = null;
         try {
-            list = DAOFactory.getInstance().getBookDAO().getBookByTitle(title);
+            List<IBookDO> domain_list = DAOFactory.getInstance().getBookDAO().getBookByTitle(title);
+            bean_list = DTOMapper.getInstance().getBookBean(domain_list);
             TransactionManager.getInstance().close();
         } catch (TransactionException e1) {
-            list = null;
+            bean_list = null;
         }
-        return list;
+        return bean_list;
     }
 
     /**
@@ -157,12 +160,13 @@ public class BookApplicationService implements IBookApplicationService {
      * otherwise
      */
     @Override
-    public boolean ModifyBook(IBookBean Book) {
+    public boolean ModifyBook(IBookBean bean) {
+        IBookDO domain = DTOMapper.getInstance().getBookDO(bean);
         boolean result = false;
-        if(this.getBookByISBN(Book.getISBN()) != null){
+        if(this.getBookByISBN(domain.getISBN()) != null){
             try {
                 TransactionManager.getInstance().begin();
-                result = DAOFactory.getInstance().getBookDAO().ModifyBook(Book);
+                result = DAOFactory.getInstance().getBookDAO().ModifyBook(domain);
                 TransactionManager.getInstance().commit();
             } catch (TransactionException ex) {
                 ex.printStackTrace();
@@ -203,15 +207,16 @@ public class BookApplicationService implements IBookApplicationService {
      */
     @Override
     public List<IBookBean> getBookByAuthor(String name) {
-        List<IBookBean> list = null;
+        List<IBookBean> bean_list = null;
         try {
-            list = DAOFactory.getInstance().getBookDAO().getBookByAuthor(name);
+            List<IBookDO> domain_list = DAOFactory.getInstance().getBookDAO().getBookByAuthor(name);
+            bean_list = DTOMapper.getInstance().getBookBean(domain_list);
             
         } catch (TransactionException e) {
-            list = null;
+            bean_list = null;
         }
         TransactionManager.getInstance().close();
-        return list;
+        return bean_list;
     }
 
     /**
@@ -242,15 +247,16 @@ public class BookApplicationService implements IBookApplicationService {
      */
     @Override
     public List<IBookBean> getBookByEditorial(String editorial) {
-        List<IBookBean> list = null;
+        List<IBookBean> bean_list = null;
         try {
-            list = DAOFactory.getInstance().getBookDAO().getBookByEditorial(editorial);
+            List<IBookDO> domain_list = DAOFactory.getInstance().getBookDAO().getBookByEditorial(editorial);
+            bean_list =DTOMapper.getInstance().getBookBean(domain_list);
             
         } catch (TransactionException e) {
-            list = null;
+            bean_list = null;
         }
         TransactionManager.getInstance().close();
-        return list;
+        return bean_list;
     }
 }
 

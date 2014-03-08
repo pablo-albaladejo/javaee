@@ -1,8 +1,8 @@
 package bookstore.web.action;
 
+import ejb.dto.bean.book.IBookBean;
+import ejb.dto.factory.DTOFactory;
 import ejb.logic.facade.IBusinessFacade;
-import ejb.bean.book.IBookBean;
-import ejb.bean.factory.BeanFactory;
 import java.io.IOException;
 import java.util.List;
 import javax.ejb.EJB;
@@ -67,7 +67,7 @@ public class ManageDDBB extends HttpServlet {
                 int publicationYearInt = Integer.parseInt(publicationYear);
                 double priceDouble = Double.parseDouble(price);
                 
-                IBookBean book = BeanFactory.getInstance().getBookBean();
+                IBookBean book = DTOFactory.getInstance().getBookBean();
                 book.setTitle(title);
                 book.setAuthor(author);
                 book.setEditorial(editorial);
@@ -114,7 +114,7 @@ public class ManageDDBB extends HttpServlet {
                 int publicationYearInt = Integer.parseInt(publicationYear);
                 double priceDouble = Double.parseDouble(price);
                 
-                IBookBean book = BeanFactory.getInstance().getBookBean();
+                IBookBean book = DTOFactory.getInstance().getBookBean();
                 book.setTitle(title);
                 book.setAuthor(author);
                 book.setEditorial(editorial);

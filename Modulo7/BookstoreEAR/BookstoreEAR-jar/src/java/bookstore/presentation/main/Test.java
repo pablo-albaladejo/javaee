@@ -1,8 +1,8 @@
 package bookstore.presentation.main;
 
+import ejb.dto.bean.book.IBookBean;
+import ejb.dto.factory.DTOFactory;
 import ejb.logic.facade.IBusinessFacade;
-import ejb.bean.book.IBookBean;
-import ejb.bean.factory.BeanFactory;
 import java.util.List;
 import javax.ejb.EJB;
 
@@ -19,7 +19,7 @@ public class Test {
     private static IBusinessFacade facade;
     
     public static void main(String[] args) {        
-            IBookBean Book1 = BeanFactory.getInstance().getBookBean();            
+            IBookBean Book1 = DTOFactory.getInstance().getBookBean();            
             Book1.setTitle("Titulo");
             Book1.setAuthor("Autor 1");
             Book1.setEditorial("Editorial 1");
@@ -28,7 +28,7 @@ public class Test {
             Book1.setPublicationYear(1);
             Book1.setDescription("Descripcion 1");
             
-            IBookBean Book2 = BeanFactory.getInstance().getBookBean();
+            IBookBean Book2 = DTOFactory.getInstance().getBookBean();
             Book2.setTitle("Titulo");
             Book2.setAuthor("Autor 2");
             Book2.setEditorial("Editorial 2");

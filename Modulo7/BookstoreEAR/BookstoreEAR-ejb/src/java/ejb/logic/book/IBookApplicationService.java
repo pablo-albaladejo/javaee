@@ -1,7 +1,7 @@
 package ejb.logic.book;
 
+import ejb.dto.bean.book.IBookBean;
 import java.util.List;
-import ejb.bean.book.IBookBean;
 
 /**
  * This interface provides the available Book methods

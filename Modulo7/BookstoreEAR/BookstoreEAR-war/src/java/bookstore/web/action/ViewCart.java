@@ -1,9 +1,9 @@
 package bookstore.web.action;
 
+import ejb.dto.bean.book.IBookBean;
+import ejb.dto.bean.cart.ICartBean;
+import ejb.dto.factory.DTOFactory;
 import ejb.logic.facade.IBusinessFacade;
-import ejb.bean.book.IBookBean;
-import ejb.bean.cart.ICartBean;
-import ejb.bean.factory.BeanFactory;
 import java.io.IOException;
 import javax.ejb.EJB;
 import javax.naming.Context;
@@ -58,7 +58,7 @@ public class ViewCart extends HttpServlet {
         //Item removal from the Cart
         String removeItem = request.getParameter("removeItem");
         if(removeItem != null){
-            IBookBean book = BeanFactory.getInstance().getBookBean();
+            IBookBean book = DTOFactory.getInstance().getBookBean();
             book.setISBN(removeItem);
             if(book != null) myCart.remove(book);
         }
