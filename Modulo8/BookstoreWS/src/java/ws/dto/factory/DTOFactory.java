@@ -1,6 +1,7 @@
 package ws.dto.factory;
 
 import ws.dto.bean.book.IBookBean;
+import ws.dto.bean.cart.ICartBean;
 import ws.dto.domain.book.IBookDO;
 
 /**
@@ -16,6 +17,7 @@ public abstract class DTOFactory {
     }
     
     public abstract IBookBean getBookBean();
+    public abstract ICartBean getCartBean();
     public abstract IBookDO getBookDO();
     
 }
