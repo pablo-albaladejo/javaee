@@ -30,7 +30,7 @@ public class SearchByISBN extends HttpServlet {
         if(ISBN != null){
             IBookBean book = WSManager.getInstance().getPort().getBookByISBN(ISBN);
             
-            if(book != null){
+            if(book.getISBN().compareTo("") != 0){
                 List<IBookBean> list = new ArrayList<IBookBean>();
                 list.add(book);
                 request.setAttribute("list", list);

@@ -27,14 +27,6 @@ public class Test {
         
         IBusinessFacade port = service.getPort(IBusinessFacade.class);
         
-//         String[] list = port.getAllEditorials();
-//         BookBean[] books = port.getBookByEditorial(list[0]);
-//        
-//        System.out.println("editorial:" + list[0]);
-//        System.out.println("libros: "+ books[0]);
-        
-        
-        
         BookBean Book1 = (BookBean)DTOFactory.getInstance().getBookBean();            
         Book1.setTitle("Titulo");
         Book1.setAuthor("Autor 1");
@@ -154,7 +146,7 @@ public class Test {
             System.out.println("TESTANDO FUNCION CONSULTA ISBN");
             System.out.print("\tSolicitando libro inexistente por ISBN... ");
             Book3 = port.getBookByISBN(Book1.getISBN());
-            if(Book3 != null){
+            if(Book3.getISBN().compareTo("") != 0){
                 System.out.println("Libro encontrado!");
                 System.out.println("FUNCION CONSULTA ISBN KO!!");
             }else{

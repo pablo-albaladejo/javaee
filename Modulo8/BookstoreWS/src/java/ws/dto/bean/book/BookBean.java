@@ -24,6 +24,13 @@ public class BookBean implements IBookBean{
      * Empty default contructor
      */
     public BookBean() {
+        this.title = "";
+        this.author = "";
+        this.editorial = "";
+        this.ISBN = "";
+        this.publicationYear = 0;
+        this.price = 0.0;
+        this.description = "";
     }
 
     /**

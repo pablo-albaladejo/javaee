@@ -2,6 +2,8 @@ package ws.logic.facade;
 
 import javax.jws.WebService;
 import ws.dto.bean.book.BookBean;
+import ws.dto.bean.book.IBookBean;
+import ws.dto.factory.DTOFactory;
 import ws.logic.service.ServiceFactory;
 
 /**
@@ -60,7 +62,11 @@ public class BusinessFacade implements IBusinessFacade {
      */
     @Override
     public BookBean getBookByISBN(String ISBN) {
-        return (BookBean)ServiceFactory.getInstance().getBookService().getBookByISBN(ISBN);
+        IBookBean book = ServiceFactory.getInstance().getBookService().getBookByISBN(ISBN);
+        if(book == null){
+            book = DTOFactory.getInstance().getBookBean();
+        }
+        return (BookBean)book;
     }
 
     /**
