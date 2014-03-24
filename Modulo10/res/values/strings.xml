@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Módulo10</string>
+    <string name="action_settings">Settings</string>
+    <string name="passwordCaption">Enter your password:</string>
+    <string name="passwordButton">Access</string>
+    <string name="passwordError">Password Error!</string>
+    <string name="welcomeMessage">Login success!</string>
+    <string name="title_activity_second">Welcome!</string>
+
+</resources>
