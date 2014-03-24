@@ -3,6 +3,8 @@ package tripbooker;
 import java.util.List;
 import tripbooker.dto.domain.aircraft.IAircraftDO;
 import tripbooker.dto.domain.airline.IAirlineDO;
+import tripbooker.dto.domain.airport.IAirportDO;
+import tripbooker.dto.domain.route.IRouteDO;
 import tripbooker.dto.factory.DTOFactory;
 import tripbooker.integration.factory.DAOFactory;
 import tripbooker.persistence.database.exception.TransactionException;
@@ -55,7 +57,14 @@ public class Main {
 //        list = DAOFactory.getInstance().getAircraftDAO().getAllAircrafts();
 //        System.out.println(list);
         
-        TransactionManager.getInstance().close();
+//        List<IAirportDO> list = DAOFactory.getInstance().getAirportDAO().getAllAirports();
+//        System.out.println(list);
+//        TransactionManager.getInstance().close();
+
+        List<IRouteDO> list = DAOFactory.getInstance().getRouteDAO().getAllRoutes();
+        System.out.println(list);
+        
+        TransactionManager.getInstance().close();        
         
     }
     
