@@ -20,9 +20,6 @@ public interface IAircraftDO {
     Date getDate();
     void setDate(Date date);
 
-    int getBusiness();
-    void setBusiness(int business);
-
-    int getTourist();
-    void setTourist(int tourist);
+    int getSeats();
+    void setSeats(int seats);
 }

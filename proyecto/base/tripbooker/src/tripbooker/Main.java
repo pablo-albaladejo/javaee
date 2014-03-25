@@ -1,12 +1,15 @@
 package tripbooker;
 
 import java.util.List;
+import tripbooker.dto.bean.IFlightBean;
 import tripbooker.dto.domain.aircraft.IAircraftDO;
 import tripbooker.dto.domain.airline.IAirlineDO;
 import tripbooker.dto.domain.airport.IAirportDO;
+import tripbooker.dto.domain.flight.IFlightDO;
 import tripbooker.dto.domain.route.IRouteDO;
 import tripbooker.dto.factory.DTOFactory;
 import tripbooker.integration.factory.DAOFactory;
+import tripbooker.logic.factory.ServiceFactory;
 import tripbooker.persistence.database.exception.TransactionException;
 import tripbooker.persistence.database.manager.TransactionManager;
 
@@ -14,7 +17,7 @@ public class Main {
 
     public static void main(String[] args) throws TransactionException {     
         
-        TransactionManager.getInstance().begin();
+//        TransactionManager.getInstance().begin();
         
 //        List<IAirlineDO> list = DAOFactory.getInstance().getAirlineDAO().getAllAirlines();
 //        System.out.println(list);
@@ -60,12 +63,31 @@ public class Main {
 //        List<IAirportDO> list = DAOFactory.getInstance().getAirportDAO().getAllAirports();
 //        System.out.println(list);
 //        TransactionManager.getInstance().close();
-
-        List<IRouteDO> list = DAOFactory.getInstance().getRouteDAO().getAllRoutes();
+//
+//        List<IRouteDO> list = DAOFactory.getInstance().getRouteDAO().getAllRoutes();
+//        System.out.println(list);
+//   
+//        IRouteDO route = DAOFactory.getInstance().getRouteDAO().getRouteByID(1);
+//        route.setDuration(555);
+//        
+//        DAOFactory.getInstance().getRouteDAO().insertRoute(route);
+//        list = DAOFactory.getInstance().getRouteDAO().getAllRoutes();
+//        System.out.println(list);
+        
+//        List<IFlightDO> list = DAOFactory.getInstance().getFlightDAO().getAllFlights();
+//        System.out.println(list);
+//        
+//        IFlightDO flight = DAOFactory.getInstance().getFlightDAO().getFlightByID(1);
+//        flight.setCode("HOLA");
+//        
+//        DAOFactory.getInstance().getFlightDAO().insertFlight(flight);
+//        list = DAOFactory.getInstance().getFlightDAO().getAllFlights();
+//        System.out.println(list);
+        
+//        TransactionManager.getInstance().close();        
+     
+        List<IFlightBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllFlights("JK");
         System.out.println(list);
-        
-        TransactionManager.getInstance().close();        
-        
     }
     
 }

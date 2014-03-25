@@ -63,6 +63,25 @@ public class AirlineDAOImp extends DAO implements IAirlineDAO {
     }
     
     @Override
+    public IAirlineDO getAirlineByCode(String code) throws TransactionException {
+        IAirlineDO airline = null;
+        String query = "SELECT * FROM airline"
+                + " WHERE code = '" + code + "'";
+        try {
+            this.resultSet = this.statement.executeQuery(query);
+            if (resultSet.next()) {
+                airline = DTOFactory.getInstance().getAirlineDO();
+                copyResultAirlineData(resultSet, airline);
+            } else {
+                airline = null;
+            }
+        } catch (SQLException e) {
+            throw new TransactionException(e);
+        }
+        return airline;
+    }
+    
+    @Override
     public boolean removeAirline(int id) throws TransactionException {
         boolean deleteActionResult = false;
         String query = "DELETE FROM  airline"

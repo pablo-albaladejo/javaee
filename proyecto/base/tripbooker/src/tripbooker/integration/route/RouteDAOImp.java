@@ -1,7 +1,12 @@
 package tripbooker.integration.route;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import tripbooker.dto.domain.route.IRouteDO;
+import tripbooker.dto.factory.DTOFactory;
+import tripbooker.integration.factory.DAO;
 import tripbooker.persistence.database.exception.TransactionException;
 
 /**
@@ -9,26 +14,96 @@ import tripbooker.persistence.database.exception.TransactionException;
  * @author Pablo Albaladejo Mestre <pablo.albaladejo.mestre@gmail.com>
  */
 
-public class RouteDAOImp implements IRouteDAO{
+public class RouteDAOImp extends DAO implements IRouteDAO {
 
+    private void copyResultRouteData(ResultSet result, IRouteDO route) throws SQLException {
+        route.setRouteID(result.getInt(1));
+        route.setDepartureID(result.getInt(2));
+        route.setDestinationID(result.getInt(3));
+        route.setDuration(result.getInt(4));
+    }
+    
     @Override
     public List<IRouteDO> getAllRoutes() throws TransactionException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<IRouteDO> list = new ArrayList<IRouteDO>();
+        String query = "SELECT * FROM route";
+        try {
+            this.resultSet = this.statement.executeQuery(query);
+            while (this.resultSet.next()) {
+                IRouteDO route = DTOFactory.getInstance().getRouteDO();
+                copyResultRouteData(resultSet, route);
+                list.add(route);
+            }
+        } catch (SQLException e) {
+                throw new TransactionException(e);
+        }
+        return list;
     }
 
     @Override
     public IRouteDO getRouteByID(int id) throws TransactionException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        IRouteDO route = null;
+        String query = "SELECT * FROM route"
+                + " WHERE routeID = '" + id + "'";
+        try {
+            this.resultSet = this.statement.executeQuery(query);
+            if (resultSet.next()) {
+                route = DTOFactory.getInstance().getRouteDO();
+                copyResultRouteData(resultSet, route);
+            } else {
+                route = null;
+            }
+        } catch (SQLException e) {
+            throw new TransactionException(e);
+        }
+        return route;
     }
 
     @Override
     public boolean removeRoute(int id) throws TransactionException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean deleteActionResult = false;
+        String query = "DELETE FROM  route"
+                + " WHERE routeID = '" + id + "'";
+        try {
+            int numRows = this.statement.executeUpdate(query);
+            if (numRows > 0) {
+                deleteActionResult = true;
+            }
+        } catch (SQLException ex) {
+            throw new TransactionException(ex);
+        }
+        return deleteActionResult;
     }
 
     @Override
     public boolean insertRoute(IRouteDO route) throws TransactionException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean InsertActionResult = false;
+        String query = "";
+        
+        if(this.getRouteByID(route.getRouteID()) != null){
+            query = "UPDATE route SET " 
+                + "departureID = '" + route.getDepartureID() +"', "
+                + "destinationID = '" + route.getDestinationID()+"', "
+                + "duration = '" + route.getDuration()+"' "
+                + "WHERE routeID = '" + route.getRouteID()+ "'";
+        }else{
+            query = "INSERT INTO route"
+                    + " (`departureID`, `destinationID`,`duration`) VALUES ("
+                    + "'" + route.getDepartureID()+ "', "
+                    + "'" + route.getDestinationID() + "', "
+                    + "'" + route.getDuration() + "'"
+                    + ")";
+        }
+        try {
+            int numRows = this.statement.executeUpdate(query);
+            if (numRows > 0) {
+                InsertActionResult = true;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            throw new TransactionException(ex);
+        }
+        return InsertActionResult;
     }
 
 }

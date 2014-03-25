@@ -21,8 +21,7 @@ public class AircraftDAOImp extends DAO implements IAircraftDAO{
         aircfart.setManufacter(result.getString(2));
         aircfart.setModel(result.getString(3));
         aircfart.setDate(result.getDate(4));
-        aircfart.setBusiness(result.getInt(5));
-        aircfart.setTourist(result.getInt(6));
+        aircfart.setSeats(result.getInt(5));
     }
 
     @Override
@@ -88,8 +87,7 @@ public class AircraftDAOImp extends DAO implements IAircraftDAO{
                 + "manufacter = '" + aircraft.getManufacter() +"', "
                 + "model = '" + aircraft.getModel()+"', "
                 + "date = '" + aircraft.getDate()+"', "
-                + "business = '" + aircraft.getBusiness()+"', "
-                + "tourist = '" + aircraft.getTourist()+"' "
+                + "seats = '" + aircraft.getSeats()+"' "
                 + "WHERE aircraftID = '" + aircraft.getAirfarctID()+ "'";
         }else{
             query = "INSERT INTO aircraft"
@@ -97,8 +95,7 @@ public class AircraftDAOImp extends DAO implements IAircraftDAO{
                     + "'" + aircraft.getManufacter()+ "', "
                     + "'" + aircraft.getModel() + "', "
                     + "'" + aircraft.getDate() + "', "
-                    + "'" + aircraft.getBusiness() + "', "
-                    + "'" + aircraft.getTourist() + "'"
+                    + "'" + aircraft.getSeats() + "'"
                     + ")";
         }
         try {

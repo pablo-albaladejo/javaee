@@ -13,8 +13,7 @@ public class AircraftDOImp implements IAircraftDO{
     private String manufacter;
     private String model;
     private Date date;
-    private int business;
-    private int tourist;
+    private int seats;
 
     @Override
     public int getAirfarctID() {
@@ -57,24 +56,15 @@ public class AircraftDOImp implements IAircraftDO{
     }
 
     @Override
-    public int getBusiness() {
-        return business;
+    public int getSeats() {
+        return seats;
     }
 
     @Override
-    public void setBusiness(int business) {
-        this.business = business;
+    public void setSeats(int seats) {
+        this.seats = seats;
     }
 
-    @Override
-    public int getTourist() {
-        return tourist;
-    }
-
-    @Override
-    public void setTourist(int tourist) {
-        this.tourist = tourist;
-    }
 
     @Override
     public String toString() {
@@ -83,8 +73,7 @@ public class AircraftDOImp implements IAircraftDO{
                 + ", manufacter: " + manufacter
                 + ", model: " + model
                 + ", date: " + date 
-                + ", business: " + business
-                + ", tourist: " + tourist
+                + ", seats: " + seats
                 +")";
     }
 
