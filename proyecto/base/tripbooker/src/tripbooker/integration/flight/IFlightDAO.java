@@ -13,6 +13,7 @@ public interface IFlightDAO {
     List<IFlightDO> getAllFlights()throws TransactionException;
     IFlightDO getFlightByID(int id)throws TransactionException;
     List<IFlightDO> getFlightsByAirline(int airlineID)throws TransactionException;
+    List<IFlightDO> getFlightsByRoute(int routeID)throws TransactionException;
     boolean removeFlight(int id) throws TransactionException;
     boolean insertFlight(IFlightDO flight) throws TransactionException;
 }

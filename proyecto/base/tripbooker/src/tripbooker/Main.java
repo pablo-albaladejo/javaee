@@ -1,5 +1,6 @@
 package tripbooker;
 
+import java.util.Date;
 import java.util.List;
 import tripbooker.dto.bean.IFlightBean;
 import tripbooker.dto.domain.aircraft.IAircraftDO;
@@ -78,15 +79,20 @@ public class Main {
 //        System.out.println(list);
 //        
 //        IFlightDO flight = DAOFactory.getInstance().getFlightDAO().getFlightByID(1);
-//        flight.setCode("HOLA");
-//        
+//        flight.setDate(new Date());
+//        flight.setFlightID(2);
+//        flight.setCode("2");
 //        DAOFactory.getInstance().getFlightDAO().insertFlight(flight);
 //        list = DAOFactory.getInstance().getFlightDAO().getAllFlights();
 //        System.out.println(list);
         
 //        TransactionManager.getInstance().close();        
-     
-        List<IFlightBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllFlights("JK");
+        
+//List<IFlightBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllFlights();
+        //List<IFlightBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllFlightsByAirline("JK");
+        //List<IFlightBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllFlightsByDeparture("MAD");
+        //List<IFlightBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllFlightsByDestination("MCV");
+        List<IFlightBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllFlightsByRoute("MD","MCV");
         System.out.println(list);
     }
     

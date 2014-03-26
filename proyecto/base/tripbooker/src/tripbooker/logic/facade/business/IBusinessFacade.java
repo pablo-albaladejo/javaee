@@ -1,4 +1,4 @@
-package tripbooker.logic.flight;
+package tripbooker.logic.facade.business;
 
 import java.util.List;
 import tripbooker.dto.bean.IFlightBean;
@@ -8,7 +8,7 @@ import tripbooker.dto.bean.IFlightBean;
  * @author Pablo Albaladejo Mestre <pablo.albaladejo.mestre@gmail.com>
  */
 
-public interface IFlightService {
+public interface IBusinessFacade {
     List<IFlightBean> getAllFlights();
     List<IFlightBean> getAllFlightsByAirline(String airlineCode);
     List<IFlightBean> getAllFlightsByDeparture(String airportCode);

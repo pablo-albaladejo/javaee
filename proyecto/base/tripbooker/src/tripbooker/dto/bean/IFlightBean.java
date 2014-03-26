@@ -1,6 +1,7 @@
 package tripbooker.dto.bean;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -14,9 +15,24 @@ public interface IFlightBean extends Serializable{
     String getAirline();
     void setAirline(String airline);
     
-    String getDeparture();
-    void setDeparture(String departure);
+    String getDepartureName();
+    void setDepartureName(String departureName);
     
-    String getDestination();
-    void setDestination(String destination);
+    String getDepartureCode();
+    void setDepartureCode(String departureCode);
+    
+    String getDestinationName();
+    void setDestinationName(String destinationName);
+    
+    String getDestinationCode();
+    void setDestinationCode(String destinationCode);
+    
+    Date getDate();
+    void setDate(Date date);
+
+    int getDuration();
+    void setDuration(int duration);
+    
+    int getSeats();
+    void setSeats(int seats);
 }

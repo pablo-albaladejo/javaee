@@ -60,6 +60,42 @@ public class RouteDAOImp extends DAO implements IRouteDAO {
     }
 
     @Override
+    public List<IRouteDO> getAllRoutesByDeparture(int airportID) throws TransactionException {
+        List<IRouteDO> list = new ArrayList<IRouteDO>();
+        String query = "SELECT * FROM route"
+                 + " WHERE departureID = '" + airportID + "'";
+        try {
+            this.resultSet = this.statement.executeQuery(query);
+            while (this.resultSet.next()) {
+                IRouteDO route = DTOFactory.getInstance().getRouteDO();
+                copyResultRouteData(resultSet, route);
+                list.add(route);
+            }
+        } catch (SQLException e) {
+                throw new TransactionException(e);
+        }
+        return list;
+    }
+    
+    @Override
+    public List<IRouteDO> getAllRoutesByDestination(int airportID) throws TransactionException {
+        List<IRouteDO> list = new ArrayList<IRouteDO>();
+        String query = "SELECT * FROM route"
+                 + " WHERE destinationID = '" + airportID + "'";
+        try {
+            this.resultSet = this.statement.executeQuery(query);
+            while (this.resultSet.next()) {
+                IRouteDO route = DTOFactory.getInstance().getRouteDO();
+                copyResultRouteData(resultSet, route);
+                list.add(route);
+            }
+        } catch (SQLException e) {
+                throw new TransactionException(e);
+        }
+        return list;
+    }
+    
+    @Override
     public boolean removeRoute(int id) throws TransactionException {
         boolean deleteActionResult = false;
         String query = "DELETE FROM  route"
@@ -104,6 +140,24 @@ public class RouteDAOImp extends DAO implements IRouteDAO {
             throw new TransactionException(ex);
         }
         return InsertActionResult;
+    }
+
+    @Override
+    public List<IRouteDO> getAllRoutesByRoute(int departureID, int destinationID) throws TransactionException {
+        List<IRouteDO> list = new ArrayList<IRouteDO>();
+        String query = "SELECT * FROM route"
+                 + " WHERE departureID = '"+departureID+"' AND destinationID = '" + destinationID + "'";
+        try {
+            this.resultSet = this.statement.executeQuery(query);
+            while (this.resultSet.next()) {
+                IRouteDO route = DTOFactory.getInstance().getRouteDO();
+                copyResultRouteData(resultSet, route);
+                list.add(route);
+            }
+        } catch (SQLException e) {
+                throw new TransactionException(e);
+        }
+        return list;
     }
 
 }

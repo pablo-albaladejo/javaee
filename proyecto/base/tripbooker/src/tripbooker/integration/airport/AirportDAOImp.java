@@ -60,6 +60,26 @@ public class AirportDAOImp extends DAO implements IAirportDAO{
         return airport;
     }
 
+     @Override
+    public IAirportDO getAirportByCode(String code) throws TransactionException {
+         IAirportDO airport = null;
+
+        String query = "SELECT * FROM airport"
+                + " WHERE code = '" + code + "'";
+        try {
+            this.resultSet = this.statement.executeQuery(query);
+            if (resultSet.next()) {
+                airport = DTOFactory.getInstance().getAirportDO();
+                copyResultAirportData(resultSet, airport);
+            } else {
+                airport = null;
+            }
+        } catch (SQLException e) {
+            throw new TransactionException(e);
+        }
+        return airport;
+    }
+    
     @Override
     public boolean removeAirport(int id) throws TransactionException {
         boolean deleteActionResult = false;

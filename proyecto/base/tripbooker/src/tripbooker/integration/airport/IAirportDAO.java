@@ -12,6 +12,7 @@ import tripbooker.persistence.database.exception.TransactionException;
 public interface IAirportDAO {
     List<IAirportDO> getAllAirports()throws TransactionException;
     IAirportDO getAirportByID(int id)throws TransactionException;
+    IAirportDO getAirportByCode(String code)throws TransactionException;
     boolean removeAirport(int id) throws TransactionException;
     boolean insertAirport(IAirportDO airport) throws TransactionException;
 }
