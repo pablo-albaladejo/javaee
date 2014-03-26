@@ -1,4 +1,4 @@
-package tripbooker.dto.bean;
+package tripbooker.dto.bean.flight;
 
 import java.io.Serializable;
 import java.util.Date;

@@ -1,6 +1,7 @@
 package tripbooker.dto.factory;
 
-import tripbooker.dto.bean.IFlightBean;
+import tripbooker.dto.bean.airport.IAirportBean;
+import tripbooker.dto.bean.flight.IFlightBean;
 import tripbooker.dto.domain.aircraft.IAircraftDO;
 import tripbooker.dto.domain.airline.IAirlineDO;
 import tripbooker.dto.domain.airport.IAirportDO;
@@ -25,7 +26,9 @@ public abstract class DTOFactory {
     public abstract IAirportDO getAirportDO();
     public abstract IRouteDO getRouteDO();
     public abstract IFlightDO getFlightDO();
+    
     public abstract IFlightBean getFlightBean();
+    public abstract IAirportBean getAirportBean();
 }
 
 

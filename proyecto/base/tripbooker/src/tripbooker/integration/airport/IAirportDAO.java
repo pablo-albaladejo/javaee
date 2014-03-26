@@ -14,5 +14,5 @@ public interface IAirportDAO {
     IAirportDO getAirportByID(int id)throws TransactionException;
     IAirportDO getAirportByCode(String code)throws TransactionException;
     boolean removeAirport(int id) throws TransactionException;
-    boolean insertAirport(IAirportDO airport) throws TransactionException;
+    boolean persistAirport(IAirportDO airport) throws TransactionException;
 }

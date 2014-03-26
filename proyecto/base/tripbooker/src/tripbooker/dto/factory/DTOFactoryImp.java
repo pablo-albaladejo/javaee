@@ -1,7 +1,9 @@
 package tripbooker.dto.factory;
 
-import tripbooker.dto.bean.FlightBean;
-import tripbooker.dto.bean.IFlightBean;
+import tripbooker.dto.bean.airport.AirportBean;
+import tripbooker.dto.bean.airport.IAirportBean;
+import tripbooker.dto.bean.flight.FlightBean;
+import tripbooker.dto.bean.flight.IFlightBean;
 import tripbooker.dto.domain.aircraft.AircraftDOImp;
 import tripbooker.dto.domain.aircraft.IAircraftDO;
 import tripbooker.dto.domain.airline.AirlineDOImp;
@@ -49,5 +51,10 @@ public class DTOFactoryImp extends DTOFactory{
     @Override
     public IFlightBean getFlightBean() {
         return new FlightBean();
+    }
+
+    @Override
+    public IAirportBean getAirportBean() {
+        return new AirportBean();
     }
 }

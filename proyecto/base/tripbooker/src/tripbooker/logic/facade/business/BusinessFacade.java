@@ -1,7 +1,8 @@
 package tripbooker.logic.facade.business;
 
 import java.util.List;
-import tripbooker.dto.bean.IFlightBean;
+import tripbooker.dto.bean.airport.IAirportBean;
+import tripbooker.dto.bean.flight.IFlightBean;
 import tripbooker.logic.factory.ServiceFactory;
 
 /**
@@ -11,6 +12,21 @@ import tripbooker.logic.factory.ServiceFactory;
 
 public class BusinessFacade implements IBusinessFacade{
 
+    @Override
+    public boolean persistAirport(IAirportBean airportBean) {
+        return ServiceFactory.getInstance().getAirportService().persistAirport(airportBean);
+    }
+
+    @Override
+    public boolean removeAirport(IAirportBean airportBean) {
+        return ServiceFactory.getInstance().getAirportService().removeAirport(airportBean);
+    }
+
+    @Override
+    public boolean modifyAirport(IAirportBean airportBean) {
+        return ServiceFactory.getInstance().getAirportService().modifyAirport(airportBean);
+    }
+    
     @Override
     public List<IFlightBean> getAllFlights() {
          return ServiceFactory.getInstance().getFlightService().getAllFlights();

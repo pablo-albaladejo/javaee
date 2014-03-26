@@ -97,7 +97,7 @@ public class AirportDAOImp extends DAO implements IAirportDAO{
     }
 
     @Override
-    public boolean insertAirport(IAirportDO airport) throws TransactionException {
+    public boolean persistAirport(IAirportDO airport) throws TransactionException {
         boolean InsertActionResult = false;
         String query = "";
         

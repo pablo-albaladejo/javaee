@@ -1,7 +1,7 @@
 package tripbooker.logic.flight;
 
 import java.util.List;
-import tripbooker.dto.bean.IFlightBean;
+import tripbooker.dto.bean.flight.IFlightBean;
 
 /**
  *

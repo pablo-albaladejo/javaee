@@ -2,7 +2,7 @@ package tripbooker.dto.mapper;
 
 import java.util.ArrayList;
 import java.util.List;
-import tripbooker.dto.bean.IFlightBean;
+import tripbooker.dto.bean.flight.IFlightBean;
 import tripbooker.dto.domain.aircraft.IAircraftDO;
 import tripbooker.dto.domain.airline.IAirlineDO;
 import tripbooker.dto.domain.airport.IAirportDO;

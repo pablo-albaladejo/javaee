@@ -2,7 +2,7 @@ package tripbooker;
 
 import java.util.Date;
 import java.util.List;
-import tripbooker.dto.bean.IFlightBean;
+import tripbooker.dto.bean.flight.IFlightBean;
 import tripbooker.dto.domain.aircraft.IAircraftDO;
 import tripbooker.dto.domain.airline.IAirlineDO;
 import tripbooker.dto.domain.airport.IAirportDO;
@@ -88,7 +88,7 @@ public class Main {
         
 //        TransactionManager.getInstance().close();        
         
-//List<IFlightBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllFlights();
+//      List<IFlightBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllFlights();
         //List<IFlightBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllFlightsByAirline("JK");
         //List<IFlightBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllFlightsByDeparture("MAD");
         //List<IFlightBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllFlightsByDestination("MCV");

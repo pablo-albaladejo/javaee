@@ -1,5 +1,7 @@
 package tripbooker.logic.factory;
 
+import tripbooker.logic.airport.AirportServiceImp;
+import tripbooker.logic.airport.IAirportService;
 import tripbooker.logic.facade.airline.AirlineBusinessFacade;
 import tripbooker.logic.facade.airline.IAirlineBusinessFacade;
 import tripbooker.logic.facade.business.BusinessFacade;
@@ -18,6 +20,11 @@ import tripbooker.logic.flight.IFlightService;
 
 public class ServiceFactoryImp extends ServiceFactory{
 
+    @Override
+    public IAirportService getAirportService() {
+        return new AirportServiceImp();
+    }
+    
     @Override
     public IFlightService getFlightService() {
         return new FlightServiceImp();
