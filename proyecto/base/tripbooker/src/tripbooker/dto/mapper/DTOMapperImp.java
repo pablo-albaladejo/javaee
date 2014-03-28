@@ -1,11 +1,13 @@
 package tripbooker.dto.mapper;
 
-import java.util.ArrayList;
-import java.util.List;
+import tripbooker.dto.bean.airport.IAirportBean;
+import tripbooker.dto.bean.city.ICityBean;
 import tripbooker.dto.bean.flight.IFlightBean;
 import tripbooker.dto.domain.aircraft.IAircraftDO;
 import tripbooker.dto.domain.airline.IAirlineDO;
 import tripbooker.dto.domain.airport.IAirportDO;
+import tripbooker.dto.domain.city.ICityDO;
+import tripbooker.dto.domain.country.ICountryDO;
 import tripbooker.dto.domain.flight.IFlightDO;
 import tripbooker.dto.domain.route.IRouteDO;
 import tripbooker.dto.factory.DTOFactory;
@@ -17,6 +19,31 @@ import tripbooker.dto.factory.DTOFactory;
 
 public class DTOMapperImp extends DTOMapper{
     
+    //City
+    @Override
+    public ICityBean getCityBean(ICityDO cityDO, ICountryDO countryDO) {
+        ICityBean cityBean = DTOFactory.getInstance().getCityBean();
+        
+        cityBean.setCode(cityDO.getCode());
+        cityBean.setName(cityDO.getName());
+        cityBean.setCountryCode(countryDO.getCode());
+        cityBean.setCountryName(countryDO.getName());
+            
+        return cityBean;
+    }
+    
+    @Override
+    public ICityDO getCityDO(ICityBean cityBean, ICountryDO countryDO) {
+        ICityDO cityDO = DTOFactory.getInstance().getCityDO();
+        
+        cityDO.setCode(cityBean.getCode());
+        cityDO.setName(cityBean.getName());
+        cityDO.setCountryID(countryDO.getCountryID());
+        
+        return cityDO;
+    }
+    
+    //Flight
     @Override
     public IFlightBean getFlightBean(IFlightDO flightDO, 
                                         IAirlineDO airlineDO, 
@@ -38,5 +65,29 @@ public class DTOMapperImp extends DTOMapper{
             flightBean.setSeats(aircraftDO.getSeats());
         
         return flightBean;
+    }
+    
+    //Airport
+    @Override
+    public IAirportDO getAirportDO(IAirportBean airportBean, ICityDO cityDO) {
+        IAirportDO airportDO = DTOFactory.getInstance().getAirportDO();
+        
+        airportDO.setCityID(cityDO.getCityID());
+        airportDO.setName(airportBean.getName());
+        airportDO.setCode(airportBean.getCode());
+        
+        return airportDO;
+    }
+
+    @Override
+    public IAirportBean getAirportBean(IAirportDO airportDO, ICityDO cityDO) {
+        IAirportBean airportBean = DTOFactory.getInstance().getAirportBean();
+        
+        airportBean.setCode(airportDO.getCode());
+        airportBean.setName(airportDO.getName());
+        airportBean.setCityCode(cityDO.getCode());
+        airportBean.setCityName(cityDO.getName());
+        
+        return airportBean;
     }
 }

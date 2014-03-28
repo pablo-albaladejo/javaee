@@ -8,12 +8,15 @@ import java.io.Serializable;
  */
 
 public interface IAirportBean extends Serializable{
-    public String getCode();
-    public void setCode(String code);
+    String getCode();
+    void setCode(String code);
 
-    public String getName();
-    public void setName(String name);
+    String getName();
+    void setName(String name);
 
-    public String getCity();
-    public void setCity(String city);
+    String getCityCode();
+    void setCityCode(String cityCode);
+
+    String getCityName();
+    void setCityName(String cityName);
 }

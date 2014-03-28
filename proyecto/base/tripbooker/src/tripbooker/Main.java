@@ -2,6 +2,9 @@ package tripbooker;
 
 import java.util.Date;
 import java.util.List;
+import tripbooker.dto.bean.airport.IAirportBean;
+import tripbooker.dto.bean.city.ICityBean;
+import tripbooker.dto.bean.country.ICountryBean;
 import tripbooker.dto.bean.flight.IFlightBean;
 import tripbooker.dto.domain.aircraft.IAircraftDO;
 import tripbooker.dto.domain.airline.IAirlineDO;
@@ -92,8 +95,38 @@ public class Main {
         //List<IFlightBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllFlightsByAirline("JK");
         //List<IFlightBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllFlightsByDeparture("MAD");
         //List<IFlightBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllFlightsByDestination("MCV");
-        List<IFlightBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllFlightsByRoute("MD","MCV");
+        //List<IFlightBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllFlightsByRoute("MD","MCV");
+        //System.out.println(list);
+        
+//        List<ICityBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllCities();
+//        System.out.println(list);
+//        
+//        ICityBean city =DTOFactory.getInstance().getCityBean();
+//        city.setCode("BCN");
+//        city.setName("NAme");
+//        boolean result = ServiceFactory.getInstance().getBusinessFacade().persistCity(city);
+//        System.out.println(result);
+//        
+//        list = ServiceFactory.getInstance().getBusinessFacade().getAllCities();
+//        System.out.println(list);
+//        
+//        ServiceFactory.getInstance().getBusinessFacade().removeCity(city);
+//        
+//        list = ServiceFactory.getInstance().getBusinessFacade().getAllCities();
+//        System.out.println(list);
+//        
+//        TransactionManager.getInstance().begin();
+//        
+//        List<IAirportBean> list = ServiceFactory.getInstance().getBusinessFacade().getAirportsByCity("MAD");
+//        System.out.println(list);
+//        
+//        TransactionManager.getInstance().close();  
+        TransactionManager.getInstance().begin();
+        
+        List<ICountryBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllCountries();
         System.out.println(list);
+        
+        TransactionManager.getInstance().close();  
     }
     
 }

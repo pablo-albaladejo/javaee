@@ -8,7 +8,8 @@ package tripbooker.dto.bean.airport;
 public class AirportBean implements IAirportBean{
     private String code;
     private String name;
-    private String city;
+    private String cityCode;
+    private String cityName;
 
     @Override
     public String getCode() {
@@ -31,17 +32,28 @@ public class AirportBean implements IAirportBean{
     }
 
     @Override
-    public String getCity() {
-        return city;
+    public String getCityCode() {
+        return cityCode;
     }
 
     @Override
-    public void setCity(String city) {
-        this.city = city;
+    public void setCityCode(String cityCode) {
+        this.cityCode = cityCode;
+    }
+
+    @Override
+    public String getCityName() {
+        return cityName;
+    }
+
+    @Override
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
     }
 
     @Override
     public String toString() {
-        return "AirportBean{" + "code=" + code + ", name=" + name + ", city=" + city + '}';
+        return "AirportBean{" + "code=" + code + ", name=" + name + ", cityCode=" + cityCode + ", cityName=" + cityName + '}';
     }
+
 }

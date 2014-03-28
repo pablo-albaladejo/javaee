@@ -25,8 +25,7 @@ public class AirlineDAOImp extends DAO implements IAirlineDAO {
     
     
     @Override
-    public List<IAirlineDO> getAllAirlines() throws TransactionException{
-        
+    public List<IAirlineDO> getAllAirlines() throws TransactionException{        
         List<IAirlineDO> list = new ArrayList<IAirlineDO>();
         String query = "SELECT * FROM airline";
         try {

@@ -3,10 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/master/workspace/java_experto/proyecto/base/tripbooker/src/tripbooker/dto/mapper/DTOMapper.java</file>
-            <file>file:/D:/master/workspace/java_experto/proyecto/base/tripbooker/src/tripbooker/dto/bean/IFlightBean.java</file>
-            <file>file:/D:/master/workspace/java_experto/proyecto/base/tripbooker/src/tripbooker/dto/mapper/DTOMapperImp.java</file>
-            <file>file:/D:/master/workspace/java_experto/proyecto/base/tripbooker/src/tripbooker/logic/flight/FlightServiceImp.java</file>
+            <file>file:/D:/master/workspace/java_experto/proyecto/base/tripbooker/src/tripbooker/Main.java</file>
+            <file>file:/D:/master/workspace/java_experto/proyecto/base/tripbooker/src/tripbooker/logic/airport/AirportServiceImp.java</file>
         </group>
     </open-files>
 </project-private>

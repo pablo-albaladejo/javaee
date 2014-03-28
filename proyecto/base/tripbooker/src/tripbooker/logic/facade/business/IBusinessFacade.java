@@ -2,6 +2,8 @@ package tripbooker.logic.facade.business;
 
 import java.util.List;
 import tripbooker.dto.bean.airport.IAirportBean;
+import tripbooker.dto.bean.city.ICityBean;
+import tripbooker.dto.bean.country.ICountryBean;
 import tripbooker.dto.bean.flight.IFlightBean;
 
 /**
@@ -10,10 +12,21 @@ import tripbooker.dto.bean.flight.IFlightBean;
  */
 
 public interface IBusinessFacade {
-    //Airports
+    //Airport
+    List<IAirportBean> getAllAirports();
+    List<IAirportBean> getAirportsByCity(String code);
     boolean persistAirport(IAirportBean airportBean);
     boolean removeAirport(IAirportBean airportBean);
-    boolean modifyAirport(IAirportBean airportBean);
+    
+    //City
+    List<ICityBean> getAllCities();
+    boolean persistCity(ICityBean cityBean);
+    boolean removeCity(ICityBean cityBean);
+    
+    //Country
+    List<ICountryBean> getAllCountries();
+    boolean persistCountry(ICountryBean countryBean);
+    boolean removeCountry(ICountryBean countryBean);
     
     //Flights
     List<IFlightBean> getAllFlights();

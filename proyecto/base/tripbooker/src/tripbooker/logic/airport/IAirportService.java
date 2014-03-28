@@ -1,5 +1,6 @@
 package tripbooker.logic.airport;
 
+import java.util.List;
 import tripbooker.dto.bean.airport.IAirportBean;
 
 /**
@@ -8,7 +9,8 @@ import tripbooker.dto.bean.airport.IAirportBean;
  */
 
 public interface IAirportService {
+    List<IAirportBean> getAllAirports();
+    List<IAirportBean> getAirportsByCity(String code);
     boolean persistAirport(IAirportBean airportBean);
     boolean removeAirport(IAirportBean airportBean);
-    boolean modifyAirport(IAirportBean airportBean);
 }

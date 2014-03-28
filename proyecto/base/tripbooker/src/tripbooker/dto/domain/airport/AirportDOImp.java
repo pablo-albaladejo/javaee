@@ -54,11 +54,6 @@ public class AirportDOImp implements IAirportDO{
 
     @Override
     public String toString() {
-        return "("
-        + "airportID " + airportID
-        + ", code: " + code
-        + ", name: " + name 
-        + ", cityID: " + cityID
-        +")";
+        return "AirportDOImp{" + "airportID=" + airportID + ", code=" + code + ", name=" + name + ", cityID=" + cityID + '}';
     }
 }

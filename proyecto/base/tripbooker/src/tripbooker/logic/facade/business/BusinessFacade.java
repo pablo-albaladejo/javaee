@@ -2,6 +2,8 @@ package tripbooker.logic.facade.business;
 
 import java.util.List;
 import tripbooker.dto.bean.airport.IAirportBean;
+import tripbooker.dto.bean.city.ICityBean;
+import tripbooker.dto.bean.country.ICountryBean;
 import tripbooker.dto.bean.flight.IFlightBean;
 import tripbooker.logic.factory.ServiceFactory;
 
@@ -13,6 +15,16 @@ import tripbooker.logic.factory.ServiceFactory;
 public class BusinessFacade implements IBusinessFacade{
 
     @Override
+    public List<IAirportBean> getAllAirports() {
+        return ServiceFactory.getInstance().getAirportService().getAllAirports();
+    }
+
+    @Override
+    public List<IAirportBean> getAirportsByCity(String code) {
+        return ServiceFactory.getInstance().getAirportService().getAirportsByCity(code);
+    }
+    
+    @Override
     public boolean persistAirport(IAirportBean airportBean) {
         return ServiceFactory.getInstance().getAirportService().persistAirport(airportBean);
     }
@@ -21,10 +33,36 @@ public class BusinessFacade implements IBusinessFacade{
     public boolean removeAirport(IAirportBean airportBean) {
         return ServiceFactory.getInstance().getAirportService().removeAirport(airportBean);
     }
+    
+    
+    @Override
+    public List<ICityBean> getAllCities() {
+        return ServiceFactory.getInstance().getCityService().getAllCities();
+    }
+    
+    @Override
+    public boolean persistCity(ICityBean cityBean) {
+        return ServiceFactory.getInstance().getCityService().persistCity(cityBean);
+    }
 
     @Override
-    public boolean modifyAirport(IAirportBean airportBean) {
-        return ServiceFactory.getInstance().getAirportService().modifyAirport(airportBean);
+    public boolean removeCity(ICityBean cityBean) {
+        return ServiceFactory.getInstance().getCityService().removeCity(cityBean);
+    }
+    
+        @Override
+    public List<ICountryBean> getAllCountries() {
+        return ServiceFactory.getInstance().getCountryService().getAllCountries();
+    }
+
+    @Override
+    public boolean persistCountry(ICountryBean countryBean) {
+        return ServiceFactory.getInstance().getCountryService().persistCountry(countryBean);
+    }
+
+    @Override
+    public boolean removeCountry(ICountryBean countryBean) {
+        return ServiceFactory.getInstance().getCountryService().removeCountry(countryBean);
     }
     
     @Override

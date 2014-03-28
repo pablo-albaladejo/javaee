@@ -3,6 +3,8 @@ package tripbooker.integration.factory;
 import tripbooker.integration.aircraft.IAircraftDAO;
 import tripbooker.integration.airline.IAirlineDAO;
 import tripbooker.integration.airport.IAirportDAO;
+import tripbooker.integration.city.ICityDAO;
+import tripbooker.integration.country.ICountryDAO;
 import tripbooker.integration.flight.IFlightDAO;
 import tripbooker.integration.route.IRouteDAO;
 
@@ -23,6 +25,8 @@ public abstract class DAOFactory {
     public abstract IAircraftDAO getAircraftDAO();
     public abstract IAirportDAO getAirportDAO();
     public abstract IRouteDAO getRouteDAO();
+    public abstract ICityDAO getCityDAO();
+    public abstract ICountryDAO getCountryDAO();
     public abstract IFlightDAO getFlightDAO();
 }
 

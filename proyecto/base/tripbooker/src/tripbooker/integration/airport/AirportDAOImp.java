@@ -41,6 +41,23 @@ public class AirportDAOImp extends DAO implements IAirportDAO{
     }
 
     @Override
+    public List<IAirportDO> getAirportsByCity(int cityID) throws TransactionException {
+        List<IAirportDO> list = new ArrayList<IAirportDO>();
+        String query = "SELECT * FROM airport WHERE cityID = '"+cityID+"'";
+        try {
+            this.resultSet = this.statement.executeQuery(query);
+            while (this.resultSet.next()) {
+                IAirportDO airport = DTOFactory.getInstance().getAirportDO();
+                copyResultAirportData(resultSet, airport);
+                list.add(airport);
+            }
+        } catch (SQLException e) {
+                throw new TransactionException(e);
+        }
+        return list;
+    }
+    
+    @Override
     public IAirportDO getAirportByID(int id) throws TransactionException {
          IAirportDO airport = null;
 
@@ -126,5 +143,4 @@ public class AirportDAOImp extends DAO implements IAirportDAO{
         }
         return InsertActionResult;
     }
-
 }
