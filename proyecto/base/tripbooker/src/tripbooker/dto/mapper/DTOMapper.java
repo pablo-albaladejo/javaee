@@ -2,6 +2,7 @@ package tripbooker.dto.mapper;
 
 import tripbooker.dto.bean.airport.IAirportBean;
 import tripbooker.dto.bean.city.ICityBean;
+import tripbooker.dto.bean.country.ICountryBean;
 import tripbooker.dto.bean.flight.IFlightBean;
 import tripbooker.dto.domain.aircraft.IAircraftDO;
 import tripbooker.dto.domain.airline.IAirlineDO;
@@ -23,6 +24,10 @@ public abstract class DTOMapper {
         if(instance == null) instance = new DTOMapperImp();
         return instance;
     }
+    
+    //Country
+    public abstract ICountryBean getCountryBean(ICountryDO countryDO);
+    public abstract ICountryDO getCountryDO(ICountryBean countryBean);
     
     //City
     public abstract ICityBean getCityBean(ICityDO cityDO,  ICountryDO countryDO);

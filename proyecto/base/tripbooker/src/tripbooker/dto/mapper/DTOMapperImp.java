@@ -2,6 +2,7 @@ package tripbooker.dto.mapper;
 
 import tripbooker.dto.bean.airport.IAirportBean;
 import tripbooker.dto.bean.city.ICityBean;
+import tripbooker.dto.bean.country.ICountryBean;
 import tripbooker.dto.bean.flight.IFlightBean;
 import tripbooker.dto.domain.aircraft.IAircraftDO;
 import tripbooker.dto.domain.airline.IAirlineDO;
@@ -18,6 +19,27 @@ import tripbooker.dto.factory.DTOFactory;
  */
 
 public class DTOMapperImp extends DTOMapper{
+    
+    //Country
+    @Override
+    public ICountryBean getCountryBean(ICountryDO countryDO) {
+        ICountryBean countryBean = DTOFactory.getInstance().getCountryBean();
+        
+        countryBean.setCode(countryDO.getCode());
+        countryBean.setName(countryDO.getName());
+        
+        return countryBean;
+    }
+
+    @Override
+    public ICountryDO getCountryDO(ICountryBean countryBean) {
+        ICountryDO countryDO = DTOFactory.getInstance().getCountryDO();
+
+        countryDO.setCode(countryBean.getCode());
+        countryDO.setName(countryBean.getName());
+        
+        return countryDO;
+    }
     
     //City
     @Override
