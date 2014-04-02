@@ -13,6 +13,6 @@ public interface ICountryDAO {
     List<ICountryDO> getAllCountries()throws TransactionException;
     ICountryDO getCountryByID(int id)throws TransactionException;
     ICountryDO getCountryByCode(String code)throws TransactionException;
-    boolean insertCountry(ICountryDO country) throws TransactionException;
+    boolean persistCountry(ICountryDO country) throws TransactionException;
     boolean removeCountry(int id) throws TransactionException;
 }

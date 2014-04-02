@@ -2,8 +2,6 @@ package tripbooker.logic.airport;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import tripbooker.dto.bean.airport.IAirportBean;
 import tripbooker.dto.domain.airport.IAirportDO;
 import tripbooker.dto.domain.city.ICityDO;
@@ -20,7 +18,17 @@ public class AirportServiceImp implements IAirportService{
 
     @Override
     public List<IAirportBean> getAllAirports() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<IAirportBean> result = new ArrayList<IAirportBean>();
+        try {
+             List<IAirportDO> list = DAOFactory.getInstance().getAirportDAO().getAllAirports();
+             for(IAirportDO airportDO : list){
+                ICityDO cityDO = DAOFactory.getInstance().getCityDAO().getCityByID(airportDO.getCityID());
+                result.add(DTOMapper.getInstance().getAirportBean(airportDO, cityDO));    
+             }
+        } catch (TransactionException ex) {
+            //TODO
+        }
+        return result;
     }
 
     @Override
@@ -60,6 +68,15 @@ public class AirportServiceImp implements IAirportService{
 
     @Override
     public boolean removeAirport(IAirportBean airportBean) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean result = false;
+        try {
+            IAirportDO airportDO = DAOFactory.getInstance().getAirportDAO().getAirportByCode(airportBean.getCode());
+            if(airportDO != null){
+                result = DAOFactory.getInstance().getAirportDAO().removeAirport(airportDO.getAirportID());
+            }
+        } catch (TransactionException ex) {
+            //TODO
+        }
+        return result;
     }
 }

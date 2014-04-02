@@ -80,7 +80,7 @@ public class CountryDAOImp extends DAO implements ICountryDAO {
     }
 
     @Override
-    public boolean insertCountry(ICountryDO country) throws TransactionException {
+    public boolean persistCountry(ICountryDO country) throws TransactionException {
         boolean InsertActionResult = false;
         String query = "";
         

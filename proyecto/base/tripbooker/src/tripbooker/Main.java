@@ -121,12 +121,14 @@ public class Main {
 //        System.out.println(list);
 //        
 //        TransactionManager.getInstance().close();  
-        TransactionManager.getInstance().begin();
+        //TransactionManager.getInstance().begin();
         
-        List<ICountryBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllCountries();
-        System.out.println(list);
+        //List<ICountryBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllCountries();
+        //System.out.println(list);
         
-        TransactionManager.getInstance().close();  
+        //TransactionManager.getInstance().close();
+        
+        
     }
     
 }

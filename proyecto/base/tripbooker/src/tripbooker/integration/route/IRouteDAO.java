@@ -12,9 +12,10 @@ import tripbooker.persistence.database.exception.TransactionException;
 public interface IRouteDAO {
     List<IRouteDO> getAllRoutes()throws TransactionException;
     IRouteDO getRouteByID(int id)throws TransactionException;
+    IRouteDO getRouteByCode(String code)throws TransactionException;
     List<IRouteDO> getAllRoutesByDeparture(int airportID)throws TransactionException;
     List<IRouteDO> getAllRoutesByDestination(int airportID)throws TransactionException;
     List<IRouteDO> getAllRoutesByRoute(int departureID, int destinationID)throws TransactionException;
     boolean removeRoute(int id) throws TransactionException;
-    boolean insertRoute(IRouteDO route) throws TransactionException;
+    boolean persistRoute(IRouteDO route) throws TransactionException;
 }

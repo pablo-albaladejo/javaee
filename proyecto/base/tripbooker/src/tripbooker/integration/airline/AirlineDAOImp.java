@@ -97,7 +97,7 @@ public class AirlineDAOImp extends DAO implements IAirlineDAO {
     }
 
     @Override
-    public boolean insertAirline(IAirlineDO airline) throws TransactionException {
+    public boolean persistAirline(IAirlineDO airline) throws TransactionException {
         boolean InsertActionResult = false;
         String query = "";
         

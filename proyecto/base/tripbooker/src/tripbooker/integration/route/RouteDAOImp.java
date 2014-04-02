@@ -18,9 +18,10 @@ public class RouteDAOImp extends DAO implements IRouteDAO {
 
     private void copyResultRouteData(ResultSet result, IRouteDO route) throws SQLException {
         route.setRouteID(result.getInt(1));
-        route.setDepartureID(result.getInt(2));
-        route.setDestinationID(result.getInt(3));
-        route.setDuration(result.getInt(4));
+        route.setCode(result.getString(2));
+        route.setDepartureID(result.getInt(3));
+        route.setDestinationID(result.getInt(4));
+        route.setDuration(result.getInt(5));
     }
     
     @Override
@@ -59,6 +60,25 @@ public class RouteDAOImp extends DAO implements IRouteDAO {
         return route;
     }
 
+    @Override
+    public IRouteDO getRouteByCode(String code) throws TransactionException {
+        IRouteDO route = null;
+        String query = "SELECT * FROM route"
+                + " WHERE code = '" + code + "'";
+        try {
+            this.resultSet = this.statement.executeQuery(query);
+            if (resultSet.next()) {
+                route = DTOFactory.getInstance().getRouteDO();
+                copyResultRouteData(resultSet, route);
+            } else {
+                route = null;
+            }
+        } catch (SQLException e) {
+            throw new TransactionException(e);
+        }
+        return route;
+    }
+    
     @Override
     public List<IRouteDO> getAllRoutesByDeparture(int airportID) throws TransactionException {
         List<IRouteDO> list = new ArrayList<IRouteDO>();
@@ -112,19 +132,21 @@ public class RouteDAOImp extends DAO implements IRouteDAO {
     }
 
     @Override
-    public boolean insertRoute(IRouteDO route) throws TransactionException {
+    public boolean persistRoute(IRouteDO route) throws TransactionException {
         boolean InsertActionResult = false;
         String query = "";
         
-        if(this.getRouteByID(route.getRouteID()) != null){
+        if(this.getRouteByCode(route.getCode()) != null){
             query = "UPDATE route SET " 
+                + "code = '" + route.getCode()+"', "
                 + "departureID = '" + route.getDepartureID() +"', "
                 + "destinationID = '" + route.getDestinationID()+"', "
                 + "duration = '" + route.getDuration()+"' "
                 + "WHERE routeID = '" + route.getRouteID()+ "'";
         }else{
             query = "INSERT INTO route"
-                    + " (`departureID`, `destinationID`,`duration`) VALUES ("
+                    + " (`code`, `departureID`, `destinationID`,`duration`) VALUES ("
+                    + "'" + route.getCode()+ "', "
                     + "'" + route.getDepartureID()+ "', "
                     + "'" + route.getDestinationID() + "', "
                     + "'" + route.getDuration() + "'"

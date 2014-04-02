@@ -60,6 +60,26 @@ public class AircraftDAOImp extends DAO implements IAircraftDAO{
         }
         return aircraft;
     }
+    
+    @Override
+    public IAircraftDO getAircraftByModel(String model) throws TransactionException {
+        IAircraftDO aircraft = null;
+
+        String query = "SELECT * FROM aircraft"
+                + " WHERE model = '" + model + "'";
+        try {
+            this.resultSet = this.statement.executeQuery(query);
+            if (resultSet.next()) {
+                aircraft = DTOFactory.getInstance().getAircraftDO();
+                copyResultAircraftData(resultSet, aircraft);
+            } else {
+                aircraft = null;
+            }
+        } catch (SQLException e) {
+            throw new TransactionException(e);
+        }
+        return aircraft;
+    }
 
     @Override
     public boolean removeAircraft(int id) throws TransactionException {
@@ -78,11 +98,11 @@ public class AircraftDAOImp extends DAO implements IAircraftDAO{
     }
 
     @Override
-    public boolean insertAircraft(IAircraftDO aircraft) throws TransactionException {
+    public boolean persistAircraft(IAircraftDO aircraft) throws TransactionException {
         boolean InsertActionResult = false;
         String query = "";
         
-        if(this.getAircraftByID(aircraft.getAirfarctID()) != null){
+        if(this.getAircraftByModel(aircraft.getModel()) != null){
             query = "UPDATE aircraft SET " 
                 + "manufacter = '" + aircraft.getManufacter() +"', "
                 + "model = '" + aircraft.getModel()+"', "

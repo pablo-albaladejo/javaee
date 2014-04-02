@@ -1,7 +1,5 @@
 package tripbooker.dto.domain.airline;
 
-import java.util.Objects;
-
 /**
  *
  * @author Pablo Albaladejo Mestre <pablo.albaladejo.mestre@gmail.com>
@@ -55,40 +53,6 @@ public class AirlineDOImp implements IAirlineDO{
 
     @Override
     public String toString() {
-        return "("
-                + "airlineID " + airlineID
-                + ", code: " + code
-                + ", name: " + name 
-                + ", countryID: " + countryID
-                +")";
-        
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 41 * hash + this.airlineID;
-        hash = 41 * hash + Objects.hashCode(this.code);
-        hash = 41 * hash + Objects.hashCode(this.name);
-        hash = 41 * hash + this.countryID;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final AirlineDOImp other = (AirlineDOImp) obj;
-        if (this.airlineID != other.airlineID) {
-            return false;
-        }
-        return true;
-    }
-    
-    
-    
+        return "AirlineDOImp{" + "airlineID=" + airlineID + ", code=" + code + ", name=" + name + ", countryID=" + countryID + '}';
+    }    
 }

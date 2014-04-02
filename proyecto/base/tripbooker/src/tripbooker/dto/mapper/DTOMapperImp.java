@@ -1,9 +1,12 @@
 package tripbooker.dto.mapper;
 
+import tripbooker.dto.bean.aircraft.IAircraftBean;
+import tripbooker.dto.bean.airline.IAirlineBean;
 import tripbooker.dto.bean.airport.IAirportBean;
 import tripbooker.dto.bean.city.ICityBean;
 import tripbooker.dto.bean.country.ICountryBean;
 import tripbooker.dto.bean.flight.IFlightBean;
+import tripbooker.dto.bean.route.IRouteBean;
 import tripbooker.dto.domain.aircraft.IAircraftDO;
 import tripbooker.dto.domain.airline.IAirlineDO;
 import tripbooker.dto.domain.airport.IAirportDO;
@@ -111,5 +114,77 @@ public class DTOMapperImp extends DTOMapper{
         airportBean.setCityName(cityDO.getName());
         
         return airportBean;
+    }
+
+    @Override
+    public IAircraftBean getAircraftBean(IAircraftDO aircraftDO) {
+        IAircraftBean aircraftBean = DTOFactory.getInstance().getAircraftBean();
+        
+        aircraftBean.setDate(aircraftDO.getDate());
+        aircraftBean.setManufacter(aircraftDO.getManufacter());
+        aircraftBean.setModel(aircraftDO.getModel());
+        aircraftBean.setSeats(aircraftDO.getSeats());
+        
+        return aircraftBean;
+    }
+
+    @Override
+    public IAircraftDO getAircraftDO(IAircraftBean aircraftBean) {
+        IAircraftDO aircraftDO = DTOFactory.getInstance().getAircraftDO();
+        
+        aircraftDO.setDate(aircraftBean.getDate());
+        aircraftDO.setManufacter(aircraftBean.getManufacter());
+        aircraftDO.setModel(aircraftBean.getModel());
+        aircraftDO.setSeats(aircraftBean.getSeats());
+        
+        return aircraftDO;
+    }
+
+    //Airline
+    @Override
+    public IAirlineBean getAirlineBean(IAirlineDO airlineDO, ICountryDO countryDO) {
+        IAirlineBean airlineBean = DTOFactory.getInstance().getAirlineBean();
+       
+        airlineBean.setCode(airlineDO.getCode());
+        airlineBean.setCountryCode(countryDO.getCode());
+        airlineBean.setName(airlineDO.getName());
+        
+        return airlineBean;
+    }
+
+    @Override
+    public IAirlineDO getAirlineDO(IAirlineBean airlineBean, ICountryDO countryDO) {
+        IAirlineDO airlineDO = DTOFactory.getInstance().getAirlineDO();
+        
+        airlineDO.setCode(airlineBean.getCode());
+        airlineDO.setCountryID(countryDO.getCountryID());
+        airlineDO.setName(airlineBean.getName());
+        
+        return airlineDO;
+    }
+
+    //Route
+    @Override
+    public IRouteBean getRouteBean(IRouteDO routeDO, IAirportDO departure, IAirportDO destination) {
+        IRouteBean routeBean = DTOFactory.getInstance().getRouteBean();
+
+        routeBean.setCode(routeDO.getCode());
+        routeBean.setDepartureCode(departure.getCode());
+        routeBean.setDestinationCode(destination.getCode());
+        routeBean.setDuration(routeDO.getDuration());
+        
+        return routeBean;
+    }
+
+    @Override
+    public IRouteDO getRouteDO(IRouteBean routeBean, IAirportDO departure, IAirportDO destination) {
+        IRouteDO routeDO = DTOFactory.getInstance().getRouteDO();
+        
+        routeDO.setCode(routeBean.getCode());
+        routeDO.setDepartureID(departure.getAirportID());
+        routeDO.setDestinationID(destination.getAirportID());
+        routeDO.setDuration(routeBean.getDuration());
+        
+        return routeDO;
     }
 }

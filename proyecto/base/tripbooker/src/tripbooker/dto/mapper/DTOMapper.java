@@ -1,9 +1,12 @@
 package tripbooker.dto.mapper;
 
+import tripbooker.dto.bean.aircraft.IAircraftBean;
+import tripbooker.dto.bean.airline.IAirlineBean;
 import tripbooker.dto.bean.airport.IAirportBean;
 import tripbooker.dto.bean.city.ICityBean;
 import tripbooker.dto.bean.country.ICountryBean;
 import tripbooker.dto.bean.flight.IFlightBean;
+import tripbooker.dto.bean.route.IRouteBean;
 import tripbooker.dto.domain.aircraft.IAircraftDO;
 import tripbooker.dto.domain.airline.IAirlineDO;
 import tripbooker.dto.domain.airport.IAirportDO;
@@ -44,4 +47,17 @@ public abstract class DTOMapper {
                                                 IAirportDO departure, 
                                                 IAirportDO destination,
                                                 IAircraftDO aircraftDO);
+    
+    //Aircraft
+    public abstract IAircraftBean getAircraftBean(IAircraftDO aircraftDO);
+    public abstract IAircraftDO getAircraftDO(IAircraftBean aircraftBean);
+    
+    //Airline
+    public abstract IAirlineBean getAirlineBean(IAirlineDO airlineDO, ICountryDO countryDO);
+    public abstract IAirlineDO getAirlineDO(IAirlineBean airlineBean, ICountryDO countryDO);
+    
+    //Route
+    public abstract IRouteBean getRouteBean(IRouteDO routeDO, IAirportDO departure, IAirportDO destination);
+    public abstract IRouteDO getRouteDO(IRouteBean routeBean, IAirportDO departure, IAirportDO destination);
 }
+

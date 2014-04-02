@@ -10,7 +10,7 @@ import java.util.Date;
 public interface IAircraftDO {
     int getAirfarctID();
     void setAirfarctID(int airfarctID);
-
+    
     String getManufacter();
     void setManufacter(String manufacter);
    

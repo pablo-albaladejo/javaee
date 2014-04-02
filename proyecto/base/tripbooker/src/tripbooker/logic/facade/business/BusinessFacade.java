@@ -1,10 +1,13 @@
 package tripbooker.logic.facade.business;
 
 import java.util.List;
+import tripbooker.dto.bean.aircraft.IAircraftBean;
+import tripbooker.dto.bean.airline.IAirlineBean;
 import tripbooker.dto.bean.airport.IAirportBean;
 import tripbooker.dto.bean.city.ICityBean;
 import tripbooker.dto.bean.country.ICountryBean;
 import tripbooker.dto.bean.flight.IFlightBean;
+import tripbooker.dto.bean.route.IRouteBean;
 import tripbooker.logic.factory.ServiceFactory;
 
 /**
@@ -14,6 +17,39 @@ import tripbooker.logic.factory.ServiceFactory;
 
 public class BusinessFacade implements IBusinessFacade{
 
+    //Aircraft
+    @Override
+    public List<IAircraftBean> getAllAircrafts() {
+        return ServiceFactory.getInstance().getAircraftService().getAllAircrafts();
+    }
+
+    @Override
+    public boolean persistAircraft(IAircraftBean aircraftBean) {
+        return ServiceFactory.getInstance().getAircraftService().persistAircraft(aircraftBean);
+    }
+
+    @Override
+    public boolean removeAircraft(IAircraftBean aircraftBean) {
+        return ServiceFactory.getInstance().getAircraftService().removeAircraft(aircraftBean);
+    }
+        
+    //Airline
+    @Override
+    public List<IAirlineBean> getAllAirlines() {
+        return ServiceFactory.getInstance().getAirlineService().getAllAirlines();
+    }
+
+    @Override
+    public boolean persistAirline(IAirlineBean airlineBean) {
+        return ServiceFactory.getInstance().getAirlineService().persistAirline(airlineBean);
+    }
+
+    @Override
+    public boolean removeAirline(IAirlineBean airlineBean) {
+        return ServiceFactory.getInstance().getAirlineService().removeAirline(airlineBean);
+    }
+    
+    
     @Override
     public List<IAirportBean> getAllAirports() {
         return ServiceFactory.getInstance().getAirportService().getAllAirports();
@@ -88,5 +124,41 @@ public class BusinessFacade implements IBusinessFacade{
     @Override
     public List<IFlightBean> getAllFlightsByRoute(String depatureCode, String destinationCode) {
         return ServiceFactory.getInstance().getFlightService().getAllFlightsByRoute(depatureCode,destinationCode);
+    }
+
+    //Route
+    @Override
+    public IRouteBean getRouteByCode(String code) {
+        return ServiceFactory.getInstance().getRouteService().getRouteByCode(code);
+    }
+    
+    @Override
+    public List<IRouteBean> getAllRoutes() {
+        return ServiceFactory.getInstance().getRouteService().getAllRoutes();
+    }
+
+    @Override
+    public List<IRouteBean> getAllRoutesByDeparture(String airportCode) {
+        return ServiceFactory.getInstance().getRouteService().getAllRoutesByDeparture(airportCode);
+    }
+
+    @Override
+    public List<IRouteBean> getAllRoutesByDestination(String airportCode) {
+        return ServiceFactory.getInstance().getRouteService().getAllRoutesByDestination(airportCode);
+    }
+
+    @Override
+    public List<IRouteBean> getAllRoutesByRoute(String departureCode, String destinationCode) {
+        return ServiceFactory.getInstance().getRouteService().getAllRoutesByRoute(departureCode, destinationCode);
+    }
+
+    @Override
+    public boolean removeRoute(IRouteBean routeBean) {
+        return ServiceFactory.getInstance().getRouteService().removeRoute(routeBean);
+    }
+
+    @Override
+    public boolean persistRoute(IRouteBean routeBean) {
+        return ServiceFactory.getInstance().getRouteService().persistRoute(routeBean);
     }
 }

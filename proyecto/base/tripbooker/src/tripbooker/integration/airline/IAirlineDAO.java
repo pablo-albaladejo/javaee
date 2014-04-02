@@ -14,6 +14,6 @@ public interface IAirlineDAO {
     IAirlineDO getAirlineByID(int id)throws TransactionException;
     IAirlineDO getAirlineByCode(String code)throws TransactionException;
     boolean removeAirline(int id) throws TransactionException;
-    boolean insertAirline(IAirlineDO airline) throws TransactionException;
+    boolean persistAirline(IAirlineDO airline) throws TransactionException;
 }
 
