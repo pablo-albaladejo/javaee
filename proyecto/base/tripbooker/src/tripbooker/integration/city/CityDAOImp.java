@@ -20,6 +20,7 @@ public class CityDAOImp extends DAO implements ICityDAO{
         city.setCityID(result.getInt(1));
         city.setCode(result.getString(2));
         city.setName(result.getString(3));
+        city.setCountryID(result.getInt(4));
     }
     
     @Override
@@ -69,8 +70,6 @@ public class CityDAOImp extends DAO implements ICityDAO{
             if (resultSet.next()) {
                 city = DTOFactory.getInstance().getCityDO();
                 copyResultCityData(resultSet, city);
-            } else {
-                city = null;
             }
         } catch (SQLException e) {
             throw new TransactionException(e);
@@ -102,13 +101,15 @@ public class CityDAOImp extends DAO implements ICityDAO{
         if(this.getCityByID(city.getCityID()) != null){
             query = "UPDATE city SET " 
                 + "code = '" + city.getCode() +"', "
-                + "name = '" + city.getName()+"' "
+                + "name = '" + city.getName()+"', "
+                + "countryID = '" + city.getCountryID()+"' "
                 + "WHERE cityID = '" + city.getCityID() + "'";
         }else{
             query = "INSERT INTO city"
-                    + " (`code`, `name`) VALUES ("
+                    + " (`code`, `name`, `countryID`) VALUES ("
                     + "'" + city.getCode()+ "', "
-                    + "'" + city.getName() + "'"
+                    + "'" + city.getName() + "',"
+                    + "'" + city.getCountryID()+"' "
                     + ")";
         }
         try {
@@ -117,7 +118,6 @@ public class CityDAOImp extends DAO implements ICityDAO{
                 InsertActionResult = true;
             }
         } catch (SQLException ex) {
-            System.out.println(ex);
             throw new TransactionException(ex);
         }
         return InsertActionResult;

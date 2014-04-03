@@ -8,9 +8,6 @@ package tripbooker.dto.domain.route;
 public interface IRouteDO {
     int getRouteID();
     void setRouteID(int routeID);
-
-    String getCode();
-    void setCode(String code);
     
     int getDepartureID();
     void setDepartureID(int departureID);

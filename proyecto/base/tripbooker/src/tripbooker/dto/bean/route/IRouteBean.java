@@ -8,10 +8,6 @@ import java.io.Serializable;
  */
 
 public interface IRouteBean extends Serializable{
-    
-    String getCode();
-    void setCode(String code);
-    
     String getDepartureCode();
     void setDepartureCode(String departureCode);
 

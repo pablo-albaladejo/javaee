@@ -9,7 +9,6 @@ public class AirportBean implements IAirportBean{
     private String code;
     private String name;
     private String cityCode;
-    private String cityName;
 
     @Override
     public String getCode() {
@@ -42,18 +41,8 @@ public class AirportBean implements IAirportBean{
     }
 
     @Override
-    public String getCityName() {
-        return cityName;
-    }
-
-    @Override
-    public void setCityName(String cityName) {
-        this.cityName = cityName;
-    }
-
-    @Override
     public String toString() {
-        return "AirportBean{" + "code=" + code + ", name=" + name + ", cityCode=" + cityCode + ", cityName=" + cityName + '}';
+        return "AirportBean{" + "code=" + code + ", name=" + name + ", cityCode=" + cityCode + '}';
     }
 
 }

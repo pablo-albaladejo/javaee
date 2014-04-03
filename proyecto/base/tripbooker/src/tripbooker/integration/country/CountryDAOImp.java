@@ -102,7 +102,6 @@ public class CountryDAOImp extends DAO implements ICountryDAO {
                 InsertActionResult = true;
             }
         } catch (SQLException ex) {
-            System.out.println(ex);
             throw new TransactionException(ex);
         }
         return InsertActionResult;

@@ -50,11 +50,10 @@ public interface IBusinessFacade {
     List<IFlightBean> getAllFlightsByRoute(String depatureCode, String destinationCode);
     
     //Route
-    IRouteBean getRouteByCode(String code);
     List<IRouteBean> getAllRoutes();
     List<IRouteBean> getAllRoutesByDeparture(String airportCode);
     List<IRouteBean> getAllRoutesByDestination(String airportCode);
-    List<IRouteBean> getAllRoutesByRoute(String departureCode, String destinationCode);
+    IRouteBean getRoute(String departureCode, String destinationCode);
     boolean removeRoute(IRouteBean routeBean);
     boolean persistRoute(IRouteBean routeBean);
 }

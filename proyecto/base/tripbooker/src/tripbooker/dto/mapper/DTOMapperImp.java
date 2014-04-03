@@ -52,8 +52,7 @@ public class DTOMapperImp extends DTOMapper{
         cityBean.setCode(cityDO.getCode());
         cityBean.setName(cityDO.getName());
         cityBean.setCountryCode(countryDO.getCode());
-        cityBean.setCountryName(countryDO.getName());
-            
+           
         return cityBean;
     }
     
@@ -111,7 +110,6 @@ public class DTOMapperImp extends DTOMapper{
         airportBean.setCode(airportDO.getCode());
         airportBean.setName(airportDO.getName());
         airportBean.setCityCode(cityDO.getCode());
-        airportBean.setCityName(cityDO.getName());
         
         return airportBean;
     }
@@ -167,8 +165,7 @@ public class DTOMapperImp extends DTOMapper{
     @Override
     public IRouteBean getRouteBean(IRouteDO routeDO, IAirportDO departure, IAirportDO destination) {
         IRouteBean routeBean = DTOFactory.getInstance().getRouteBean();
-
-        routeBean.setCode(routeDO.getCode());
+        
         routeBean.setDepartureCode(departure.getCode());
         routeBean.setDestinationCode(destination.getCode());
         routeBean.setDuration(routeDO.getDuration());
@@ -180,7 +177,6 @@ public class DTOMapperImp extends DTOMapper{
     public IRouteDO getRouteDO(IRouteBean routeBean, IAirportDO departure, IAirportDO destination) {
         IRouteDO routeDO = DTOFactory.getInstance().getRouteDO();
         
-        routeDO.setCode(routeBean.getCode());
         routeDO.setDepartureID(departure.getAirportID());
         routeDO.setDestinationID(destination.getAirportID());
         routeDO.setDuration(routeBean.getDuration());

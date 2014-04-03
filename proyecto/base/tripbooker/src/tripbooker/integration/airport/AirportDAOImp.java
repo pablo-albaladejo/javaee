@@ -138,7 +138,6 @@ public class AirportDAOImp extends DAO implements IAirportDAO{
                 InsertActionResult = true;
             }
         } catch (SQLException ex) {
-            System.out.println(ex);
             throw new TransactionException(ex);
         }
         return InsertActionResult;

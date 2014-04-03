@@ -1,134 +1,124 @@
 package tripbooker;
 
-import java.util.Date;
-import java.util.List;
 import tripbooker.dto.bean.airport.IAirportBean;
 import tripbooker.dto.bean.city.ICityBean;
 import tripbooker.dto.bean.country.ICountryBean;
-import tripbooker.dto.bean.flight.IFlightBean;
-import tripbooker.dto.domain.aircraft.IAircraftDO;
-import tripbooker.dto.domain.airline.IAirlineDO;
-import tripbooker.dto.domain.airport.IAirportDO;
-import tripbooker.dto.domain.flight.IFlightDO;
-import tripbooker.dto.domain.route.IRouteDO;
+import tripbooker.dto.bean.route.IRouteBean;
 import tripbooker.dto.factory.DTOFactory;
-import tripbooker.integration.factory.DAOFactory;
 import tripbooker.logic.factory.ServiceFactory;
-import tripbooker.persistence.database.exception.TransactionException;
-import tripbooker.persistence.database.manager.TransactionManager;
 
 public class Main {
 
-    public static void main(String[] args) throws TransactionException {     
+    public static void main(String[] args) {     
         
-//        TransactionManager.getInstance().begin();
         
-//        List<IAirlineDO> list = DAOFactory.getInstance().getAirlineDAO().getAllAirlines();
-//        System.out.println(list);
+//        //Country
+//        ICountryBean countryBean = DTOFactory.getInstance().getCountryBean();
+//        
+//        countryBean.setCode("ES");
+//        countryBean.setName("Spain");
+//        ServiceFactory.getInstance().getBusinessFacade().persistCountry(countryBean);
+//        
+//        countryBean.setCode("US");
+//        countryBean.setName("United States");
+//        ServiceFactory.getInstance().getBusinessFacade().persistCountry(countryBean);
+//        
+//        System.out.println(ServiceFactory.getInstance().getBusinessFacade().getAllCountries());
         
-//        IAirlineDO airline = DTOFactory.getInstance().getAirlineDO();
-//        airline.setAirlineID(0);
-//        airline.setCode("ET");
-//        airline.setName("Etipopia");
-//        airline.setCountryID(1);
+        //City
+//        ICityBean cityBean = DTOFactory.getInstance().getCityBean();
 //        
-//        DAOFactory.getInstance().getAirlineDAO().insertAirline(airline);
+//        cityBean.setCode("MAD");
+//        cityBean.setName("Madrid");
+//        cityBean.setCountryCode("ES");        
+//        ServiceFactory.getInstance().getBusinessFacade().persistCity(cityBean);
 //        
-//        DAOFactory.getInstance().getAirlineDAO().removeAirline(8);
+//        cityBean.setCode("VAL");
+//        cityBean.setName("Valencia");
+//        cityBean.setCountryCode("ES");
+//        ServiceFactory.getInstance().getBusinessFacade().persistCity(cityBean);
 //        
-//        TransactionManager.getInstance().commit();
-//        
-//        IAirlineDO airline = DAOFactory.getInstance().getAirlineDAO().getAirlineByID(11);
-//        System.out.println(airline);
-        
-//        IAirlineDO airline = DAOFactory.getInstance().getAirlineDAO().getAirlineByID(1);
-//        airline.setName("Pablo");
-//        
-//        DAOFactory.getInstance().getAirlineDAO().insertAirline(airline);
-//        
-//        list = DAOFactory.getInstance().getAirlineDAO().getAllAirlines();
-//        System.out.println(list);
-//        
-        
-//        List<IAircraftDO> list = DAOFactory.getInstance().getAircraftDAO().getAllAircrafts();
-//        System.out.println(list);
-//        
-//        IAircraftDO aircraft = DAOFactory.getInstance().getAircraftDAO().getAircraftByID(1);
-//        System.out.println(aircraft);
-//        
-//        aircraft.setManufacter("Pablo");
-//        DAOFactory.getInstance().getAircraftDAO().insertAircraft(aircraft);
-//        
-//        DAOFactory.getInstance().getAircraftDAO().removeAircraft(2);
-//        
-//        list = DAOFactory.getInstance().getAircraftDAO().getAllAircrafts();
-//        System.out.println(list);
-        
-//        List<IAirportDO> list = DAOFactory.getInstance().getAirportDAO().getAllAirports();
-//        System.out.println(list);
-//        TransactionManager.getInstance().close();
+//        cityBean.setCode("SEV");
+//        cityBean.setName("Sevilla");
+//        cityBean.setCountryCode("ES");
+//        ServiceFactory.getInstance().getBusinessFacade().persistCity(cityBean);
 //
-//        List<IRouteDO> list = DAOFactory.getInstance().getRouteDAO().getAllRoutes();
-//        System.out.println(list);
-//   
-//        IRouteDO route = DAOFactory.getInstance().getRouteDAO().getRouteByID(1);
-//        route.setDuration(555);
+//        cityBean.setCode("BCN");
+//        cityBean.setName("Barcelona");
+//        cityBean.setCountryCode("ES");
+//        ServiceFactory.getInstance().getBusinessFacade().persistCity(cityBean);
 //        
-//        DAOFactory.getInstance().getRouteDAO().insertRoute(route);
-//        list = DAOFactory.getInstance().getRouteDAO().getAllRoutes();
-//        System.out.println(list);
+//        cityBean.setCode("NYK");
+//        cityBean.setName("New York");
+//        cityBean.setCountryCode("US");
+//        ServiceFactory.getInstance().getBusinessFacade().persistCity(cityBean);
+//        
+//        System.out.println( ServiceFactory.getInstance().getBusinessFacade().getAllCities());
         
-//        List<IFlightDO> list = DAOFactory.getInstance().getFlightDAO().getAllFlights();
-//        System.out.println(list);
+//        //Airport
+//        IAirportBean airportBean = DTOFactory.getInstance().getAirportBean();
 //        
-//        IFlightDO flight = DAOFactory.getInstance().getFlightDAO().getFlightByID(1);
-//        flight.setDate(new Date());
-//        flight.setFlightID(2);
-//        flight.setCode("2");
-//        DAOFactory.getInstance().getFlightDAO().insertFlight(flight);
-//        list = DAOFactory.getInstance().getFlightDAO().getAllFlights();
-//        System.out.println(list);
+//        airportBean.setCityCode("MAD");
+//        airportBean.setCode("MAD");
+//        airportBean.setName("Madrid Barajas International Airport");
+//        ServiceFactory.getInstance().getBusinessFacade().persistAirport(airportBean);
+//        
+//        airportBean.setCityCode("MAD");
+//        airportBean.setCode("MCV");
+//        airportBean.setName("Madrid Cuatro Vientos Airport");
+//        ServiceFactory.getInstance().getBusinessFacade().persistAirport(airportBean);
+//        
+//        airportBean.setCityCode("MAD");
+//        airportBean.setCode("TOJ");
+//        airportBean.setName("Torrejón de Ardoz Airport");
+//        ServiceFactory.getInstance().getBusinessFacade().persistAirport(airportBean);
+//        
+//        airportBean.setCityCode("BCN");
+//        airportBean.setCode("BCN");
+//        airportBean.setName("El Prat de Llobregat");
+//        ServiceFactory.getInstance().getBusinessFacade().persistAirport(airportBean);
+//        
+//        airportBean.setCityCode("VAL");
+//        airportBean.setCode("VLC");
+//        airportBean.setName("Manises");
+//        ServiceFactory.getInstance().getBusinessFacade().persistAirport(airportBean);
+//        
+//        airportBean.setCityCode("SEV");
+//        airportBean.setCode("SVQ");
+//        airportBean.setName("Sevilla");
+//        ServiceFactory.getInstance().getBusinessFacade().persistAirport(airportBean);
         
-//        TransactionManager.getInstance().close();        
+//        airportBean.setCityCode("NYK");
+//        airportBean.setCode("JFK");
+//        airportBean.setName("John F. Kennedy International Airport");
+//        ServiceFactory.getInstance().getBusinessFacade().persistAirport(airportBean);
+//        
+//        System.out.println(ServiceFactory.getInstance().getBusinessFacade().getAllAirports());
         
-//      List<IFlightBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllFlights();
-        //List<IFlightBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllFlightsByAirline("JK");
-        //List<IFlightBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllFlightsByDeparture("MAD");
-        //List<IFlightBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllFlightsByDestination("MCV");
-        //List<IFlightBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllFlightsByRoute("MD","MCV");
-        //System.out.println(list);
+        //Route
+        IRouteBean routeBean = DTOFactory.getInstance().getRouteBean();
         
-//        List<ICityBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllCities();
-//        System.out.println(list);
-//        
-//        ICityBean city =DTOFactory.getInstance().getCityBean();
-//        city.setCode("BCN");
-//        city.setName("NAme");
-//        boolean result = ServiceFactory.getInstance().getBusinessFacade().persistCity(city);
-//        System.out.println(result);
-//        
-//        list = ServiceFactory.getInstance().getBusinessFacade().getAllCities();
-//        System.out.println(list);
-//        
-//        ServiceFactory.getInstance().getBusinessFacade().removeCity(city);
-//        
-//        list = ServiceFactory.getInstance().getBusinessFacade().getAllCities();
-//        System.out.println(list);
-//        
-//        TransactionManager.getInstance().begin();
-//        
-//        List<IAirportBean> list = ServiceFactory.getInstance().getBusinessFacade().getAirportsByCity("MAD");
-//        System.out.println(list);
-//        
-//        TransactionManager.getInstance().close();  
-        //TransactionManager.getInstance().begin();
+        routeBean.setDepartureCode("MAD");
+        routeBean.setDestinationCode("MCV");
+        routeBean.setDuration(30);
+        ServiceFactory.getInstance().getBusinessFacade().persistRoute(routeBean);
         
-        //List<ICountryBean> list = ServiceFactory.getInstance().getBusinessFacade().getAllCountries();
-        //System.out.println(list);
+        routeBean.setDepartureCode("MCV");
+        routeBean.setDestinationCode("MAD");
+        routeBean.setDuration(36);
+        ServiceFactory.getInstance().getBusinessFacade().persistRoute(routeBean);
         
-        //TransactionManager.getInstance().close();
+        routeBean.setDepartureCode("MAD");
+        routeBean.setDestinationCode("JFK");
+        routeBean.setDuration(300);
+        ServiceFactory.getInstance().getBusinessFacade().persistRoute(routeBean);
         
+        routeBean.setDepartureCode("JFK");
+        routeBean.setDestinationCode("MAD");
+        routeBean.setDuration(400);
+        ServiceFactory.getInstance().getBusinessFacade().persistRoute(routeBean);
         
+        System.out.println(ServiceFactory.getInstance().getBusinessFacade().getAllRoutes());        
     }
     
 }

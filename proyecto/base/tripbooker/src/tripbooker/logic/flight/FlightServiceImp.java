@@ -173,7 +173,7 @@ public class FlightServiceImp implements IFlightService{
 
     @Override
     public List<IFlightBean> getAllFlightsByRoute(String depatureCode, String destinationCode) {
-        List<IFlightBean> resultBean = new ArrayList<IFlightBean>();
+        /*List<IFlightBean> resultBean = new ArrayList<IFlightBean>();
         try {
             //Get Airports
             IAirportDO departure = DAOFactory.getInstance().getAirportDAO().getAirportByCode(depatureCode);
@@ -201,6 +201,7 @@ public class FlightServiceImp implements IFlightService{
         } catch (TransactionException ex) {
             //TODO
         }
-        return resultBean; 
+        return resultBean; */
+        return null;
     }
 }

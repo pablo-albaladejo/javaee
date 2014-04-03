@@ -8,6 +8,7 @@ import tripbooker.dto.domain.country.ICountryDO;
 import tripbooker.dto.mapper.DTOMapper;
 import tripbooker.integration.factory.DAOFactory;
 import tripbooker.persistence.database.exception.TransactionException;
+import tripbooker.persistence.database.manager.TransactionManager;
 
 /**
  *
@@ -23,7 +24,9 @@ public class CityServiceImp implements ICityService{
              List<ICityDO> list = DAOFactory.getInstance().getCityDAO().getAllCities();
              for(ICityDO cityDO : list){
                  ICountryDO countryDO = DAOFactory.getInstance().getCountryDAO().getCountryByID(cityDO.getCountryID());
-                 result.add(DTOMapper.getInstance().getCityBean(cityDO,countryDO));
+                 if(countryDO != null){
+                    result.add(DTOMapper.getInstance().getCityBean(cityDO,countryDO));
+                 }
              }
         } catch (TransactionException ex) {
             //TODO
@@ -34,8 +37,8 @@ public class CityServiceImp implements ICityService{
     @Override
     public boolean persistCity(ICityBean cityBean) {
         boolean result = false;
-       
         try {
+            TransactionManager.getInstance().begin();
             ICountryDO countryDO = DAOFactory.getInstance().getCountryDAO().getCountryByCode(cityBean.getCountryCode());
             if(countryDO != null){
                ICityDO cityDOTemp = DAOFactory.getInstance().getCityDAO().getCityByCode(cityBean.getCode());
@@ -45,9 +48,20 @@ public class CityServiceImp implements ICityService{
                    cityDO.setCityID(cityDOTemp.getCityID());
                }
                result = DAOFactory.getInstance().getCityDAO().persistCity(cityDO);
+               TransactionManager.getInstance().commit();
             }
         } catch (TransactionException ex) {
-            //TODO
+            try {
+                TransactionManager.getInstance().rollback();
+            } catch (TransactionException ex1) {
+                //TODO - Rollback error
+            }
+        }finally{
+            try {
+                TransactionManager.getInstance().close();
+            } catch (TransactionException ex) {
+                //TODO - Close error
+            }
         }
         return result;
     }
@@ -56,12 +70,23 @@ public class CityServiceImp implements ICityService{
     public boolean removeCity(ICityBean cityBean) {
         boolean result = false;
         try {
+            TransactionManager.getInstance().begin();
             ICityDO cityDO = DAOFactory.getInstance().getCityDAO().getCityByCode(cityBean.getCode());
-                if(cityDO != null){
+            if(cityDO != null){
                 result = DAOFactory.getInstance().getCityDAO().removeCity(cityDO.getCityID());
             }
         } catch (TransactionException ex) {
-            //TODO
+            try {
+                TransactionManager.getInstance().rollback();
+            } catch (TransactionException ex1) {
+                //TODO - Rollback error
+            }
+        }finally{
+            try {
+                TransactionManager.getInstance().close();
+            } catch (TransactionException ex) {
+                //TODO - Close Error
+            }
         }
         return result;
     }

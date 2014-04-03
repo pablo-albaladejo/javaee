@@ -6,22 +6,10 @@ package tripbooker.dto.bean.route;
  */
 
 public class RouteBean implements IRouteBean{
-
-    private String code;
     private String departureCode;
     private String destinationCode;
     private int duration;
-
-    @Override
-    public String getCode() {
-        return code;
-    }
-
-    @Override
-    public void setCode(String code) {
-        this.code = code;
-    }
-    
+   
     @Override
     public String getDepartureCode() {
         return departureCode;
@@ -54,6 +42,8 @@ public class RouteBean implements IRouteBean{
 
     @Override
     public String toString() {
-        return "RouteBean{" + "code=" + code + ", departureCode=" + departureCode + ", destinationCode=" + destinationCode + ", duration=" + duration + '}';
+        return "RouteBean{" + "departureCode=" + departureCode + ", destinationCode=" + destinationCode + ", duration=" + duration + '}';
     }
+
+    
 }

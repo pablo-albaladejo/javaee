@@ -16,7 +16,4 @@ public interface ICityBean extends Serializable{
     
     String getCountryCode();
     void setCountryCode(String countryCode);
-
-    String getCountryName();
-    void setCountryName(String countryName);
 }

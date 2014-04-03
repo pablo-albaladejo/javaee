@@ -126,12 +126,7 @@ public class BusinessFacade implements IBusinessFacade{
         return ServiceFactory.getInstance().getFlightService().getAllFlightsByRoute(depatureCode,destinationCode);
     }
 
-    //Route
-    @Override
-    public IRouteBean getRouteByCode(String code) {
-        return ServiceFactory.getInstance().getRouteService().getRouteByCode(code);
-    }
-    
+    //Route    
     @Override
     public List<IRouteBean> getAllRoutes() {
         return ServiceFactory.getInstance().getRouteService().getAllRoutes();
@@ -148,8 +143,8 @@ public class BusinessFacade implements IBusinessFacade{
     }
 
     @Override
-    public List<IRouteBean> getAllRoutesByRoute(String departureCode, String destinationCode) {
-        return ServiceFactory.getInstance().getRouteService().getAllRoutesByRoute(departureCode, destinationCode);
+    public IRouteBean getRoute(String departureCode, String destinationCode) {
+        return ServiceFactory.getInstance().getRouteService().getRoute(departureCode, destinationCode);
     }
 
     @Override

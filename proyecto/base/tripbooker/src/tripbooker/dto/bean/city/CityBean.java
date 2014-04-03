@@ -9,7 +9,6 @@ public class CityBean implements ICityBean{
     String name;
     String code;
     String countryCode;
-    String countryName;
 
     @Override
     public String getName() {
@@ -42,18 +41,8 @@ public class CityBean implements ICityBean{
     }
 
     @Override
-    public String getCountryName() {
-        return countryName;
-    }
-
-    @Override
-    public void setCountryName(String countryName) {
-        this.countryName = countryName;
-    }
-
-    @Override
     public String toString() {
-        return "CityBean{" + "name=" + name + ", code=" + code + ", countryCode=" + countryCode + ", countryName=" + countryName + '}';
+        return "CityBean{" + "name=" + name + ", code=" + code + ", countryCode=" + countryCode + '}';
     }
 
 }

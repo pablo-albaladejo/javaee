@@ -8,7 +8,6 @@ package tripbooker.dto.domain.route;
 public class RouteDOImp implements IRouteDO{
     
     private int routeID;
-    private String code;
     private int departureID;
     private int destinationID;
     private int duration;
@@ -21,16 +20,6 @@ public class RouteDOImp implements IRouteDO{
     @Override
     public void setRouteID(int routeID) {
         this.routeID = routeID;
-    }
-
-    @Override
-    public String getCode() {
-        return code;
-    }
-
-    @Override
-    public void setCode(String code) {
-        this.code = code;
     }
     
     @Override
@@ -65,6 +54,8 @@ public class RouteDOImp implements IRouteDO{
 
     @Override
     public String toString() {
-        return "RouteDOImp{" + "routeID=" + routeID + ", code=" + code + ", departureID=" + departureID + ", destinationID=" + destinationID + ", duration=" + duration + '}';
+        return "RouteDOImp{" + "routeID=" + routeID + ", departureID=" + departureID + ", destinationID=" + destinationID + ", duration=" + duration + '}';
     }
+
+    
 }

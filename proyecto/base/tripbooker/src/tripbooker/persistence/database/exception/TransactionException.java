@@ -20,7 +20,7 @@ public class TransactionException extends Exception{
      * @param error
      */
     public TransactionException(String error) {
-            this.message = error;
+        this.message = error;
     }
 
     /**
@@ -28,7 +28,8 @@ public class TransactionException extends Exception{
      * @param ex
      */
     public TransactionException(Exception ex) {
-            this.setStackTrace(ex.getStackTrace());
+        this.message = ex.getMessage();
+        this.setStackTrace(ex.getStackTrace());
     }
 
     /**
@@ -43,7 +44,7 @@ public class TransactionException extends Exception{
 
     @Override
     public String getMessage() {
-            return message;
+        return message;
     }
 
     /**
@@ -51,6 +52,6 @@ public class TransactionException extends Exception{
      * @param message
      */
     public void setMessage(String message) {
-            this.message = message;
+        this.message = message;
     }
 }

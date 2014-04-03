@@ -7,6 +7,7 @@ import tripbooker.dto.domain.country.ICountryDO;
 import tripbooker.dto.mapper.DTOMapper;
 import tripbooker.integration.factory.DAOFactory;
 import tripbooker.persistence.database.exception.TransactionException;
+import tripbooker.persistence.database.manager.TransactionManager;
 
 /**
  *
@@ -32,11 +33,23 @@ public class CountryServiceImp implements ICountryService{
     @Override
     public boolean persistCountry(ICountryBean countryBean) {
         boolean result = false;
-        ICountryDO countryDO = DTOMapper.getInstance().getCountryDO(countryBean);
         try {
+            TransactionManager.getInstance().begin();
+            ICountryDO countryDO = DTOMapper.getInstance().getCountryDO(countryBean);
             result = DAOFactory.getInstance().getCountryDAO().persistCountry(countryDO);
+            TransactionManager.getInstance().commit();
         } catch (TransactionException ex) {
-            //TODO
+            try {
+                TransactionManager.getInstance().rollback();
+            } catch (TransactionException ex1) {
+                //TODO - Rollback error
+            }
+        }finally{
+            try {
+                TransactionManager.getInstance().close();
+            } catch (TransactionException ex) {
+                //TODO - close error
+            }
         }
         return result;
     }
@@ -45,12 +58,24 @@ public class CountryServiceImp implements ICountryService{
     public boolean removeCountry(ICountryBean countryBean) {
         boolean result = false;
         try {
+            TransactionManager.getInstance().begin();
             ICountryDO countryDO = DAOFactory.getInstance().getCountryDAO().getCountryByCode(countryBean.getCode());
             if(countryDO != null){
                 result = DAOFactory.getInstance().getCountryDAO().removeCountry(countryDO.getCountryID());
+                TransactionManager.getInstance().commit();
             }
         } catch (TransactionException ex) {
-            //TODO
+            try {
+                TransactionManager.getInstance().rollback();
+            } catch (TransactionException ex1) {
+                //TODO - Rollback error
+            }
+        }finally{
+            try {
+                TransactionManager.getInstance().close();
+            } catch (TransactionException ex) {
+                //TODO - Close error
+            }
         }
         return result;
     }

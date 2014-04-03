@@ -16,7 +16,4 @@ public interface IAirportBean extends Serializable{
 
     String getCityCode();
     void setCityCode(String cityCode);
-
-    String getCityName();
-    void setCityName(String cityName);
 }

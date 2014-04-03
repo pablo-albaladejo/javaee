@@ -8,6 +8,7 @@ import tripbooker.dto.domain.city.ICityDO;
 import tripbooker.dto.mapper.DTOMapper;
 import tripbooker.integration.factory.DAOFactory;
 import tripbooker.persistence.database.exception.TransactionException;
+import tripbooker.persistence.database.manager.TransactionManager;
 
 /**
  *
@@ -52,16 +53,25 @@ public class AirportServiceImp implements IAirportService{
     public boolean persistAirport(IAirportBean airportBean) {
         boolean result = false;
         try {
-            //Get the City Code
-            ICityDO cityDO = DAOFactory.getInstance().getCityDAO().getCityByCode(airportBean.getCityCode());
+            TransactionManager.getInstance().begin();
             
-            //Map from Bean to DO object
+            ICityDO cityDO = DAOFactory.getInstance().getCityDAO().getCityByCode(airportBean.getCityCode());
             IAirportDO airportDO = DTOMapper.getInstance().getAirportDO(airportBean,cityDO);
             
-            //Presist invoke
             result = DAOFactory.getInstance().getAirportDAO().persistAirport(airportDO);
+            TransactionManager.getInstance().commit();
         } catch (TransactionException ex) {
-            //TODO
+            try {
+                TransactionManager.getInstance().rollback();
+            } catch (TransactionException ex1) {
+                //TODO - Rollback
+            }
+        }finally{
+            try {
+                TransactionManager.getInstance().close();
+            } catch (TransactionException ex) {
+                //TODO - Close error
+            }
         }
         return result;
     }
