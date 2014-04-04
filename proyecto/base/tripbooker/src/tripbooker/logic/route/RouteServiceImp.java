@@ -2,6 +2,8 @@ package tripbooker.logic.route;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import tripbooker.dto.bean.route.IRouteBean;
 import tripbooker.dto.domain.airport.IAirportDO;
 import tripbooker.dto.domain.route.IRouteDO;
@@ -9,6 +11,7 @@ import tripbooker.dto.factory.DTOFactory;
 import tripbooker.dto.mapper.DTOMapper;
 import tripbooker.integration.factory.DAOFactory;
 import tripbooker.persistence.database.exception.TransactionException;
+import tripbooker.persistence.database.manager.TransactionManager;
 
 /**
  *
@@ -91,15 +94,26 @@ public class RouteServiceImp implements IRouteService{
     public boolean removeRoute(IRouteBean routeBean) {
         boolean result = false;
         try{
-            
+            TransactionManager.getInstance().begin();
             IAirportDO departureDO = DAOFactory.getInstance().getAirportDAO().getAirportByCode(routeBean.getDepartureCode());
             IAirportDO destinationDO = DAOFactory.getInstance().getAirportDAO().getAirportByCode(routeBean.getDestinationCode());
             IRouteDO routeDO = DAOFactory.getInstance().getRouteDAO().getRoute(departureDO.getAirportID(),destinationDO.getAirportID());
             if(routeDO != null){
                 result = DAOFactory.getInstance().getRouteDAO().removeRoute(routeDO.getRouteID());
+                TransactionManager.getInstance().commit();
             }
         }catch(TransactionException ex){
-            //TODO
+            try {
+                TransactionManager.getInstance().rollback();
+            } catch (TransactionException ex1) {
+                //TODO - Rollback error
+            }
+        }finally{
+            try {
+                TransactionManager.getInstance().close();
+            } catch (TransactionException ex) {
+                //TODO - close error
+            }
         }
         return result;
     }
@@ -108,14 +122,26 @@ public class RouteServiceImp implements IRouteService{
     public boolean persistRoute(IRouteBean routeBean) {
         boolean result = false;
         try{
+            TransactionManager.getInstance().begin();
             IAirportDO departureDO = DAOFactory.getInstance().getAirportDAO().getAirportByCode(routeBean.getDepartureCode());
             IAirportDO destinationDO = DAOFactory.getInstance().getAirportDAO().getAirportByCode(routeBean.getDestinationCode());
             if(departureDO != null && destinationDO != null){
                 IRouteDO routeDO = DTOMapper.getInstance().getRouteDO(routeBean,departureDO,destinationDO);
                 result = DAOFactory.getInstance().getRouteDAO().persistRoute(routeDO);
+                TransactionManager.getInstance().commit();
             }
         }catch(TransactionException ex){
-            //TODO
+            try {
+                TransactionManager.getInstance().rollback();
+            } catch (TransactionException ex1) {
+                //TODO - Rollback error
+            }
+        }finally{
+            try {
+                TransactionManager.getInstance().close();
+            } catch (TransactionException ex) {
+                //TODO Close error
+            }
         }
         return result;
     }

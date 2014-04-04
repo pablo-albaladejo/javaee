@@ -7,6 +7,7 @@ import tripbooker.dto.domain.aircraft.IAircraftDO;
 import tripbooker.dto.mapper.DTOMapper;
 import tripbooker.integration.factory.DAOFactory;
 import tripbooker.persistence.database.exception.TransactionException;
+import tripbooker.persistence.database.manager.TransactionManager;
 
 /**
  *
@@ -35,9 +36,21 @@ public class AircraftServiceImp implements IAircraftService{
         boolean result = false;
         IAircraftDO aircraftDO = DTOMapper.getInstance().getAircraftDO(aircraftBean);
         try {
+            TransactionManager.getInstance().begin();
             result = DAOFactory.getInstance().getAircraftDAO().persistAircraft(aircraftDO);
+            TransactionManager.getInstance().commit();
         } catch (TransactionException ex) {
-            //TODO
+            try {
+                TransactionManager.getInstance().rollback();
+            } catch (TransactionException ex1) {
+                //TODO - Rollback error
+            }
+        }finally{
+            try {        
+                TransactionManager.getInstance().close();
+            } catch (TransactionException ex) {
+                //TODO - Close error
+            }
         }
         return result;
     }
@@ -46,12 +59,24 @@ public class AircraftServiceImp implements IAircraftService{
     public boolean removeAircraft(IAircraftBean aircraftBean) {
         boolean result = false;
         try {
+            TransactionManager.getInstance().begin();
             IAircraftDO aircraftDO = DAOFactory.getInstance().getAircraftDAO().getAircraftByModel(aircraftBean.getModel());
             if(aircraftDO != null){
                 result = DAOFactory.getInstance().getAircraftDAO().removeAircraft(aircraftDO.getAirfarctID());
+                TransactionManager.getInstance().commit();
             }
         } catch (TransactionException ex) {
-            //TODO
+            try {
+                TransactionManager.getInstance().rollback();
+            } catch (TransactionException ex1) {
+                //TODO - Rollback error
+            }
+        }finally{
+            try {
+                TransactionManager.getInstance().close();
+            } catch (TransactionException ex) {
+                //TODO - Close error
+            }
         }
         return result;        
     }

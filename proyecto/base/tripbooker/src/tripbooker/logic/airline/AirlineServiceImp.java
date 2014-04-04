@@ -2,12 +2,15 @@ package tripbooker.logic.airline;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import tripbooker.dto.bean.airline.IAirlineBean;
 import tripbooker.dto.domain.airline.IAirlineDO;
 import tripbooker.dto.domain.country.ICountryDO;
 import tripbooker.dto.mapper.DTOMapper;
 import tripbooker.integration.factory.DAOFactory;
 import tripbooker.persistence.database.exception.TransactionException;
+import tripbooker.persistence.database.manager.TransactionManager;
 
 /**
  *
@@ -35,11 +38,25 @@ public class AirlineServiceImp implements IAirlineService{
     public boolean persistAirline(IAirlineBean airlineBean) {
         boolean result = false;
         try {
+            TransactionManager.getInstance().begin();
             ICountryDO countryDO = DAOFactory.getInstance().getCountryDAO().getCountryByCode(airlineBean.getCountryCode());
-            IAirlineDO airlineDO = DTOMapper.getInstance().getAirlineDO(airlineBean,countryDO);
-            result = DAOFactory.getInstance().getAirlineDAO().persistAirline(airlineDO);
+            if(countryDO != null){
+                IAirlineDO airlineDO = DTOMapper.getInstance().getAirlineDO(airlineBean,countryDO);
+                result = DAOFactory.getInstance().getAirlineDAO().persistAirline(airlineDO);
+                TransactionManager.getInstance().commit();
+            }
         } catch (TransactionException ex) {
-            //TODO
+            try {
+                TransactionManager.getInstance().rollback();
+            } catch (TransactionException ex1) {
+                //TODO - Rollback error
+            }
+        }finally{
+            try {
+                TransactionManager.getInstance().close();
+            } catch (TransactionException ex) {
+                //TODO - Close error
+            }
         }
         return result;
     }
@@ -48,12 +65,24 @@ public class AirlineServiceImp implements IAirlineService{
     public boolean removeAirline(IAirlineBean airlineBean) {
         boolean result = false;
         try {
+            TransactionManager.getInstance().begin();
             IAirlineDO airlineDO = DAOFactory.getInstance().getAirlineDAO().getAirlineByCode(airlineBean.getCode());
             if(airlineDO != null){
                 result = DAOFactory.getInstance().getAirlineDAO().removeAirline(airlineDO.getAirlineID());
+                TransactionManager.getInstance().commit();
             }
         } catch (TransactionException ex) {
-            //TODO
+            try {
+                TransactionManager.getInstance().rollback();
+            } catch (TransactionException ex1) {
+                //TODO - Rollback error
+            }
+        }finally{
+            try {
+                TransactionManager.getInstance().close();
+            } catch (TransactionException ex) {
+                //TODO - Close error
+            }
         }
         return result;
     }

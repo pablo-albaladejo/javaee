@@ -65,17 +65,9 @@ public class AircraftDOImp implements IAircraftDO{
         this.seats = seats;
     }
 
-
     @Override
     public String toString() {
-                return "("
-                + "airfarctID " + airfarctID
-                + ", manufacter: " + manufacter
-                + ", model: " + model
-                + ", date: " + date 
-                + ", seats: " + seats
-                +")";
+        return "AircraftDOImp{" + "airfarctID=" + airfarctID + ", manufacter=" + manufacter + ", model=" + model + ", date=" + date + ", seats=" + seats + '}';
     }
-
 }
 

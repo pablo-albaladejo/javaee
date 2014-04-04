@@ -3,8 +3,6 @@ package tripbooker.integration.flight;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 import tripbooker.dto.domain.flight.IFlightDO;
 import tripbooker.dto.factory.DTOFactory;
@@ -17,27 +15,7 @@ import tripbooker.persistence.database.exception.TransactionException;
  */
 
 public class FlightDAOImp extends DAO implements IFlightDAO{
-
-    private java.util.Date toJavaDate(java.sql.Date sqlDate, java.sql.Time sqlTime){
-        Calendar calendar = new GregorianCalendar();
-        
-        calendar.set(Calendar.YEAR, sqlDate.getYear() + 1900);
-        calendar.set(Calendar.MONTH, sqlDate.getMonth());
-        calendar.set(Calendar.DAY_OF_MONTH, sqlDate.getDate());
-        calendar.set(Calendar.HOUR_OF_DAY, sqlTime.getHours());
-        calendar.set(Calendar.MINUTE, sqlTime.getMinutes());
-        calendar.set(Calendar.SECOND, sqlTime.getSeconds());
-               
-        return calendar.getTime();        
-    }
-
-        private String toSqlDate(java.util.Date javaDate){
-            String sqlDate = (javaDate.getYear()+1900)+"-"+javaDate.getMonth()+"-"+javaDate.getDate()+" "
-                         +javaDate.getHours()+":"+javaDate.getMinutes()+":"+javaDate.getSeconds();
-        return sqlDate;        
-    }
-    
-    
+      
     private void copyResultFlightData(ResultSet result, IFlightDO flight) throws SQLException {
         flight.setFlightID(result.getInt(1));
         flight.setCode(result.getString(2));
