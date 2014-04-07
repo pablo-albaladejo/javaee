@@ -4,8 +4,10 @@ import java.util.Date;
 import tripbooker.dto.bean.aircraft.IAircraftBean;
 import tripbooker.dto.bean.airline.IAirlineBean;
 import tripbooker.dto.bean.airport.IAirportBean;
+import tripbooker.dto.bean.booking.IBookingBean;
 import tripbooker.dto.bean.city.ICityBean;
 import tripbooker.dto.bean.country.ICountryBean;
+import tripbooker.dto.bean.factory.BeanFactory;
 import tripbooker.dto.bean.flight.IFlightBean;
 import tripbooker.dto.bean.route.IRouteBean;
 import tripbooker.dto.domain.factory.DOFactory;
@@ -168,6 +170,11 @@ public class Main {
 //        System.out.println(ServiceFactory.getInstance().getBusinessFacade().persistFlight(flightBean));
 //        
 //        System.out.println(ServiceFactory.getInstance().getBusinessFacade().getAllFlights());
+        
+        IBookingBean bookingBean = BeanFactory.getInstance().getBookingBean();
+        
+        ServiceFactory.getInstance().getBusinessFacade().persistBooking(bookingBean);
+        System.out.println(ServiceFactory.getInstance().getBusinessFacade().getAllBookings());
     }
     
 }

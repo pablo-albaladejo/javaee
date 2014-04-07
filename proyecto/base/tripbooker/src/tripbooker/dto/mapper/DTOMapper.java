@@ -16,6 +16,7 @@ import tripbooker.dto.domain.city.ICityDO;
 import tripbooker.dto.domain.country.ICountryDO;
 import tripbooker.dto.domain.flight.IFlightDO;
 import tripbooker.dto.domain.route.IRouteDO;
+import tripbooker.dto.domain.user.IUserDO;
 
 /**
  *
@@ -66,7 +67,7 @@ public abstract class DTOMapper {
     public abstract IRouteDO getRouteDO(IRouteBean routeBean, IAirportDO departure, IAirportDO destination);
     
     //Booking
-    public abstract IBookingBean getBookingBean(IBookingDO bookingDO);
-    public abstract IBookingDO getBookingDO(IBookingBean bookingBean);
+    public abstract IBookingBean getBookingBean(IBookingDO bookingDO, IFlightDO flightDO, IUserDO userDO);
+    public abstract IBookingDO getBookingDO(IBookingBean bookingBean, IFlightDO flightDO, IUserDO userDO);
 }
 

@@ -18,6 +18,7 @@ import tripbooker.dto.domain.country.ICountryDO;
 import tripbooker.dto.domain.flight.IFlightDO;
 import tripbooker.dto.domain.route.IRouteDO;
 import tripbooker.dto.domain.factory.DOFactory;
+import tripbooker.dto.domain.user.IUserDO;
 
 /**
  *
@@ -209,19 +210,26 @@ public class DTOMapperImp extends DTOMapper{
     
     //Bookings
     @Override
-    public IBookingBean getBookingBean(IBookingDO bookingDO) {
+    public IBookingBean getBookingBean(IBookingDO bookingDO, IFlightDO flightDO, IUserDO userDO) {
         IBookingBean bookingBean = BeanFactory.getInstance().getBookingBean();
         
-        //TODO
+        bookingBean.setBookingCode(bookingDO.getCode());
+        bookingBean.setBusiness(bookingDO.isBusiness());
+        bookingBean.setFlightCode(flightDO.getCode());
+        bookingBean.setFlightDate(flightDO.getDate());
+        bookingBean.setUserCode(userDO.getCode());
         
         return bookingBean;
     }
 
     @Override
-    public IBookingDO getBookingDO(IBookingBean bookingBean) {
+    public IBookingDO getBookingDO(IBookingBean bookingBean, IFlightDO flightDO, IUserDO userDO) {
         IBookingDO bookingDO = DOFactory.getInstance().getBookingDO();
         
-        //TODO
+        bookingDO.setBusiness(bookingBean.isBusiness());
+        bookingDO.setCode(bookingBean.getBookingCode());
+        bookingDO.setFlightID(flightDO.getFlightID());
+        bookingDO.setUserID(userDO.getUserID());
         
         return bookingDO;               
     }
