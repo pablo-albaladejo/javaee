@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import tripbooker.dto.domain.route.IRouteDO;
-import tripbooker.dto.factory.DTOFactory;
+import tripbooker.dto.domain.factory.DOFactory;
 import tripbooker.integration.factory.DAO;
 import tripbooker.persistence.database.exception.TransactionException;
 
@@ -30,7 +30,7 @@ public class RouteDAOImp extends DAO implements IRouteDAO {
         try {
             this.resultSet = this.statement.executeQuery(query);
             while (this.resultSet.next()) {
-                IRouteDO route = DTOFactory.getInstance().getRouteDO();
+                IRouteDO route = DOFactory.getInstance().getRouteDO();
                 copyResultRouteData(resultSet, route);
                 list.add(route);
             }
@@ -48,7 +48,7 @@ public class RouteDAOImp extends DAO implements IRouteDAO {
         try {
             this.resultSet = this.statement.executeQuery(query);
             if (resultSet.next()) {
-                route = DTOFactory.getInstance().getRouteDO();
+                route = DOFactory.getInstance().getRouteDO();
                 copyResultRouteData(resultSet, route);
             } else {
                 route = null;
@@ -67,7 +67,7 @@ public class RouteDAOImp extends DAO implements IRouteDAO {
         try {
             this.resultSet = this.statement.executeQuery(query);
             while (this.resultSet.next()) {
-                IRouteDO route = DTOFactory.getInstance().getRouteDO();
+                IRouteDO route = DOFactory.getInstance().getRouteDO();
                 copyResultRouteData(resultSet, route);
                 list.add(route);
             }
@@ -85,7 +85,7 @@ public class RouteDAOImp extends DAO implements IRouteDAO {
         try {
             this.resultSet = this.statement.executeQuery(query);
             while (this.resultSet.next()) {
-                IRouteDO route = DTOFactory.getInstance().getRouteDO();
+                IRouteDO route = DOFactory.getInstance().getRouteDO();
                 copyResultRouteData(resultSet, route);
                 list.add(route);
             }
@@ -150,7 +150,7 @@ public class RouteDAOImp extends DAO implements IRouteDAO {
         try {
             this.resultSet = this.statement.executeQuery(query);
             if (resultSet.next()) {
-                route = DTOFactory.getInstance().getRouteDO();
+                route = DOFactory.getInstance().getRouteDO();
                 copyResultRouteData(resultSet, route);
             } else {
                 route = null;

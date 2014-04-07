@@ -4,6 +4,7 @@ import java.util.List;
 import tripbooker.dto.bean.aircraft.IAircraftBean;
 import tripbooker.dto.bean.airline.IAirlineBean;
 import tripbooker.dto.bean.airport.IAirportBean;
+import tripbooker.dto.bean.booking.IBookingBean;
 import tripbooker.dto.bean.city.ICityBean;
 import tripbooker.dto.bean.country.ICountryBean;
 import tripbooker.dto.bean.flight.IFlightBean;
@@ -101,6 +102,7 @@ public class BusinessFacade implements IBusinessFacade{
         return ServiceFactory.getInstance().getCountryService().removeCountry(countryBean);
     }
     
+    //Flight
     @Override
     public List<IFlightBean> getAllFlights() {
          return ServiceFactory.getInstance().getFlightService().getAllFlights();
@@ -126,6 +128,16 @@ public class BusinessFacade implements IBusinessFacade{
         return ServiceFactory.getInstance().getFlightService().getAllFlightsByRoute(depatureCode,destinationCode);
     }
 
+    @Override
+    public boolean persistFlight(IFlightBean flightBean) {
+        return ServiceFactory.getInstance().getFlightService().persistFlight(flightBean);
+    }
+
+    @Override
+    public boolean removeFlight(IFlightBean flightBean) {
+        return ServiceFactory.getInstance().getFlightService().removeFlight(flightBean);
+    }
+    
     //Route    
     @Override
     public List<IRouteBean> getAllRoutes() {
@@ -155,5 +167,27 @@ public class BusinessFacade implements IBusinessFacade{
     @Override
     public boolean persistRoute(IRouteBean routeBean) {
         return ServiceFactory.getInstance().getRouteService().persistRoute(routeBean);
+    }
+
+    
+    //Booking
+    @Override
+    public List<IBookingBean> getAllBookings() {
+        return ServiceFactory.getInstance().getBookingService().getAllBookings();
+    }
+
+    @Override
+    public IBookingBean getBookingByCode(String code) {
+        return ServiceFactory.getInstance().getBookingService().getBookingByCode(code);
+    }
+
+    @Override
+    public boolean persistBooking(IBookingBean bookingBean) {
+        return ServiceFactory.getInstance().getBookingService().persistBooking(bookingBean);
+    }
+
+    @Override
+    public boolean removeBooking(IBookingBean bookingBean) {
+        return ServiceFactory.getInstance().getBookingService().removeBooking(bookingBean);
     }
 }

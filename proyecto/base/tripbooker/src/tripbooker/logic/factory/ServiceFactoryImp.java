@@ -6,6 +6,8 @@ import tripbooker.logic.airline.AirlineServiceImp;
 import tripbooker.logic.airline.IAirlineService;
 import tripbooker.logic.airport.AirportServiceImp;
 import tripbooker.logic.airport.IAirportService;
+import tripbooker.logic.booking.BookingServiceImp;
+import tripbooker.logic.booking.IBookingService;
 import tripbooker.logic.city.CityServiceImp;
 import tripbooker.logic.city.ICityService;
 import tripbooker.logic.country.CountryServiceImp;
@@ -81,11 +83,17 @@ public class ServiceFactoryImp extends ServiceFactory{
     public IBusinessFacade getBusinessFacade() {
         return new BusinessFacade();
     }
-
     
     //Route
     @Override
     public IRouteService getRouteService() {
         return new RouteServiceImp();
     }
+    
+    //Booking
+    @Override
+    public IBookingService getBookingService() {
+        return new BookingServiceImp();
+    }
+    
 }

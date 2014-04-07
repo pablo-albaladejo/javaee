@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import tripbooker.dto.domain.country.ICountryDO;
-import tripbooker.dto.factory.DTOFactory;
+import tripbooker.dto.domain.factory.DOFactory;
 import tripbooker.integration.factory.DAO;
 import tripbooker.persistence.database.exception.TransactionException;
 
@@ -29,7 +29,7 @@ public class CountryDAOImp extends DAO implements ICountryDAO {
         try {
             this.resultSet = this.statement.executeQuery(query);
             while (this.resultSet.next()) {
-                ICountryDO aircraft = DTOFactory.getInstance().getCountryDO();
+                ICountryDO aircraft = DOFactory.getInstance().getCountryDO();
                 copyResultCountryData(resultSet, aircraft);
                 list.add(aircraft);
             }
@@ -48,7 +48,7 @@ public class CountryDAOImp extends DAO implements ICountryDAO {
         try {
             this.resultSet = this.statement.executeQuery(query);
             if (resultSet.next()) {
-                country = DTOFactory.getInstance().getCountryDO();
+                country = DOFactory.getInstance().getCountryDO();
                 copyResultCountryData(resultSet, country);
             } else {
                 country = null;
@@ -68,7 +68,7 @@ public class CountryDAOImp extends DAO implements ICountryDAO {
         try {
             this.resultSet = this.statement.executeQuery(query);
             if (resultSet.next()) {
-                country = DTOFactory.getInstance().getCountryDO();
+                country = DOFactory.getInstance().getCountryDO();
                 copyResultCountryData(resultSet, country);
             } else {
                 country = null;

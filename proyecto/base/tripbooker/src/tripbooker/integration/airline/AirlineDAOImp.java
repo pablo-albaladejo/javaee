@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import tripbooker.dto.domain.airline.IAirlineDO;
-import tripbooker.dto.factory.DTOFactory;
+import tripbooker.dto.domain.factory.DOFactory;
 import tripbooker.integration.factory.DAO;
 import tripbooker.persistence.database.exception.TransactionException;
 
@@ -31,7 +31,7 @@ public class AirlineDAOImp extends DAO implements IAirlineDAO {
         try {
             this.resultSet = this.statement.executeQuery(query);
             while (this.resultSet.next()) {
-                IAirlineDO airline = DTOFactory.getInstance().getAirlineDO();
+                IAirlineDO airline = DOFactory.getInstance().getAirlineDO();
                 copyResultAirlineData(resultSet, airline);
                 list.add(airline);
             }
@@ -50,7 +50,7 @@ public class AirlineDAOImp extends DAO implements IAirlineDAO {
         try {
             this.resultSet = this.statement.executeQuery(query);
             if (resultSet.next()) {
-                airline = DTOFactory.getInstance().getAirlineDO();
+                airline = DOFactory.getInstance().getAirlineDO();
                 copyResultAirlineData(resultSet, airline);
             } else {
                 airline = null;
@@ -69,7 +69,7 @@ public class AirlineDAOImp extends DAO implements IAirlineDAO {
         try {
             this.resultSet = this.statement.executeQuery(query);
             if (resultSet.next()) {
-                airline = DTOFactory.getInstance().getAirlineDO();
+                airline = DOFactory.getInstance().getAirlineDO();
                 copyResultAirlineData(resultSet, airline);
             } else {
                 airline = null;

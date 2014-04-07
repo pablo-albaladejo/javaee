@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import tripbooker.dto.domain.airport.IAirportDO;
-import tripbooker.dto.factory.DTOFactory;
+import tripbooker.dto.domain.factory.DOFactory;
 import tripbooker.integration.factory.DAO;
 import tripbooker.persistence.database.exception.TransactionException;
 
@@ -30,7 +30,7 @@ public class AirportDAOImp extends DAO implements IAirportDAO{
         try {
             this.resultSet = this.statement.executeQuery(query);
             while (this.resultSet.next()) {
-                IAirportDO airport = DTOFactory.getInstance().getAirportDO();
+                IAirportDO airport = DOFactory.getInstance().getAirportDO();
                 copyResultAirportData(resultSet, airport);
                 list.add(airport);
             }
@@ -47,7 +47,7 @@ public class AirportDAOImp extends DAO implements IAirportDAO{
         try {
             this.resultSet = this.statement.executeQuery(query);
             while (this.resultSet.next()) {
-                IAirportDO airport = DTOFactory.getInstance().getAirportDO();
+                IAirportDO airport = DOFactory.getInstance().getAirportDO();
                 copyResultAirportData(resultSet, airport);
                 list.add(airport);
             }
@@ -66,7 +66,7 @@ public class AirportDAOImp extends DAO implements IAirportDAO{
         try {
             this.resultSet = this.statement.executeQuery(query);
             if (resultSet.next()) {
-                airport = DTOFactory.getInstance().getAirportDO();
+                airport = DOFactory.getInstance().getAirportDO();
                 copyResultAirportData(resultSet, airport);
             } else {
                 airport = null;
@@ -86,7 +86,7 @@ public class AirportDAOImp extends DAO implements IAirportDAO{
         try {
             this.resultSet = this.statement.executeQuery(query);
             if (resultSet.next()) {
-                airport = DTOFactory.getInstance().getAirportDO();
+                airport = DOFactory.getInstance().getAirportDO();
                 copyResultAirportData(resultSet, airport);
             } else {
                 airport = null;

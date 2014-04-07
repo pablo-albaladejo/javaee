@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import tripbooker.dto.domain.city.ICityDO;
-import tripbooker.dto.factory.DTOFactory;
+import tripbooker.dto.domain.factory.DOFactory;
 import tripbooker.integration.factory.DAO;
 import tripbooker.persistence.database.exception.TransactionException;
 
@@ -30,7 +30,7 @@ public class CityDAOImp extends DAO implements ICityDAO{
         try {
             this.resultSet = this.statement.executeQuery(query);
             while (this.resultSet.next()) {
-                ICityDO city = DTOFactory.getInstance().getCityDO();
+                ICityDO city = DOFactory.getInstance().getCityDO();
                 copyResultCityData(resultSet, city);
                 list.add(city);
             }
@@ -49,7 +49,7 @@ public class CityDAOImp extends DAO implements ICityDAO{
         try {
             this.resultSet = this.statement.executeQuery(query);
             if (resultSet.next()) {
-                city = DTOFactory.getInstance().getCityDO();
+                city = DOFactory.getInstance().getCityDO();
                 copyResultCityData(resultSet, city);
             } else {
                 city = null;
@@ -68,7 +68,7 @@ public class CityDAOImp extends DAO implements ICityDAO{
         try {
             this.resultSet = this.statement.executeQuery(query);
             if (resultSet.next()) {
-                city = DTOFactory.getInstance().getCityDO();
+                city = DOFactory.getInstance().getCityDO();
                 copyResultCityData(resultSet, city);
             }
         } catch (SQLException e) {

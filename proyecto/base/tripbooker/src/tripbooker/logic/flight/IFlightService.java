@@ -14,4 +14,6 @@ public interface IFlightService {
     List<IFlightBean> getAllFlightsByDeparture(String airportCode);
     List<IFlightBean> getAllFlightsByDestination(String airportCode);
     List<IFlightBean> getAllFlightsByRoute(String depatureCode, String destinationCode);
+    boolean persistFlight(IFlightBean flightBean);
+    boolean removeFlight(IFlightBean flightBean);
 }

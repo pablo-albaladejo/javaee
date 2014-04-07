@@ -6,15 +6,16 @@ import tripbooker.dto.bean.airline.IAirlineBean;
 import tripbooker.dto.bean.airport.IAirportBean;
 import tripbooker.dto.bean.city.ICityBean;
 import tripbooker.dto.bean.country.ICountryBean;
+import tripbooker.dto.bean.flight.IFlightBean;
 import tripbooker.dto.bean.route.IRouteBean;
-import tripbooker.dto.factory.DTOFactory;
+import tripbooker.dto.domain.factory.DOFactory;
 import tripbooker.logic.factory.ServiceFactory;
 
 public class Main {
 
     public static void main(String[] args) {           
 //        //Country
-//        ICountryBean countryBean = DTOFactory.getInstance().getCountryBean();
+//        ICountryBean countryBean = DOFactory.getInstance().getCountryBean();
 //        
 //        countryBean.setCode("ES");
 //        countryBean.setName("Spain");
@@ -27,7 +28,7 @@ public class Main {
 //        System.out.println(ServiceFactory.getInstance().getBusinessFacade().getAllCountries());
 //        
 //        //City
-//        ICityBean cityBean = DTOFactory.getInstance().getCityBean();
+//        ICityBean cityBean = DOFactory.getInstance().getCityBean();
 //        
 //        cityBean.setCode("MAD");
 //        cityBean.setName("Madrid");
@@ -57,7 +58,7 @@ public class Main {
 //        System.out.println( ServiceFactory.getInstance().getBusinessFacade().getAllCities());
         
 //        //Airport
-//        IAirportBean airportBean = DTOFactory.getInstance().getAirportBean();
+//        IAirportBean airportBean = DOFactory.getInstance().getAirportBean();
 //        
 //        airportBean.setCityCode("MAD");
 //        airportBean.setCode("MAD");
@@ -97,7 +98,7 @@ public class Main {
 //        System.out.println(ServiceFactory.getInstance().getBusinessFacade().getAllAirports());
 //        
 //        //Route
-//        IRouteBean routeBean = DTOFactory.getInstance().getRouteBean();
+//        IRouteBean routeBean = DOFactory.getInstance().getRouteBean();
 //        
 //        routeBean.setDepartureCode("MAD");
 //        routeBean.setDestinationCode("MCV");
@@ -121,7 +122,7 @@ public class Main {
 //        
 //        System.out.println(ServiceFactory.getInstance().getBusinessFacade().getAllRoutes());
 //        //Aircraft
-//        IAircraftBean aircraftBean = DTOFactory.getInstance().getAircraftBean();
+//        IAircraftBean aircraftBean = DOFactory.getInstance().getAircraftBean();
 //        
 //        aircraftBean.setDate(new Date());
 //        aircraftBean.setManufacter("Airbus");
@@ -138,7 +139,7 @@ public class Main {
 //        System.out.println(ServiceFactory.getInstance().getBusinessFacade().getAllAircrafts());
 //        
 //        //Airline
-//        IAirlineBean airlineBean = DTOFactory.getInstance().getAirlineBean();
+//        IAirlineBean airlineBean = DOFactory.getInstance().getAirlineBean();
 //        
 //        airlineBean.setCode("IB");
 //        airlineBean.setName("Iberia");
@@ -151,6 +152,22 @@ public class Main {
 //        ServiceFactory.getInstance().getBusinessFacade().persistAirline(airlineBean);
 //        
 //        System.out.println(ServiceFactory.getInstance().getBusinessFacade().getAllAirlines());
+//        IFlightBean flightBean = DOFactory.getInstance().getFlightBean();
+//        
+//        flightBean.setAircraftModel("A400");
+//        flightBean.setAirline("IB");
+//        flightBean.setBusinessFare(100.0f);
+//        flightBean.setBusinessSeats(50);
+//        flightBean.setCode("AAAA");
+//        flightBean.setDate(new Date());
+//        flightBean.setDepartureCode("MAD");
+//        flightBean.setDestinationCode("JFK");
+//        flightBean.setEconomyFare(20.0f);
+//        flightBean.setOfferFare(10.0f);
+//        
+//        System.out.println(ServiceFactory.getInstance().getBusinessFacade().persistFlight(flightBean));
+//        
+//        System.out.println(ServiceFactory.getInstance().getBusinessFacade().getAllFlights());
     }
     
 }

@@ -3,6 +3,7 @@ package tripbooker.logic.factory;
 import tripbooker.logic.aircraft.IAircraftService;
 import tripbooker.logic.airline.IAirlineService;
 import tripbooker.logic.airport.IAirportService;
+import tripbooker.logic.booking.IBookingService;
 import tripbooker.logic.city.ICityService;
 import tripbooker.logic.country.ICountryService;
 import tripbooker.logic.facade.airline.IAirlineBusinessFacade;
@@ -39,5 +40,6 @@ public abstract class ServiceFactory {
     public abstract ICountryService getCountryService();
     public abstract ICityService getCityService();
     public abstract IRouteService getRouteService();
+    public abstract IBookingService getBookingService();
     
 }

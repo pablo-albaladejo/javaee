@@ -6,6 +6,8 @@ import tripbooker.integration.airline.AirlineDAOImp;
 import tripbooker.integration.airline.IAirlineDAO;
 import tripbooker.integration.airport.AirportDAOImp;
 import tripbooker.integration.airport.IAirportDAO;
+import tripbooker.integration.booking.BookingDAOImp;
+import tripbooker.integration.booking.IBookingDAO;
 import tripbooker.integration.city.CityDAOImp;
 import tripbooker.integration.city.ICityDAO;
 import tripbooker.integration.country.CountryDAOImp;
@@ -55,5 +57,10 @@ public class DAOFactoryImp extends DAOFactory{
     @Override
     public IFlightDAO getFlightDAO() {
         return new FlightDAOImp();
+    }
+
+    @Override
+    public IBookingDAO getBookingDAO() {
+        return new BookingDAOImp();
     }
 }

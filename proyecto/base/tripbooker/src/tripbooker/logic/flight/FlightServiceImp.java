@@ -8,10 +8,10 @@ import tripbooker.dto.domain.airline.IAirlineDO;
 import tripbooker.dto.domain.airport.IAirportDO;
 import tripbooker.dto.domain.flight.IFlightDO;
 import tripbooker.dto.domain.route.IRouteDO;
-import tripbooker.dto.factory.DTOFactory;
 import tripbooker.dto.mapper.DTOMapper;
 import tripbooker.integration.factory.DAOFactory;
 import tripbooker.persistence.database.exception.TransactionException;
+import tripbooker.persistence.database.manager.TransactionManager;
 
 /**
  *
@@ -42,16 +42,7 @@ public class FlightServiceImp implements IFlightService{
                     IAircraftDO aircraftDO = DAOFactory.getInstance().getAircraftDAO().getAircraftByID(flightDO.getAircraftID());
 
                     //Convert the data
-                    IFlightBean flightBean = DTOFactory.getInstance().getFlightBean();
-                    flightBean.setAirline(airlineDO.getName());
-                    flightBean.setCode(flightDO.getCode());
-                    flightBean.setDepartureName(departure.getName());
-                    flightBean.setDestinationName(destination.getName());
-                    flightBean.setDepartureCode(departure.getCode());
-                    flightBean.setDestinationCode(destination.getCode());
-                    flightBean.setDuration(routeDO.getDuration());
-                    flightBean.setDate(flightDO.getDate());
-                    flightBean.setSeats(aircraftDO.getSeats());
+                    IFlightBean flightBean = DTOMapper.getInstance().getFlightBean(flightDO, airlineDO, departure, destination, aircraftDO);
 
                     //Store the result
                     result.add(flightBean);
@@ -86,7 +77,7 @@ public class FlightServiceImp implements IFlightService{
                         IAircraftDO aircraftDO = DAOFactory.getInstance().getAircraftDAO().getAircraftByID(flightDO.getAircraftID());
 
                         //Convert the data
-                        IFlightBean flightBean = DTOMapper.getInstance().getFlightBean(flightDO, airlineDO, routeDO, departure, destination, aircraftDO);
+                        IFlightBean flightBean = DTOMapper.getInstance().getFlightBean(flightDO, airlineDO, departure, destination, aircraftDO);
                         
                         //Store the result
                         result.add(flightBean);
@@ -124,7 +115,7 @@ public class FlightServiceImp implements IFlightService{
                         //Get the Aircraft
                         IAircraftDO aircraftDO = DAOFactory.getInstance().getAircraftDAO().getAircraftByID(flightDO.getAircraftID());
 
-                        IFlightBean flightBean = DTOMapper.getInstance().getFlightBean(flightDO, airlineDO, routeDO, departure, destination, aircraftDO);
+                        IFlightBean flightBean = DTOMapper.getInstance().getFlightBean(flightDO, airlineDO, departure, destination, aircraftDO);
                         resultBean.add(flightBean);
                     }
                 }
@@ -160,7 +151,7 @@ public class FlightServiceImp implements IFlightService{
                         //Get the Aircraft
                         IAircraftDO aircraftDO = DAOFactory.getInstance().getAircraftDAO().getAircraftByID(flightDO.getAircraftID());
 
-                        IFlightBean flightBean = DTOMapper.getInstance().getFlightBean(flightDO, airlineDO, routeDO, departure, destination, aircraftDO);
+                        IFlightBean flightBean = DTOMapper.getInstance().getFlightBean(flightDO, airlineDO, departure, destination, aircraftDO);
                         resultBean.add(flightBean);
                     }
                 }
@@ -173,35 +164,68 @@ public class FlightServiceImp implements IFlightService{
 
     @Override
     public List<IFlightBean> getAllFlightsByRoute(String depatureCode, String destinationCode) {
-        /*List<IFlightBean> resultBean = new ArrayList<IFlightBean>();
+       List<IFlightBean> resultBean = new ArrayList<IFlightBean>();
+    
+       return resultBean;
+    }
+
+    @Override
+    public boolean persistFlight(IFlightBean flightBean) {
+        boolean result = false;
         try {
-            //Get Airports
-            IAirportDO departure = DAOFactory.getInstance().getAirportDAO().getAirportByCode(depatureCode);
-            IAirportDO destination = DAOFactory.getInstance().getAirportDAO().getAirportByCode(destinationCode);
-            
-            if(departure != null && destination != null){   
-                //Get all the routes from departure
-                List<IRouteDO> routesDO = DAOFactory.getInstance().getRouteDAO().getAllRoutesByRoute(departure.getAirportID(),destination.getAirportID());
-
-                for(IRouteDO routeDO : routesDO){
-                    //Get all flights for each route
-                    List<IFlightDO> flightsDO = DAOFactory.getInstance().getFlightDAO().getFlightsByRoute(routeDO.getRouteID());
-                    for(IFlightDO flightDO : flightsDO){
-                        //Get the Airline
-                        IAirlineDO airlineDO = DAOFactory.getInstance().getAirlineDAO().getAirlineByID(flightDO.getAirlineID());
-
-                        //Get the Aircraft
-                        IAircraftDO aircraftDO = DAOFactory.getInstance().getAircraftDAO().getAircraftByID(flightDO.getAircraftID());
-
-                        IFlightBean flightBean = DTOMapper.getInstance().getFlightBean(flightDO, airlineDO, routeDO, departure, destination, aircraftDO);
-                        resultBean.add(flightBean);
-                    }
+            TransactionManager.getInstance().begin();
+            IAirportDO departureDO = DAOFactory.getInstance().getAirportDAO().getAirportByCode(flightBean.getDepartureCode());
+            IAirportDO destinationDO = DAOFactory.getInstance().getAirportDAO().getAirportByCode(flightBean.getDestinationCode());
+            if(departureDO != null && destinationDO != null){
+                
+                IRouteDO routeDO = DAOFactory.getInstance().getRouteDAO().getRoute(departureDO.getAirportID(), destinationDO.getAirportID());
+                IAirlineDO airlineDO = DAOFactory.getInstance().getAirlineDAO().getAirlineByCode(flightBean.getAirline());
+                IAircraftDO aircraftDO =  DAOFactory.getInstance().getAircraftDAO().getAircraftByModel(flightBean.getAircraftModel());
+                if(routeDO != null && airlineDO != null && aircraftDO != null){
+                    IFlightDO flightDO = DTOMapper.getInstance().getFlightDO(flightBean, aircraftDO, airlineDO, routeDO);
+                    result = DAOFactory.getInstance().getFlightDAO().persistFlight(flightDO);
                 }
             }
+            TransactionManager.getInstance().commit();
         } catch (TransactionException ex) {
-            //TODO
+            try {
+                TransactionManager.getInstance().rollback();
+            } catch (TransactionException ex1) {
+                //TODO - Rollback error
+            }
+        }finally{
+            try {
+                TransactionManager.getInstance().close();
+            } catch (TransactionException ex) {
+                //TODO - Close error
+            }
         }
-        return resultBean; */
-        return null;
+        return result;
+    }
+
+    @Override
+    public boolean removeFlight(IFlightBean flightBean) {
+        boolean result = false;
+        try {
+            TransactionManager.getInstance().begin();
+            IFlightDO flightDO = DAOFactory.getInstance().getFlightDAO().getFlightByCodeDate(flightBean.getCode(),flightBean.getDate());
+            if(flightDO != null){
+                result = DAOFactory.getInstance().getFlightDAO().removeFlight(flightDO.getFlightID());
+            }
+            TransactionManager.getInstance().commit();
+        }catch (TransactionException ex) {
+            try {
+                TransactionManager.getInstance().rollback();
+            } catch (TransactionException ex1) {
+                //TODO - Rollbacke error
+            }
+        }finally{
+            try {
+                TransactionManager.getInstance().close();
+            } catch (TransactionException ex) {
+                //TODO - Close Error
+            }
+        }
+        return result;
     }
 }

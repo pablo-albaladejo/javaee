@@ -3,9 +3,10 @@ package tripbooker.integration.flight;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import tripbooker.dto.domain.flight.IFlightDO;
-import tripbooker.dto.factory.DTOFactory;
+import tripbooker.dto.domain.factory.DOFactory;
 import tripbooker.integration.factory.DAO;
 import tripbooker.persistence.database.exception.TransactionException;
 
@@ -36,7 +37,7 @@ public class FlightDAOImp extends DAO implements IFlightDAO{
         try {
             this.resultSet = this.statement.executeQuery(query);
             while (this.resultSet.next()) {
-                IFlightDO flight = DTOFactory.getInstance().getFlightDO();
+                IFlightDO flight = DOFactory.getInstance().getFlightDO();
                 copyResultFlightData(resultSet, flight);
                 list.add(flight);
             }
@@ -54,7 +55,7 @@ public class FlightDAOImp extends DAO implements IFlightDAO{
         try {
             this.resultSet = this.statement.executeQuery(query);
             if (resultSet.next()) {
-                flight = DTOFactory.getInstance().getFlightDO();
+                flight = DOFactory.getInstance().getFlightDO();
                 copyResultFlightData(resultSet, flight);
             } else {
                 flight = null;
@@ -66,13 +67,32 @@ public class FlightDAOImp extends DAO implements IFlightDAO{
     }
 
     @Override
+    public IFlightDO getFlightByCodeDate(String code, Date date)throws TransactionException {
+        IFlightDO flight = null;
+        String query = "SELECT * FROM flight"
+                + " WHERE code = '" + code + "' AND date ='"+this.toSqlDate(date)+"'";
+        try {
+            this.resultSet = this.statement.executeQuery(query);
+            if (resultSet.next()) {
+                flight = DOFactory.getInstance().getFlightDO();
+                copyResultFlightData(resultSet, flight);
+            } else {
+                flight = null;
+            }
+        } catch (SQLException e) {
+            throw new TransactionException(e);
+        }
+        return flight;
+    }
+    
+    @Override
     public List<IFlightDO> getFlightsByAirline(int airlineID) throws TransactionException {
         List<IFlightDO> list = new ArrayList<IFlightDO>();
         String query = "SELECT * FROM flight WHERE airlineID ='"+airlineID+"'";
         try {
             this.resultSet = this.statement.executeQuery(query);
             while (this.resultSet.next()) {
-                IFlightDO flight = DTOFactory.getInstance().getFlightDO();
+                IFlightDO flight = DOFactory.getInstance().getFlightDO();
                 copyResultFlightData(resultSet, flight);
                 list.add(flight);
             }
@@ -89,7 +109,7 @@ public class FlightDAOImp extends DAO implements IFlightDAO{
         try {
             this.resultSet = this.statement.executeQuery(query);
             while (this.resultSet.next()) {
-                IFlightDO flight = DTOFactory.getInstance().getFlightDO();
+                IFlightDO flight = DOFactory.getInstance().getFlightDO();
                 copyResultFlightData(resultSet, flight);
                 list.add(flight);
             }
@@ -116,7 +136,7 @@ public class FlightDAOImp extends DAO implements IFlightDAO{
     }
 
     @Override
-    public boolean insertFlight(IFlightDO flight) throws TransactionException {
+    public boolean persistFlight(IFlightDO flight) throws TransactionException {
         boolean InsertActionResult = false;
         String query = "";
         
@@ -155,7 +175,6 @@ public class FlightDAOImp extends DAO implements IFlightDAO{
                 InsertActionResult = true;
             }
         } catch (SQLException ex) {
-            System.out.println(ex);
             throw new TransactionException(ex);
         }
         return InsertActionResult;

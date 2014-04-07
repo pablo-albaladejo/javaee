@@ -14,25 +14,28 @@ public interface IFlightBean extends Serializable{
 
     String getAirline();
     void setAirline(String airline);
-    
-    String getDepartureName();
-    void setDepartureName(String departureName);
-    
+     
     String getDepartureCode();
     void setDepartureCode(String departureCode);
-    
-    String getDestinationName();
-    void setDestinationName(String destinationName);
     
     String getDestinationCode();
     void setDestinationCode(String destinationCode);
     
+    String getAircraftModel();
+    void setAircraftModel(String aircraftModel);
+    
     Date getDate();
     void setDate(Date date);
 
-    int getDuration();
-    void setDuration(int duration);
-    
-    int getSeats();
-    void setSeats(int seats);
+    float getEconomyFare();
+    void setEconomyFare(float economyFare);
+
+    float getBusinessFare();
+    void setBusinessFare(float businessFare);
+
+    float getOfferFare();
+    void setOfferFare(float offerFare);
+
+    int getBusinessSeats();
+    void setBusinessSeats(int businessSeats);
 }

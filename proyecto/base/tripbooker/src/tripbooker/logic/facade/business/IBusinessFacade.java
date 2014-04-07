@@ -4,11 +4,11 @@ import java.util.List;
 import tripbooker.dto.bean.aircraft.IAircraftBean;
 import tripbooker.dto.bean.airline.IAirlineBean;
 import tripbooker.dto.bean.airport.IAirportBean;
+import tripbooker.dto.bean.booking.IBookingBean;
 import tripbooker.dto.bean.city.ICityBean;
 import tripbooker.dto.bean.country.ICountryBean;
 import tripbooker.dto.bean.flight.IFlightBean;
 import tripbooker.dto.bean.route.IRouteBean;
-import tripbooker.dto.domain.route.IRouteDO;
 
 /**
  *
@@ -48,6 +48,8 @@ public interface IBusinessFacade {
     List<IFlightBean> getAllFlightsByDeparture(String airportCode);
     List<IFlightBean> getAllFlightsByDestination(String airportCode);
     List<IFlightBean> getAllFlightsByRoute(String depatureCode, String destinationCode);
+    boolean persistFlight(IFlightBean flightBean);
+    boolean removeFlight(IFlightBean flightBean);
     
     //Route
     List<IRouteBean> getAllRoutes();
@@ -56,4 +58,10 @@ public interface IBusinessFacade {
     IRouteBean getRoute(String departureCode, String destinationCode);
     boolean removeRoute(IRouteBean routeBean);
     boolean persistRoute(IRouteBean routeBean);
+    
+    //Booking
+    List<IBookingBean> getAllBookings();
+    IBookingBean getBookingByCode(String code);
+    boolean persistBooking(IBookingBean bookingBean);
+    boolean removeBooking(IBookingBean bookingBean);
 }

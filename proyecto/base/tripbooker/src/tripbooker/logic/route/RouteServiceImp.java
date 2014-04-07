@@ -2,12 +2,10 @@ package tripbooker.logic.route;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import tripbooker.dto.bean.factory.BeanFactory;
 import tripbooker.dto.bean.route.IRouteBean;
 import tripbooker.dto.domain.airport.IAirportDO;
 import tripbooker.dto.domain.route.IRouteDO;
-import tripbooker.dto.factory.DTOFactory;
 import tripbooker.dto.mapper.DTOMapper;
 import tripbooker.integration.factory.DAOFactory;
 import tripbooker.persistence.database.exception.TransactionException;
@@ -74,7 +72,7 @@ public class RouteServiceImp implements IRouteService{
 
     @Override
     public IRouteBean getRoute(String departureCode, String destinationCode) {
-         IRouteBean result = DTOFactory.getInstance().getRouteBean();
+        IRouteBean result = BeanFactory.getInstance().getRouteBean();
         try {
             IAirportDO departureDO = DAOFactory.getInstance().getAirportDAO().getAirportByCode(departureCode);
             IAirportDO destinationDO = DAOFactory.getInstance().getAirportDAO().getAirportByCode(destinationCode);

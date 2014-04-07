@@ -12,13 +12,15 @@ public class FlightBean implements IFlightBean{
     
     private String code;
     private String airline;
-    private String departureName;
     private String departureCode;
-    private String destinationName;
     private String destinationCode;
+    private String aircraftModel;
     private Date date;
-    private int duration;
-    private int seats;
+    private float economyFare;
+    private float businessFare;
+    private float offerFare;
+    private int businessSeats;
+    
  
     @Override
     public String getCode() {
@@ -41,16 +43,6 @@ public class FlightBean implements IFlightBean{
     }
 
     @Override
-    public String getDepartureName() {
-        return departureName;
-    }
-
-    @Override
-    public void setDepartureName(String departureName) {
-        this.departureName = departureName;
-    }
-
-    @Override
     public String getDepartureCode() {
         return departureCode;
     }
@@ -58,17 +50,6 @@ public class FlightBean implements IFlightBean{
     @Override
     public void setDepartureCode(String departureCode) {
         this.departureCode = departureCode;
-    }
-
-    
-    @Override
-    public String getDestinationName() {
-        return destinationName;
-    }
-
-    @Override
-    public void setDestinationName(String destinationName) {
-        this.destinationName = destinationName;
     }
     
     @Override
@@ -82,6 +63,16 @@ public class FlightBean implements IFlightBean{
     }
 
     @Override
+    public String getAircraftModel() {
+        return aircraftModel;
+    }
+
+    @Override
+    public void setAircraftModel(String aircraftModel) {
+        this.aircraftModel = aircraftModel;
+    }
+    
+    @Override
     public Date getDate() {
         return date;
     }
@@ -90,29 +81,50 @@ public class FlightBean implements IFlightBean{
     public void setDate(Date date) {
         this.date = date;
     }
-
+    
     @Override
-    public int getDuration() {
-        return duration;
+    public float getEconomyFare() {
+        return economyFare;
+    }
+    
+    @Override
+    public void setEconomyFare(float economyFare) {
+        this.economyFare = economyFare;
     }
 
     @Override
-    public void setDuration(int duration) {
-        this.duration = duration;
+    public float getBusinessFare() {
+        return businessFare;
     }
 
     @Override
-    public int getSeats() {
-        return seats;
+    public void setBusinessFare(float businessFare) {
+        this.businessFare = businessFare;
     }
 
     @Override
-    public void setSeats(int seats) {
-        this.seats = seats;
+    public float getOfferFare() {
+        return offerFare;
+    }
+
+    @Override
+    public void setOfferFare(float offerFare) {
+        this.offerFare = offerFare;
+    }
+
+    @Override
+    public int getBusinessSeats() {
+        return businessSeats;
+    }
+
+    @Override
+    public void setBusinessSeats(int businessSeats) {
+        this.businessSeats = businessSeats;
     }
 
     @Override
     public String toString() {
-        return "FlightBean{" + "code=" + code + ", airline=" + airline + ", departureName=" + departureName + ", departureCode=" + departureCode + ", destinationName=" + destinationName + ", destinationCode=" + destinationCode + ", date=" + date + ", duration=" + duration + ", seats=" + seats + '}';
+        return "FlightBean{" + "code=" + code + ", airline=" + airline + ", departureCode=" + departureCode + ", destinationCode=" + destinationCode + ", aircraftModel=" + aircraftModel + ", date=" + date + ", economyFare=" + economyFare + ", businessFare=" + businessFare + ", offerFare=" + offerFare + ", businessSeats=" + businessSeats + '}';
     }
+
 }
