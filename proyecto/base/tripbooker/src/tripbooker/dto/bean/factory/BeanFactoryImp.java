@@ -16,6 +16,10 @@ import tripbooker.dto.bean.flight.FlightBean;
 import tripbooker.dto.bean.flight.IFlightBean;
 import tripbooker.dto.bean.route.IRouteBean;
 import tripbooker.dto.bean.route.RouteBean;
+import tripbooker.dto.bean.ticket.ITicketBean;
+import tripbooker.dto.bean.ticket.TicketBean;
+import tripbooker.dto.bean.user.IUserBean;
+import tripbooker.dto.bean.user.UserBean;
 
 /**
  *
@@ -61,5 +65,15 @@ public class BeanFactoryImp extends BeanFactory{
     @Override
     public IBookingBean getBookingBean() {
         return new BookingBean();
+    }
+
+    @Override
+    public IUserBean getUserBean() {
+        return new UserBean();
+    }
+
+    @Override
+    public ITicketBean getTicketBean() {
+        return new TicketBean();
     }
 }

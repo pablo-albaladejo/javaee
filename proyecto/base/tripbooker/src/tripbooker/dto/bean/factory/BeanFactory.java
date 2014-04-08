@@ -8,6 +8,8 @@ import tripbooker.dto.bean.city.ICityBean;
 import tripbooker.dto.bean.country.ICountryBean;
 import tripbooker.dto.bean.flight.IFlightBean;
 import tripbooker.dto.bean.route.IRouteBean;
+import tripbooker.dto.bean.ticket.ITicketBean;
+import tripbooker.dto.bean.user.IUserBean;
 
 /**
  *
@@ -30,4 +32,6 @@ public abstract class BeanFactory {
     public abstract IAirlineBean getAirlineBean();
     public abstract IRouteBean getRouteBean();
     public abstract IBookingBean getBookingBean();
+    public abstract IUserBean getUserBean();
+    public abstract ITicketBean getTicketBean();
 }

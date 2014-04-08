@@ -8,6 +8,8 @@ import tripbooker.dto.bean.city.ICityBean;
 import tripbooker.dto.bean.country.ICountryBean;
 import tripbooker.dto.bean.flight.IFlightBean;
 import tripbooker.dto.bean.route.IRouteBean;
+import tripbooker.dto.bean.ticket.ITicketBean;
+import tripbooker.dto.bean.user.IUserBean;
 import tripbooker.dto.domain.aircraft.IAircraftDO;
 import tripbooker.dto.domain.airline.IAirlineDO;
 import tripbooker.dto.domain.airport.IAirportDO;
@@ -16,6 +18,7 @@ import tripbooker.dto.domain.city.ICityDO;
 import tripbooker.dto.domain.country.ICountryDO;
 import tripbooker.dto.domain.flight.IFlightDO;
 import tripbooker.dto.domain.route.IRouteDO;
+import tripbooker.dto.domain.ticket.ITicketDO;
 import tripbooker.dto.domain.user.IUserDO;
 
 /**
@@ -69,5 +72,13 @@ public abstract class DTOMapper {
     //Booking
     public abstract IBookingBean getBookingBean(IBookingDO bookingDO, IFlightDO flightDO, IUserDO userDO);
     public abstract IBookingDO getBookingDO(IBookingBean bookingBean, IFlightDO flightDO, IUserDO userDO);
+    
+    //User
+    public abstract IUserBean getUserBean(IUserDO userDO);
+    public abstract IUserDO getUserDO(IUserBean userBean);
+    
+    //Ticket
+    public abstract ITicketBean getTicketBean(ITicketDO ticketDO);
+    public abstract ITicketDO getTicketDO(ITicketBean ticketBean);
 }
 

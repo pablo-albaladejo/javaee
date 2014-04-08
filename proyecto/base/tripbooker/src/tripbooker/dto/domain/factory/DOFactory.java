@@ -8,6 +8,7 @@ import tripbooker.dto.domain.city.ICityDO;
 import tripbooker.dto.domain.country.ICountryDO;
 import tripbooker.dto.domain.flight.IFlightDO;
 import tripbooker.dto.domain.route.IRouteDO;
+import tripbooker.dto.domain.ticket.ITicketDO;
 import tripbooker.dto.domain.user.IUserDO;
 
 /**
@@ -32,7 +33,7 @@ public abstract class DOFactory {
     public abstract IRouteDO getRouteDO();    
     public abstract IBookingDO getBookingDO();
     public abstract IUserDO getUserDO();
-   
+    public abstract ITicketDO getTicketDO();
 }
 
 

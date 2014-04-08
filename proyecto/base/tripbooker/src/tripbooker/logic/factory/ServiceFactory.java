@@ -6,12 +6,9 @@ import tripbooker.logic.airport.IAirportService;
 import tripbooker.logic.booking.IBookingService;
 import tripbooker.logic.city.ICityService;
 import tripbooker.logic.country.ICountryService;
-import tripbooker.logic.facade.airline.IAirlineBusinessFacade;
-import tripbooker.logic.facade.business.IBusinessFacade;
-import tripbooker.logic.facade.system.ISystemBusinessFacade;
-import tripbooker.logic.facade.user.IUserBusinessFacade;
 import tripbooker.logic.flight.IFlightService;
 import tripbooker.logic.route.IRouteService;
+import tripbooker.logic.user.IUserService;
 
 /**
  *
@@ -26,13 +23,6 @@ public abstract class ServiceFactory {
         return instance;
     }
     
-    //Profile Facades
-    public abstract IBusinessFacade getBusinessFacade();
-    public abstract ISystemBusinessFacade getSystemBusinessFacade();
-    public abstract IAirlineBusinessFacade getAirlineBusinessFacade();
-    public abstract IUserBusinessFacade getUserBusinessFacade();
-    
-    //Application Services
     public abstract IAircraftService getAircraftService();
     public abstract IAirlineService getAirlineService();
     public abstract IAirportService getAirportService();
@@ -41,5 +31,5 @@ public abstract class ServiceFactory {
     public abstract ICityService getCityService();
     public abstract IRouteService getRouteService();
     public abstract IBookingService getBookingService();
-    
+    public abstract IUserService getUserService();
 }

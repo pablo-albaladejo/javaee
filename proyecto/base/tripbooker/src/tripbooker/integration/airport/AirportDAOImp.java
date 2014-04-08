@@ -79,7 +79,7 @@ public class AirportDAOImp extends DAO implements IAirportDAO{
 
      @Override
     public IAirportDO getAirportByCode(String code) throws TransactionException {
-         IAirportDO airport = null;
+        IAirportDO airport = null;
 
         String query = "SELECT * FROM airport"
                 + " WHERE code = '" + code + "'";

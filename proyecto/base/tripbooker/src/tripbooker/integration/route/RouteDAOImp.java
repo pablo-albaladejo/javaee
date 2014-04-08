@@ -136,7 +136,6 @@ public class RouteDAOImp extends DAO implements IRouteDAO {
                 InsertActionResult = true;
             }
         } catch (SQLException ex) {
-            System.out.println(ex);
             throw new TransactionException(ex);
         }
         return InsertActionResult;

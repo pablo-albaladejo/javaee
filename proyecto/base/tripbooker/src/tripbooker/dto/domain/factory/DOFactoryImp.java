@@ -16,6 +16,8 @@ import tripbooker.dto.domain.flight.FlightDOImp;
 import tripbooker.dto.domain.flight.IFlightDO;
 import tripbooker.dto.domain.route.IRouteDO;
 import tripbooker.dto.domain.route.RouteDOImp;
+import tripbooker.dto.domain.ticket.ITicketDO;
+import tripbooker.dto.domain.ticket.TicketDOImp;
 import tripbooker.dto.domain.user.IUserDO;
 import tripbooker.dto.domain.user.UserDOImp;
 
@@ -70,5 +72,10 @@ public class DOFactoryImp extends DOFactory{
     @Override
     public IUserDO getUserDO() {
         return new UserDOImp();
+    }
+
+    @Override
+    public ITicketDO getTicketDO() {
+        return new TicketDOImp();
     }
 }

@@ -1,10 +1,10 @@
-package tripbooker.logic.facade.user;
+package tripbooker.logic.facade.system;
 
 /**
  *
  * @author Pablo Albaladejo Mestre <pablo.albaladejo.mestre@gmail.com>
  */
 
-public interface IUserBusinessFacade {
+public interface ISystemFacade {
 
 }

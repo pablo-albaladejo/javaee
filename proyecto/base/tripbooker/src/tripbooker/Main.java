@@ -10,7 +10,9 @@ import tripbooker.dto.bean.country.ICountryBean;
 import tripbooker.dto.bean.factory.BeanFactory;
 import tripbooker.dto.bean.flight.IFlightBean;
 import tripbooker.dto.bean.route.IRouteBean;
+import tripbooker.dto.bean.user.IUserBean;
 import tripbooker.dto.domain.factory.DOFactory;
+import tripbooker.logic.facade.factory.FacadeFactory;
 import tripbooker.logic.factory.ServiceFactory;
 
 public class Main {
@@ -171,10 +173,29 @@ public class Main {
 //        
 //        System.out.println(ServiceFactory.getInstance().getBusinessFacade().getAllFlights());
         
+//        IUserBean userBean = BeanFactory.getInstance().getUserBean();
+//        
+//        userBean.setCode("Pablo");
+//        
+//        System.out.println(ServiceFactory.getInstance().getBusinessFacade().persistUser(userBean));
+//        System.out.println(ServiceFactory.getInstance().getBusinessFacade().getAllUsers());
+//        System.out.println(ServiceFactory.getInstance().getBusinessFacade().removeUser(userBean));
+//        System.out.println(ServiceFactory.getInstance().getBusinessFacade().getAllUsers());
+        
         IBookingBean bookingBean = BeanFactory.getInstance().getBookingBean();
         
-        ServiceFactory.getInstance().getBusinessFacade().persistBooking(bookingBean);
-        System.out.println(ServiceFactory.getInstance().getBusinessFacade().getAllBookings());
+        bookingBean.setBookingCode("BBBBB");
+        bookingBean.setBusiness(false);
+        bookingBean.setFlightCode("AAAA");
+        Date date = new Date(114,03,06);
+        date.setHours(22);
+        date.setMinutes(9);
+        date.setSeconds(22);
+        bookingBean.setFlightDate(date);
+        bookingBean.setUserCode("Pablo");
+        
+        FacadeFactory.getInstance().getBusinessFacade().persistBooking(bookingBean);
+        System.out.println(FacadeFactory.getInstance().getBusinessFacade().getAllBookings());
     }
     
 }

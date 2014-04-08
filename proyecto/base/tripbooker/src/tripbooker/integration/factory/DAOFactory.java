@@ -8,6 +8,8 @@ import tripbooker.integration.city.ICityDAO;
 import tripbooker.integration.country.ICountryDAO;
 import tripbooker.integration.flight.IFlightDAO;
 import tripbooker.integration.route.IRouteDAO;
+import tripbooker.integration.ticket.ITicketDAO;
+import tripbooker.integration.user.IUserDAO;
 
 /**
  *
@@ -30,5 +32,7 @@ public abstract class DAOFactory {
     public abstract ICountryDAO getCountryDAO();
     public abstract IFlightDAO getFlightDAO();
     public abstract IBookingDAO getBookingDAO();
+    public abstract IUserDAO getUserDAO();
+    public abstract ITicketDAO getTicketDAO();
 }
 

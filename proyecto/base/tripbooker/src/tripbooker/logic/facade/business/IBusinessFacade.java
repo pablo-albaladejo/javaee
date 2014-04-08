@@ -9,6 +9,7 @@ import tripbooker.dto.bean.city.ICityBean;
 import tripbooker.dto.bean.country.ICountryBean;
 import tripbooker.dto.bean.flight.IFlightBean;
 import tripbooker.dto.bean.route.IRouteBean;
+import tripbooker.dto.bean.user.IUserBean;
 
 /**
  *
@@ -58,6 +59,12 @@ public interface IBusinessFacade {
     IRouteBean getRoute(String departureCode, String destinationCode);
     boolean removeRoute(IRouteBean routeBean);
     boolean persistRoute(IRouteBean routeBean);
+    
+    //User
+    List<IUserBean> getAllUsers();
+    IUserBean getUserByCode(String code);
+    boolean removeUser(IUserBean userBean);
+    boolean persistUser(IUserBean userBean);
     
     //Booking
     List<IBookingBean> getAllBookings();

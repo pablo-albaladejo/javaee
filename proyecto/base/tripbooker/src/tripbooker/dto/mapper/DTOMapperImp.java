@@ -9,6 +9,8 @@ import tripbooker.dto.bean.country.ICountryBean;
 import tripbooker.dto.bean.factory.BeanFactory;
 import tripbooker.dto.bean.flight.IFlightBean;
 import tripbooker.dto.bean.route.IRouteBean;
+import tripbooker.dto.bean.ticket.ITicketBean;
+import tripbooker.dto.bean.user.IUserBean;
 import tripbooker.dto.domain.aircraft.IAircraftDO;
 import tripbooker.dto.domain.airline.IAirlineDO;
 import tripbooker.dto.domain.airport.IAirportDO;
@@ -18,6 +20,7 @@ import tripbooker.dto.domain.country.ICountryDO;
 import tripbooker.dto.domain.flight.IFlightDO;
 import tripbooker.dto.domain.route.IRouteDO;
 import tripbooker.dto.domain.factory.DOFactory;
+import tripbooker.dto.domain.ticket.ITicketDO;
 import tripbooker.dto.domain.user.IUserDO;
 
 /**
@@ -232,6 +235,43 @@ public class DTOMapperImp extends DTOMapper{
         bookingDO.setUserID(userDO.getUserID());
         
         return bookingDO;               
+    }
+
+    //User
+    @Override
+    public IUserBean getUserBean(IUserDO userDO) {
+        IUserBean userBean = BeanFactory.getInstance().getUserBean();
+        
+        userBean.setCode(userDO.getCode());
+        
+        return userBean;
+    }
+
+    @Override
+    public IUserDO getUserDO(IUserBean userBean) {
+        IUserDO userDO = DOFactory.getInstance().getUserDO();
+        
+        userDO.setCode(userBean.getCode());
+        
+        return userDO;
+    }
+
+    @Override
+    public ITicketBean getTicketBean(ITicketDO ticketDO) {
+        ITicketBean ticketBean = BeanFactory.getInstance().getTicketBean();
+        
+        //TODO
+        
+        return ticketBean;
+    }
+
+    @Override
+    public ITicketDO getTicketDO(ITicketBean ticketBean) {
+        ITicketDO ticketDO = DOFactory.getInstance().getTicketDO();
+        
+        //TODO
+        
+        return ticketDO;
     }
     
 }

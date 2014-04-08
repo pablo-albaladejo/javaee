@@ -11,7 +11,8 @@ import tripbooker.persistence.database.exception.TransactionException;
 
 public interface IBookingDAO {
     List<IBookingDO> getAllBookings() throws TransactionException;
+    IBookingDO getBookingByID(int id) throws TransactionException;
     IBookingDO getBookingByCode(String code) throws TransactionException;
     boolean persistBooking(IBookingDO bookingDO) throws TransactionException;
-    boolean removeBooking(IBookingDO bookingDO) throws TransactionException;
+    boolean removeBooking(int bookingID) throws TransactionException;
 }

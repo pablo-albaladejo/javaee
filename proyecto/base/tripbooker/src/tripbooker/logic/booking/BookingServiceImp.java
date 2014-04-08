@@ -5,6 +5,8 @@ import java.util.List;
 import tripbooker.dto.bean.booking.IBookingBean;
 import tripbooker.dto.bean.factory.BeanFactory;
 import tripbooker.dto.domain.booking.IBookingDO;
+import tripbooker.dto.domain.flight.IFlightDO;
+import tripbooker.dto.domain.user.IUserDO;
 import tripbooker.dto.mapper.DTOMapper;
 import tripbooker.integration.factory.DAOFactory;
 import tripbooker.persistence.database.exception.TransactionException;
@@ -23,7 +25,9 @@ public class BookingServiceImp implements IBookingService{
         try {
             List<IBookingDO> list = DAOFactory.getInstance().getBookingDAO().getAllBookings();
             for(IBookingDO bookingDO : list){
-                result.add(DTOMapper.getInstance().getBookingBean(bookingDO));
+                IFlightDO flightDO = DAOFactory.getInstance().getFlightDAO().getFlightByID(bookingDO.getFlightID());
+                IUserDO userDO = DAOFactory.getInstance().getUserDAO().getUserByID(bookingDO.getUserID());
+                result.add(DTOMapper.getInstance().getBookingBean(bookingDO, flightDO, userDO));
             }
         } catch (TransactionException ex) {
             //TODO
@@ -37,7 +41,9 @@ public class BookingServiceImp implements IBookingService{
         try {
             IBookingDO bookingDO = DAOFactory.getInstance().getBookingDAO().getBookingByCode(code);
             if(bookingDO != null){
-                bookingBean = DTOMapper.getInstance().getBookingBean(bookingDO);
+                IFlightDO flightDO = DAOFactory.getInstance().getFlightDAO().getFlightByID(bookingDO.getFlightID());
+                IUserDO userDO = DAOFactory.getInstance().getUserDAO().getUserByID(bookingDO.getUserID());
+                bookingBean = DTOMapper.getInstance().getBookingBean(bookingDO,flightDO,userDO);
             }
         } catch (TransactionException ex) {
             //TODO
@@ -50,9 +56,13 @@ public class BookingServiceImp implements IBookingService{
         boolean result = false;
         try {
             TransactionManager.getInstance().begin();
-            IBookingDO bookingDO = DTOMapper.getInstance().getBookingDO(bookingBean);
-            if(bookingDO != null){
-                result = DAOFactory.getInstance().getBookingDAO().persistBooking(bookingDO);
+            IFlightDO flightDO = DAOFactory.getInstance().getFlightDAO().getFlightByCodeDate(bookingBean.getFlightCode(),bookingBean.getFlightDate());
+            IUserDO userDO = DAOFactory.getInstance().getUserDAO().getUserByCode(bookingBean.getUserCode());
+            if(flightDO != null && userDO != null){
+                IBookingDO bookingDO = DTOMapper.getInstance().getBookingDO(bookingBean,flightDO,userDO);
+                if(bookingDO != null){
+                    result = DAOFactory.getInstance().getBookingDAO().persistBooking(bookingDO);
+                }
             }
             TransactionManager.getInstance().commit();
         } catch (TransactionException ex) {
@@ -76,9 +86,13 @@ public class BookingServiceImp implements IBookingService{
         boolean result = false;
         try {
             TransactionManager.getInstance().begin();
-            IBookingDO bookingDO = DTOMapper.getInstance().getBookingDO(bookingBean);
-            if(bookingDO != null){
-                result = DAOFactory.getInstance().getBookingDAO().removeBooking(bookingDO);
+            IFlightDO flightDO = DAOFactory.getInstance().getFlightDAO().getFlightByCodeDate(bookingBean.getFlightCode(),bookingBean.getFlightDate());
+            IUserDO userDO = DAOFactory.getInstance().getUserDAO().getUserByCode(bookingBean.getUserCode());
+            if(flightDO != null && userDO != null){
+                IBookingDO bookingDO = DTOMapper.getInstance().getBookingDO(bookingBean,flightDO,userDO);
+                if(bookingDO != null){
+                    result = DAOFactory.getInstance().getBookingDAO().removeBooking(bookingDO.getBookingID());
+                }
             } 
             TransactionManager.getInstance().commit();
         } catch (TransactionException ex) {
