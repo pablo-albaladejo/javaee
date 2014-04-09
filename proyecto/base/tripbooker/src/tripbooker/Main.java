@@ -182,20 +182,22 @@ public class Main {
 //        System.out.println(ServiceFactory.getInstance().getBusinessFacade().removeUser(userBean));
 //        System.out.println(ServiceFactory.getInstance().getBusinessFacade().getAllUsers());
         
-        IBookingBean bookingBean = BeanFactory.getInstance().getBookingBean();
+//        IBookingBean bookingBean = BeanFactory.getInstance().getBookingBean();
+//        
+//        bookingBean.setBookingCode("BBBBB");
+//        bookingBean.setBusiness(false);
+//        bookingBean.setFlightCode("AAAA");
+//        Date date = new Date(114,03,06);
+//        date.setHours(22);
+//        date.setMinutes(9);
+//        date.setSeconds(22);
+//        bookingBean.setFlightDate(date);
+//        bookingBean.setUserCode("Pablo");
+//        
+//        FacadeFactory.getInstance().getBusinessFacade().persistBooking(bookingBean);
+//        System.out.println(FacadeFactory.getInstance().getBusinessFacade().getAllBookings());
         
-        bookingBean.setBookingCode("BBBBB");
-        bookingBean.setBusiness(false);
-        bookingBean.setFlightCode("AAAA");
-        Date date = new Date(114,03,06);
-        date.setHours(22);
-        date.setMinutes(9);
-        date.setSeconds(22);
-        bookingBean.setFlightDate(date);
-        bookingBean.setUserCode("Pablo");
-        
-        FacadeFactory.getInstance().getBusinessFacade().persistBooking(bookingBean);
-        System.out.println(FacadeFactory.getInstance().getBusinessFacade().getAllBookings());
+        System.out.println(FacadeFactory.getInstance().getBusinessFacade().getAllTickets());
     }
     
 }

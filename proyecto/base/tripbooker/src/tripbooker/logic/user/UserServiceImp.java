@@ -2,7 +2,6 @@ package tripbooker.logic.user;
 
 import java.util.ArrayList;
 import java.util.List;
-import tripbooker.dto.bean.factory.BeanFactory;
 import tripbooker.dto.bean.user.IUserBean;
 import tripbooker.dto.domain.user.IUserDO;
 import tripbooker.dto.mapper.DTOMapper;
@@ -33,16 +32,13 @@ public class UserServiceImp implements IUserService{
 
     @Override
     public IUserBean getUserByCode(String code) {
-        IUserBean userBean = BeanFactory.getInstance().getUserBean();
+        IUserDO userDO = null;
         try{
-            IUserDO userDO = DAOFactory.getInstance().getUserDAO().getUserByCode(code);
-            if(userDO != null){
-                userBean = DTOMapper.getInstance().getUserBean(userDO);
-            }
+            userDO = DAOFactory.getInstance().getUserDAO().getUserByCode(code);
         }catch (TransactionException ex){
-        
+            //TODO
         }
-        return userBean;
+        return DTOMapper.getInstance().getUserBean(userDO);
     }
 
     @Override

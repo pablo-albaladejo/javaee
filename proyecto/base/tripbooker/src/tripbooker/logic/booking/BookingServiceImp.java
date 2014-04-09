@@ -3,7 +3,6 @@ package tripbooker.logic.booking;
 import java.util.ArrayList;
 import java.util.List;
 import tripbooker.dto.bean.booking.IBookingBean;
-import tripbooker.dto.bean.factory.BeanFactory;
 import tripbooker.dto.domain.booking.IBookingDO;
 import tripbooker.dto.domain.flight.IFlightDO;
 import tripbooker.dto.domain.user.IUserDO;
@@ -37,18 +36,19 @@ public class BookingServiceImp implements IBookingService{
 
     @Override
     public IBookingBean getBookingByCode(String code) {
-        IBookingBean bookingBean = BeanFactory.getInstance().getBookingBean();
+        IBookingDO bookingDO = null;
+        IFlightDO flightDO = null;
+        IUserDO userDO = null;
         try {
-            IBookingDO bookingDO = DAOFactory.getInstance().getBookingDAO().getBookingByCode(code);
+            bookingDO = DAOFactory.getInstance().getBookingDAO().getBookingByCode(code);
             if(bookingDO != null){
-                IFlightDO flightDO = DAOFactory.getInstance().getFlightDAO().getFlightByID(bookingDO.getFlightID());
-                IUserDO userDO = DAOFactory.getInstance().getUserDAO().getUserByID(bookingDO.getUserID());
-                bookingBean = DTOMapper.getInstance().getBookingBean(bookingDO,flightDO,userDO);
+                flightDO = DAOFactory.getInstance().getFlightDAO().getFlightByID(bookingDO.getFlightID());
+                userDO = DAOFactory.getInstance().getUserDAO().getUserByID(bookingDO.getUserID());
             }
         } catch (TransactionException ex) {
             //TODO
         }
-        return bookingBean;
+        return DTOMapper.getInstance().getBookingBean(bookingDO,flightDO,userDO);
     }
 
     @Override

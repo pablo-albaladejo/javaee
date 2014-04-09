@@ -6,5 +6,42 @@ package tripbooker.dto.domain.ticket;
  */
 
 public class TicketDOImp implements ITicketDO{
+    private int ticketID;
+    private String code;
+    private int userID;
 
+    @Override
+    public int getTicketID() {
+        return ticketID;
+    }
+
+    @Override
+    public void setTicketID(int ticketID) {
+        this.ticketID = ticketID;
+    }
+
+    @Override
+    public String getCode() {
+        return code;
+    }
+
+    @Override
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    @Override
+    public int getUserID() {
+        return userID;
+    }
+
+    @Override
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    @Override
+    public String toString() {
+        return "TicketDOImp{" + "ticketID=" + ticketID + ", code=" + code + ", userID=" + userID + '}';
+    }
 }

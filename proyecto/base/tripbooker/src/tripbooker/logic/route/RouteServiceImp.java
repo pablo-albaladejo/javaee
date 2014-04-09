@@ -2,7 +2,6 @@ package tripbooker.logic.route;
 
 import java.util.ArrayList;
 import java.util.List;
-import tripbooker.dto.bean.factory.BeanFactory;
 import tripbooker.dto.bean.route.IRouteBean;
 import tripbooker.dto.domain.airport.IAirportDO;
 import tripbooker.dto.domain.route.IRouteDO;
@@ -72,20 +71,19 @@ public class RouteServiceImp implements IRouteService{
 
     @Override
     public IRouteBean getRoute(String departureCode, String destinationCode) {
-        IRouteBean result = BeanFactory.getInstance().getRouteBean();
+        IAirportDO departureDO = null;
+        IAirportDO destinationDO = null;
+        IRouteDO routeDO = null;
         try {
-            IAirportDO departureDO = DAOFactory.getInstance().getAirportDAO().getAirportByCode(departureCode);
-            IAirportDO destinationDO = DAOFactory.getInstance().getAirportDAO().getAirportByCode(destinationCode);
+            departureDO = DAOFactory.getInstance().getAirportDAO().getAirportByCode(departureCode);
+            destinationDO = DAOFactory.getInstance().getAirportDAO().getAirportByCode(destinationCode);
             if(departureDO != null && destinationDO != null){
-                IRouteDO routeDO = DAOFactory.getInstance().getRouteDAO().getRoute(departureDO.getAirportID(), destinationDO.getAirportID());
-                if(routeDO != null){
-                    result = DTOMapper.getInstance().getRouteBean(routeDO, departureDO, destinationDO);
-                }
+                routeDO = DAOFactory.getInstance().getRouteDAO().getRoute(departureDO.getAirportID(), destinationDO.getAirportID());
             }
         } catch (TransactionException ex) {
             //TODO
         }
-        return result;
+        return DTOMapper.getInstance().getRouteBean(routeDO, departureDO, destinationDO);
     }
     
     @Override

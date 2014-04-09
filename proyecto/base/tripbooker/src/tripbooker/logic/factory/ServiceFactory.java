@@ -8,6 +8,7 @@ import tripbooker.logic.city.ICityService;
 import tripbooker.logic.country.ICountryService;
 import tripbooker.logic.flight.IFlightService;
 import tripbooker.logic.route.IRouteService;
+import tripbooker.logic.ticket.ITicketService;
 import tripbooker.logic.user.IUserService;
 
 /**
@@ -32,4 +33,5 @@ public abstract class ServiceFactory {
     public abstract IRouteService getRouteService();
     public abstract IBookingService getBookingService();
     public abstract IUserService getUserService();
+    public abstract ITicketService getTicketService();
 }

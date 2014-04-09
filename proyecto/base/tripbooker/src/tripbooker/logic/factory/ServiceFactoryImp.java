@@ -16,6 +16,8 @@ import tripbooker.logic.flight.FlightServiceImp;
 import tripbooker.logic.flight.IFlightService;
 import tripbooker.logic.route.IRouteService;
 import tripbooker.logic.route.RouteServiceImp;
+import tripbooker.logic.ticket.ITicketService;
+import tripbooker.logic.ticket.TicketServiceImp;
 import tripbooker.logic.user.IUserService;
 import tripbooker.logic.user.UserServiceImp;
 
@@ -73,6 +75,11 @@ public class ServiceFactoryImp extends ServiceFactory{
     @Override
     public IUserService getUserService() {
         return new UserServiceImp();
+    }
+
+    @Override
+    public ITicketService getTicketService() {
+        return new TicketServiceImp();
     }
     
 }

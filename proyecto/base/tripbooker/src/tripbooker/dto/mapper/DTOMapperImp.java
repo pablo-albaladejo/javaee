@@ -34,20 +34,20 @@ public class DTOMapperImp extends DTOMapper{
     @Override
     public ICountryBean getCountryBean(ICountryDO countryDO) {
         ICountryBean countryBean = BeanFactory.getInstance().getCountryBean();
-        
-        countryBean.setCode(countryDO.getCode());
-        countryBean.setName(countryDO.getName());
-        
+        if(countryDO != null){
+            countryBean.setCode(countryDO.getCode());
+            countryBean.setName(countryDO.getName());
+        }
         return countryBean;
     }
 
     @Override
     public ICountryDO getCountryDO(ICountryBean countryBean) {
         ICountryDO countryDO = DOFactory.getInstance().getCountryDO();
-
-        countryDO.setCode(countryBean.getCode());
-        countryDO.setName(countryBean.getName());
-        
+        if(countryBean != null){
+            countryDO.setCode(countryBean.getCode());
+            countryDO.setName(countryBean.getName());
+        }
         return countryDO;
     }
     
@@ -55,22 +55,22 @@ public class DTOMapperImp extends DTOMapper{
     @Override
     public ICityBean getCityBean(ICityDO cityDO, ICountryDO countryDO) {
         ICityBean cityBean = BeanFactory.getInstance().getCityBean();
-        
-        cityBean.setCode(cityDO.getCode());
-        cityBean.setName(cityDO.getName());
-        cityBean.setCountryCode(countryDO.getCode());
-           
+        if(cityDO != null && countryDO != null){
+            cityBean.setCode(cityDO.getCode());
+            cityBean.setName(cityDO.getName());
+            cityBean.setCountryCode(countryDO.getCode());
+        }   
         return cityBean;
     }
     
     @Override
     public ICityDO getCityDO(ICityBean cityBean, ICountryDO countryDO) {
         ICityDO cityDO = DOFactory.getInstance().getCityDO();
-        
-        cityDO.setCode(cityBean.getCode());
-        cityDO.setName(cityBean.getName());
-        cityDO.setCountryID(countryDO.getCountryID());
-        
+        if(cityBean != null && countryDO != null){
+            cityDO.setCode(cityBean.getCode());
+            cityDO.setName(cityBean.getName());
+            cityDO.setCountryID(countryDO.getCountryID());
+        }
         return cityDO;
     }
     
@@ -83,7 +83,8 @@ public class DTOMapperImp extends DTOMapper{
                                         IAircraftDO aircraftDO){
         
         IFlightBean flightBean = BeanFactory.getInstance().getFlightBean();
-        
+        if(flightDO != null && airlineDO != null &&  departure != null 
+                && destination != null && aircraftDO != null){
             flightBean.setAirline(airlineDO.getName());
             flightBean.setCode(flightDO.getCode());
             flightBean.setDepartureCode(departure.getCode());
@@ -94,7 +95,7 @@ public class DTOMapperImp extends DTOMapper{
             flightBean.setBusinessSeats(flightDO.getBusinessSeats());
             flightBean.setEconomyFare(flightDO.getEconomyFare());
             flightBean.setOfferFare(flightDO.getOfferFare());
-        
+        }
         return flightBean;
     }
     
@@ -104,17 +105,18 @@ public class DTOMapperImp extends DTOMapper{
                                     IAirlineDO airlineDO, 
                                     IRouteDO routeDO){
         IFlightDO flightDO = DOFactory.getInstance().getFlightDO();
-        
-        flightDO.setAircraftID(aircraftDO.getAirfarctID());
-        flightDO.setAirlineID(airlineDO.getAirlineID());
-        flightDO.setBusinessFare(flightBean.getBusinessFare());
-        flightDO.setBusinessSeats(flightBean.getBusinessSeats());
-        flightDO.setCode(flightBean.getCode());
-        flightDO.setDate(flightBean.getDate());
-        flightDO.setEconomyFare(flightBean.getEconomyFare());
-        flightDO.setOfferFare(flightBean.getOfferFare());
-        flightDO.setRouteID(routeDO.getRouteID());
-        
+        if(flightBean != null && aircraftDO != null && 
+                airlineDO != null && routeDO != null){
+            flightDO.setAircraftID(aircraftDO.getAirfarctID());
+            flightDO.setAirlineID(airlineDO.getAirlineID());
+            flightDO.setBusinessFare(flightBean.getBusinessFare());
+            flightDO.setBusinessSeats(flightBean.getBusinessSeats());
+            flightDO.setCode(flightBean.getCode());
+            flightDO.setDate(flightBean.getDate());
+            flightDO.setEconomyFare(flightBean.getEconomyFare());
+            flightDO.setOfferFare(flightBean.getOfferFare());
+            flightDO.setRouteID(routeDO.getRouteID());
+        }
         return flightDO;
     }
     
@@ -122,46 +124,46 @@ public class DTOMapperImp extends DTOMapper{
     @Override
     public IAirportDO getAirportDO(IAirportBean airportBean, ICityDO cityDO) {
         IAirportDO airportDO = DOFactory.getInstance().getAirportDO();
-        
-        airportDO.setCityID(cityDO.getCityID());
-        airportDO.setName(airportBean.getName());
-        airportDO.setCode(airportBean.getCode());
-        
+        if(airportBean != null && cityDO != null){
+            airportDO.setCityID(cityDO.getCityID());
+            airportDO.setName(airportBean.getName());
+            airportDO.setCode(airportBean.getCode());
+        }
         return airportDO;
     }
 
     @Override
     public IAirportBean getAirportBean(IAirportDO airportDO, ICityDO cityDO) {
         IAirportBean airportBean = BeanFactory.getInstance().getAirportBean();
-        
-        airportBean.setCode(airportDO.getCode());
-        airportBean.setName(airportDO.getName());
-        airportBean.setCityCode(cityDO.getCode());
-        
+        if(airportDO != null && cityDO != null){
+            airportBean.setCode(airportDO.getCode());
+            airportBean.setName(airportDO.getName());
+            airportBean.setCityCode(cityDO.getCode());
+        }
         return airportBean;
     }
 
     @Override
     public IAircraftBean getAircraftBean(IAircraftDO aircraftDO) {
         IAircraftBean aircraftBean = BeanFactory.getInstance().getAircraftBean();
-        
-        aircraftBean.setDate(aircraftDO.getDate());
-        aircraftBean.setManufacter(aircraftDO.getManufacter());
-        aircraftBean.setModel(aircraftDO.getModel());
-        aircraftBean.setSeats(aircraftDO.getSeats());
-        
+        if(aircraftDO != null){
+            aircraftBean.setDate(aircraftDO.getDate());
+            aircraftBean.setManufacter(aircraftDO.getManufacter());
+            aircraftBean.setModel(aircraftDO.getModel());
+            aircraftBean.setSeats(aircraftDO.getSeats());
+        }
         return aircraftBean;
     }
 
     @Override
     public IAircraftDO getAircraftDO(IAircraftBean aircraftBean) {
         IAircraftDO aircraftDO = DOFactory.getInstance().getAircraftDO();
-        
-        aircraftDO.setDate(aircraftBean.getDate());
-        aircraftDO.setManufacter(aircraftBean.getManufacter());
-        aircraftDO.setModel(aircraftBean.getModel());
-        aircraftDO.setSeats(aircraftBean.getSeats());
-        
+        if(aircraftBean != null){
+            aircraftDO.setDate(aircraftBean.getDate());
+            aircraftDO.setManufacter(aircraftBean.getManufacter());
+            aircraftDO.setModel(aircraftBean.getModel());
+            aircraftDO.setSeats(aircraftBean.getSeats());
+        }
         return aircraftDO;
     }
 
@@ -170,21 +172,22 @@ public class DTOMapperImp extends DTOMapper{
     public IAirlineBean getAirlineBean(IAirlineDO airlineDO, ICountryDO countryDO) {
         IAirlineBean airlineBean = BeanFactory.getInstance().getAirlineBean();
        
-        airlineBean.setCode(airlineDO.getCode());
-        airlineBean.setCountryCode(countryDO.getCode());
-        airlineBean.setName(airlineDO.getName());
-        
+        if(airlineBean != null){
+            airlineBean.setCode(airlineDO.getCode());
+            airlineBean.setCountryCode(countryDO.getCode());
+            airlineBean.setName(airlineDO.getName());
+        }
         return airlineBean;
     }
 
     @Override
     public IAirlineDO getAirlineDO(IAirlineBean airlineBean, ICountryDO countryDO) {
         IAirlineDO airlineDO = DOFactory.getInstance().getAirlineDO();
-        
-        airlineDO.setCode(airlineBean.getCode());
-        airlineDO.setCountryID(countryDO.getCountryID());
-        airlineDO.setName(airlineBean.getName());
-        
+        if(airlineDO != null){
+            airlineDO.setCode(airlineBean.getCode());
+            airlineDO.setCountryID(countryDO.getCountryID());
+            airlineDO.setName(airlineBean.getName());
+        }
         return airlineDO;
     }
 
@@ -192,22 +195,22 @@ public class DTOMapperImp extends DTOMapper{
     @Override
     public IRouteBean getRouteBean(IRouteDO routeDO, IAirportDO departure, IAirportDO destination) {
         IRouteBean routeBean = BeanFactory.getInstance().getRouteBean();
-        
-        routeBean.setDepartureCode(departure.getCode());
-        routeBean.setDestinationCode(destination.getCode());
-        routeBean.setDuration(routeDO.getDuration());
-        
+        if(routeBean != null){
+            routeBean.setDepartureCode(departure.getCode());
+            routeBean.setDestinationCode(destination.getCode());
+            routeBean.setDuration(routeDO.getDuration());
+        }
         return routeBean;
     }
 
     @Override
     public IRouteDO getRouteDO(IRouteBean routeBean, IAirportDO departure, IAirportDO destination) {
         IRouteDO routeDO = DOFactory.getInstance().getRouteDO();
-        
-        routeDO.setDepartureID(departure.getAirportID());
-        routeDO.setDestinationID(destination.getAirportID());
-        routeDO.setDuration(routeBean.getDuration());
-        
+        if(routeBean != null && departure != null && destination != null){
+            routeDO.setDepartureID(departure.getAirportID());
+            routeDO.setDestinationID(destination.getAirportID());
+            routeDO.setDuration(routeBean.getDuration());
+        }
         return routeDO;
     }
     
@@ -216,24 +219,25 @@ public class DTOMapperImp extends DTOMapper{
     public IBookingBean getBookingBean(IBookingDO bookingDO, IFlightDO flightDO, IUserDO userDO) {
         IBookingBean bookingBean = BeanFactory.getInstance().getBookingBean();
         
-        bookingBean.setBookingCode(bookingDO.getCode());
-        bookingBean.setBusiness(bookingDO.isBusiness());
-        bookingBean.setFlightCode(flightDO.getCode());
-        bookingBean.setFlightDate(flightDO.getDate());
-        bookingBean.setUserCode(userDO.getCode());
-        
+        if(bookingDO != null && flightDO != null && userDO != null){
+            bookingBean.setBookingCode(bookingDO.getCode());
+            bookingBean.setBusiness(bookingDO.isBusiness());
+            bookingBean.setFlightCode(flightDO.getCode());
+            bookingBean.setFlightDate(flightDO.getDate());
+            bookingBean.setUserCode(userDO.getCode());
+        }
         return bookingBean;
     }
 
     @Override
     public IBookingDO getBookingDO(IBookingBean bookingBean, IFlightDO flightDO, IUserDO userDO) {
         IBookingDO bookingDO = DOFactory.getInstance().getBookingDO();
-        
-        bookingDO.setBusiness(bookingBean.isBusiness());
-        bookingDO.setCode(bookingBean.getBookingCode());
-        bookingDO.setFlightID(flightDO.getFlightID());
-        bookingDO.setUserID(userDO.getUserID());
-        
+        if(bookingBean != null && flightDO != null && userDO != null){
+            bookingDO.setBusiness(bookingBean.isBusiness());
+            bookingDO.setCode(bookingBean.getBookingCode());
+            bookingDO.setFlightID(flightDO.getFlightID());
+            bookingDO.setUserID(userDO.getUserID());
+        }
         return bookingDO;               
     }
 
@@ -241,36 +245,38 @@ public class DTOMapperImp extends DTOMapper{
     @Override
     public IUserBean getUserBean(IUserDO userDO) {
         IUserBean userBean = BeanFactory.getInstance().getUserBean();
-        
-        userBean.setCode(userDO.getCode());
-        
+        if(userDO != null){
+            userBean.setCode(userDO.getCode());
+        }
         return userBean;
     }
 
     @Override
     public IUserDO getUserDO(IUserBean userBean) {
         IUserDO userDO = DOFactory.getInstance().getUserDO();
-        
-        userDO.setCode(userBean.getCode());
-        
+        if(userBean != null){
+            userDO.setCode(userBean.getCode());
+        }
         return userDO;
     }
 
     @Override
-    public ITicketBean getTicketBean(ITicketDO ticketDO) {
+    public ITicketBean getTicketBean(ITicketDO ticketDO,IUserDO userDO) {
         ITicketBean ticketBean = BeanFactory.getInstance().getTicketBean();
-        
-        //TODO
-        
+        if(ticketDO != null && userDO != null){
+            ticketBean.setCode(ticketDO.getCode());
+            ticketBean.setUserCode(userDO.getCode());
+        }
         return ticketBean;
     }
 
     @Override
-    public ITicketDO getTicketDO(ITicketBean ticketBean) {
+    public ITicketDO getTicketDO(ITicketBean ticketBean, IUserDO userDO) {
         ITicketDO ticketDO = DOFactory.getInstance().getTicketDO();
-        
-        //TODO
-        
+        if(ticketBean != null && userDO != null){
+            ticketDO.setCode(ticketBean.getCode());
+            ticketDO.setUserID(userDO.getUserID());
+        }
         return ticketDO;
     }
     

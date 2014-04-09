@@ -9,6 +9,7 @@ import tripbooker.dto.bean.city.ICityBean;
 import tripbooker.dto.bean.country.ICountryBean;
 import tripbooker.dto.bean.flight.IFlightBean;
 import tripbooker.dto.bean.route.IRouteBean;
+import tripbooker.dto.bean.ticket.ITicketBean;
 import tripbooker.dto.bean.user.IUserBean;
 import tripbooker.logic.factory.ServiceFactory;
 
@@ -210,5 +211,26 @@ public class BusinessFacade implements IBusinessFacade{
     @Override
     public boolean removeBooking(IBookingBean bookingBean) {
         return ServiceFactory.getInstance().getBookingService().removeBooking(bookingBean);
+    }
+
+    //Ticket
+    @Override
+    public List<ITicketBean> getAllTickets() {
+        return ServiceFactory.getInstance().getTicketService().getAllTickets();
+    }
+
+    @Override
+    public ITicketBean getTicketByCode(String code) {
+        return ServiceFactory.getInstance().getTicketService().getTicketByCode(code);
+    }
+
+    @Override
+    public boolean persistTicket(ITicketBean ticketBean) {
+        return ServiceFactory.getInstance().getTicketService().persistTicket(ticketBean);
+    }
+
+    @Override
+    public boolean removeTicket(ITicketBean ticketBean) {
+        return ServiceFactory.getInstance().getTicketService().removeTicket(ticketBean);
     }
 }

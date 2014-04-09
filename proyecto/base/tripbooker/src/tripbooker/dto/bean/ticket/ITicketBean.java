@@ -8,5 +8,9 @@ import java.io.Serializable;
  */
 
 public interface ITicketBean extends Serializable{
+    String getCode();
+    void setCode(String code);
 
+    String getUserCode();
+    void setUserCode(String userCode);
 }

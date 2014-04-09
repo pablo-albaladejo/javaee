@@ -9,6 +9,7 @@ import tripbooker.dto.bean.city.ICityBean;
 import tripbooker.dto.bean.country.ICountryBean;
 import tripbooker.dto.bean.flight.IFlightBean;
 import tripbooker.dto.bean.route.IRouteBean;
+import tripbooker.dto.bean.ticket.ITicketBean;
 import tripbooker.dto.bean.user.IUserBean;
 
 /**
@@ -71,4 +72,10 @@ public interface IBusinessFacade {
     IBookingBean getBookingByCode(String code);
     boolean persistBooking(IBookingBean bookingBean);
     boolean removeBooking(IBookingBean bookingBean);
+    
+    //Ticket
+    List<ITicketBean> getAllTickets();
+    ITicketBean getTicketByCode(String code);
+    boolean persistTicket(ITicketBean ticketBean);
+    boolean removeTicket(ITicketBean ticketBean);
 }

@@ -6,5 +6,12 @@ package tripbooker.dto.domain.ticket;
  */
 
 public interface ITicketDO {
+    int getTicketID();
+    void setTicketID(int ticketID);
 
+    String getCode();
+    void setCode(String code);
+
+    int getUserID();
+    void setUserID(int userID);
 }
