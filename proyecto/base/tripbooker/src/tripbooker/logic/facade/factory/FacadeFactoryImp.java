@@ -16,17 +16,17 @@ import tripbooker.logic.facade.user.UserFacade;
 
 public class FacadeFactoryImp extends FacadeFactory{
     @Override
-    public ISystemFacade getSystemBusinessFacade() {
+    public ISystemFacade getSystemFacade() {
         return new SystemFacade();
     }
 
     @Override
-    public IAirlineFacade getAirlineBusinessFacade() {
+    public IAirlineFacade getAirlineFacade() {
         return new AirlineFacade();
     }
 
     @Override
-    public IUserFacade getUserBusinessFacade() {
+    public IUserFacade getUserFacade() {
         return new UserFacade();
     }
     

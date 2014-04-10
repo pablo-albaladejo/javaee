@@ -10,6 +10,7 @@ import tripbooker.dto.bean.country.ICountryBean;
 import tripbooker.dto.bean.factory.BeanFactory;
 import tripbooker.dto.bean.flight.IFlightBean;
 import tripbooker.dto.bean.route.IRouteBean;
+import tripbooker.dto.bean.ticket.ITicketBean;
 import tripbooker.dto.bean.user.IUserBean;
 import tripbooker.dto.domain.factory.DOFactory;
 import tripbooker.logic.facade.factory.FacadeFactory;
@@ -197,7 +198,25 @@ public class Main {
 //        FacadeFactory.getInstance().getBusinessFacade().persistBooking(bookingBean);
 //        System.out.println(FacadeFactory.getInstance().getBusinessFacade().getAllBookings());
         
-        System.out.println(FacadeFactory.getInstance().getBusinessFacade().getAllTickets());
+//        ITicketBean ticketBean = BeanFactory.getInstance().getTicketBean();
+//        
+//        ticketBean.setCode("AAAAAA");
+//        ticketBean.setUserCode("Pablo");
+//        
+//        ServiceFactory.getInstance().getTicketService().persistTicket(ticketBean);
+//        
+//        System.out.println(FacadeFactory.getInstance().getBusinessFacade().getAllTickets());
+        
+        //FINAL USER
+        
+        //Origen, destino, fecha de salida, numero de pasajeros (i)
+        //Origen, destino, fecha de salida, fecha de vuelta, numero de pasajeros (i/v)
+        
+        
+        //Booking
+        
+        //Airline admin
+        System.out.println(FacadeFactory.getInstance().getAirlineFacade().getAllAircrafts());
     }
     
 }

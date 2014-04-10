@@ -11,6 +11,7 @@ import tripbooker.persistence.database.exception.TransactionException;
 
 public interface ITicketDAO {
     List<ITicketDO> getAllTickets() throws TransactionException;
+    ITicketDO getTicketByID(int ticketID) throws TransactionException; 
     ITicketDO getTicketByCode(String code) throws TransactionException;
     boolean persistTicket(ITicketDO ticketDO) throws TransactionException;
     boolean removeTicket(int ticketID) throws TransactionException;

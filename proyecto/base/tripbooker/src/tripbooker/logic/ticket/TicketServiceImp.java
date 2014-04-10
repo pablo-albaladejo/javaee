@@ -77,9 +77,10 @@ public class TicketServiceImp implements ITicketService{
         boolean result = false;
         try{
             TransactionManager.getInstance().begin();
-            IUserDO userDO = DAOFactory.getInstance().getUserDAO().getUserByCode(ticketBean.getUserCode());
-            ITicketDO ticketDO = DTOMapper.getInstance().getTicketDO(ticketBean,userDO);
-            result = DAOFactory.getInstance().getTicketDAO().removeTicket(ticketDO.getTicketID());
+            ITicketDO ticketDO = DAOFactory.getInstance().getTicketDAO().getTicketByCode(ticketBean.getCode());
+            if(ticketDO != null){
+                result = DAOFactory.getInstance().getTicketDAO().removeTicket(ticketDO.getTicketID());
+            }
             TransactionManager.getInstance().commit();
         }catch(TransactionException ex){
             try{

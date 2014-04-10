@@ -19,8 +19,8 @@ public abstract class FacadeFactory {
     }
     
     public abstract IBusinessFacade getBusinessFacade();
-    public abstract ISystemFacade getSystemBusinessFacade();
-    public abstract IAirlineFacade getAirlineBusinessFacade();
-    public abstract IUserFacade getUserBusinessFacade();
+    public abstract ISystemFacade getSystemFacade();
+    public abstract IAirlineFacade getAirlineFacade();
+    public abstract IUserFacade getUserFacade();
 
 }
