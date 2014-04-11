@@ -9,6 +9,7 @@ public class TicketDOImp implements ITicketDO{
     private int ticketID;
     private String code;
     private int userID;
+    private int flightID;
 
     @Override
     public int getTicketID() {
@@ -41,7 +42,17 @@ public class TicketDOImp implements ITicketDO{
     }
 
     @Override
+    public int getFlightID() {
+        return flightID;
+    }
+
+    @Override
+    public void setFlightID(int flightID) {
+        this.flightID = flightID;
+    }    
+
+    @Override
     public String toString() {
-        return "TicketDOImp{" + "ticketID=" + ticketID + ", code=" + code + ", userID=" + userID + '}';
+        return "TicketDOImp{" + "ticketID=" + ticketID + ", code=" + code + ", userID=" + userID + ", flightID=" + flightID + '}';
     }
 }

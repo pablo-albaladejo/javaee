@@ -4,6 +4,7 @@ import java.util.List;
 import tripbooker.dto.bean.aircraft.IAircraftBean;
 import tripbooker.dto.bean.flight.IFlightBean;
 import tripbooker.dto.bean.route.IRouteBean;
+import tripbooker.dto.bean.ticket.ITicketBean;
 import tripbooker.logic.factory.ServiceFactory;
 
 /**
@@ -30,6 +31,11 @@ public class AirlineFacade implements IAirlineFacade{
     @Override
     public List<IFlightBean> getAllFlights() {
          return ServiceFactory.getInstance().getFlightService().getAllFlights();
+    }
+
+    @Override
+    public List<IFlightBean> getAllFlightsSeats() {
+         return ServiceFactory.getInstance().getFlightService().getAllFlightsSeats();
     }
     
     @Override
@@ -104,4 +110,14 @@ public class AirlineFacade implements IAirlineFacade{
     public List<IAircraftBean> getAllAircrafts() {
         return ServiceFactory.getInstance().getAircraftService().getAllAircrafts();
     }     
+
+    @Override
+    public List<ITicketBean> getAllTickets() {
+        return ServiceFactory.getInstance().getTicketService().getAllTickets();
+    }
+
+    @Override
+    public List<ITicketBean> getAllTicketsByAirline(String airlineCode) {
+        return ServiceFactory.getInstance().getTicketService().getAllTicketsByAirline(airlineCode);
+    }
 }

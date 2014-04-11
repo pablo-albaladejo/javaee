@@ -4,6 +4,7 @@ import java.util.List;
 import tripbooker.dto.bean.aircraft.IAircraftBean;
 import tripbooker.dto.bean.flight.IFlightBean;
 import tripbooker.dto.bean.route.IRouteBean;
+import tripbooker.dto.bean.ticket.ITicketBean;
 
 /**
  *
@@ -19,6 +20,7 @@ public interface IAirlineFacade {
     boolean removeFlight(IFlightBean flightBean);    
     //list
     List<IFlightBean> getAllFlights();
+    List<IFlightBean> getAllFlightsSeats();
     List<IFlightBean> getAllFlightsByAirline(String airlineCode);
     List<IFlightBean> getAllFlightsByDeparture(String airportCode);
     List<IFlightBean> getAllFlightsByDestination(String airportCode);
@@ -42,4 +44,8 @@ public interface IAirlineFacade {
     boolean removeAircraft(IAircraftBean aircraftBean);
     //list
     List<IAircraftBean> getAllAircrafts();
+
+//Ticket
+    List<ITicketBean> getAllTickets();
+    List<ITicketBean> getAllTicketsByAirline(String airlineCode);
 }

@@ -10,6 +10,7 @@ import tripbooker.dto.bean.flight.IFlightBean;
 
 public interface IFlightService {
     List<IFlightBean> getAllFlights();
+    List<IFlightBean> getAllFlightsSeats();
     List<IFlightBean> getAllFlightsByAirline(String airlineCode);
     List<IFlightBean> getAllFlightsByDeparture(String airportCode);
     List<IFlightBean> getAllFlightsByDestination(String airportCode);

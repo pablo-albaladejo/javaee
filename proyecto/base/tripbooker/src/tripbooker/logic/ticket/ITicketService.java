@@ -10,6 +10,7 @@ import tripbooker.dto.bean.ticket.ITicketBean;
 
 public interface ITicketService {
     List<ITicketBean> getAllTickets();
+    List<ITicketBean> getAllTicketsByAirline(String airlineCode);
     ITicketBean getTicketByCode(String code);
     boolean persistTicket(ITicketBean ticketBean);
     boolean removeTicket(ITicketBean ticketBean);

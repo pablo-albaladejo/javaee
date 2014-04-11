@@ -40,6 +40,38 @@ public class TicketDAOImp extends DAO implements ITicketDAO{
     }
 
     @Override
+    public List<ITicketDO> getAllTicketsByFlight(int flightID) throws TransactionException {
+        List<ITicketDO> list = new ArrayList<ITicketDO>();
+        String query = "SELECT * FROM ticket WHERE flightID = '"+flightID+"'";
+        try {
+            this.resultSet = this.statement.executeQuery(query);
+            while (this.resultSet.next()) {
+                ITicketDO aircraft = DOFactory.getInstance().getTicketDO();
+                copyResultTicketData(resultSet, aircraft);
+                list.add(aircraft);
+            }
+        } catch (SQLException e) {
+                throw new TransactionException(e);
+        }
+        return list;
+    }
+
+    @Override
+    public int countTicketsByFlight(int flightID) throws TransactionException {
+        int count = 0;
+        String query = "SELECT COUNT(*) FROM ticket WHERE flightID = '"+flightID+"'";
+        try {
+            this.resultSet = this.statement.executeQuery(query);
+            if (this.resultSet.next()) {
+                count = this.resultSet.getInt(1);
+            }
+        } catch (SQLException e) {
+                throw new TransactionException(e);
+        }
+        return count;
+    }
+    
+    @Override
     public ITicketDO getTicketByCode(String code) throws TransactionException {
         ITicketDO ticket = null;
         String query = "SELECT * FROM ticket"

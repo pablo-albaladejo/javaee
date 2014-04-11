@@ -10,7 +10,7 @@ import tripbooker.persistence.database.exception.TransactionException;
  */
 
 public interface IAirlineDAO {
-    List<IAirlineDO> getAllAirlines()throws TransactionException;
+    List<IAirlineDO> getAllAirlines() throws TransactionException;
     IAirlineDO getAirlineByID(int id)throws TransactionException;
     IAirlineDO getAirlineByCode(String code)throws TransactionException;
     boolean removeAirline(int id) throws TransactionException;

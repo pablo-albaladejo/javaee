@@ -14,4 +14,7 @@ public interface ITicketDO {
 
     int getUserID();
     void setUserID(int userID);
+    
+    int getFlightID();
+    void setFlightID(int flightID);
 }

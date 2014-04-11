@@ -216,7 +216,8 @@ public class Main {
         //Booking
         
         //Airline admin
-        System.out.println(FacadeFactory.getInstance().getAirlineFacade().getAllAircrafts());
+        //System.out.println(FacadeFactory.getInstance().getAirlineFacade().getAllTicketsByAirline("IB"));
+        System.out.println(FacadeFactory.getInstance().getAirlineFacade().getAllFlightsSeats());
     }
     
 }

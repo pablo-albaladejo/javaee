@@ -78,7 +78,7 @@ public abstract class DTOMapper {
     public abstract IUserDO getUserDO(IUserBean userBean);
     
     //Ticket
-    public abstract ITicketBean getTicketBean(ITicketDO ticketDO,IUserDO userDO);
-    public abstract ITicketDO getTicketDO(ITicketBean ticketBean,IUserDO userDO);
+    public abstract ITicketBean getTicketBean(ITicketDO ticketDO,IUserDO userDO,IFlightDO flightDO);
+    public abstract ITicketDO getTicketDO(ITicketBean ticketBean,IUserDO userDO,IFlightDO flightDO);
 }
 

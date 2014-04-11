@@ -261,21 +261,24 @@ public class DTOMapperImp extends DTOMapper{
     }
 
     @Override
-    public ITicketBean getTicketBean(ITicketDO ticketDO,IUserDO userDO) {
+    public ITicketBean getTicketBean(ITicketDO ticketDO,IUserDO userDO, IFlightDO flightDO) {
         ITicketBean ticketBean = BeanFactory.getInstance().getTicketBean();
-        if(ticketDO != null && userDO != null){
+        if(ticketDO != null && userDO != null && flightDO != null){
             ticketBean.setCode(ticketDO.getCode());
             ticketBean.setUserCode(userDO.getCode());
+            ticketBean.setFlightCode(flightDO.getCode());
+            ticketBean.setFlightDate(flightDO.getDate());
         }
         return ticketBean;
     }
 
     @Override
-    public ITicketDO getTicketDO(ITicketBean ticketBean, IUserDO userDO) {
+    public ITicketDO getTicketDO(ITicketBean ticketBean, IUserDO userDO, IFlightDO flightDO) {
         ITicketDO ticketDO = DOFactory.getInstance().getTicketDO();
-        if(ticketBean != null && userDO != null){
+        if(ticketBean != null && userDO != null && flightDO != null){
             ticketDO.setCode(ticketBean.getCode());
             ticketDO.setUserID(userDO.getUserID());
+            ticketDO.setFlightID(flightDO.getFlightID());
         }
         return ticketDO;
     }

@@ -8,6 +8,7 @@ import tripbooker.dto.domain.airline.IAirlineDO;
 import tripbooker.dto.domain.airport.IAirportDO;
 import tripbooker.dto.domain.flight.IFlightDO;
 import tripbooker.dto.domain.route.IRouteDO;
+import tripbooker.dto.domain.ticket.ITicketDO;
 import tripbooker.dto.mapper.DTOMapper;
 import tripbooker.integration.factory.DAOFactory;
 import tripbooker.persistence.database.exception.TransactionException;
@@ -48,6 +49,44 @@ public class FlightServiceImp implements IFlightService{
                     result.add(flightBean);
                 }
 
+            } catch (TransactionException ex) {
+                //TODO
+            }
+        return result;
+    }
+    
+    @Override
+    public List<IFlightBean> getAllFlightsSeats() {
+        List<IFlightBean> result = new ArrayList<IFlightBean>();
+            try {
+                //Get all the flights
+                List<IFlightDO> flightDOlist = DAOFactory.getInstance().getFlightDAO().getAllFlights();
+
+                for(IFlightDO flightDO : flightDOlist){
+                    //1) Get the capacity
+                    IAircraftDO aircraftDO = DAOFactory.getInstance().getAircraftDAO().getAircraftByID(flightDO.getAircraftID());                    
+                    
+                    //2) Get the slod tickets
+                    int tickets = DAOFactory.getInstance().getTicketDAO().countTicketsByFlight(flightDO.getFlightID());
+                    
+                    if((aircraftDO.getSeats() - tickets) > 0){//Flight with empty seats
+                        //Get Airline
+                        IAirlineDO airlineDO = DAOFactory.getInstance().getAirlineDAO().getAirlineByID(flightDO.getAirlineID());
+
+                        //Get Route
+                        IRouteDO routeDO = DAOFactory.getInstance().getRouteDAO().getRouteByID(flightDO.getRouteID());
+
+                        //Get the airports
+                        IAirportDO departure = DAOFactory.getInstance().getAirportDAO().getAirportByID(routeDO.getDepartureID());
+                        IAirportDO destination = DAOFactory.getInstance().getAirportDAO().getAirportByID(routeDO.getDepartureID());
+
+                        //Convert the data
+                        IFlightBean flightBean = DTOMapper.getInstance().getFlightBean(flightDO, airlineDO, departure, destination, aircraftDO);
+
+                        //Store the result
+                        result.add(flightBean);
+                    }
+                }
             } catch (TransactionException ex) {
                 //TODO
             }
