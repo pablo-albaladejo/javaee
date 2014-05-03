@@ -56,7 +56,6 @@ public class TicketServiceImp implements ITicketService{
         return result;
     }
 
-    
     @Override
     public ITicketBean getTicketByCode(String code) {
         ITicketDO ticketDO = null;

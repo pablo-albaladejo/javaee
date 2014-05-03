@@ -30,17 +30,20 @@ public interface IBusinessFacade {
     
     //Airport
     List<IAirportBean> getAllAirports();
-    List<IAirportBean> getAirportsByCity(String code);
+    List<IAirportBean> getAllAirportsByCity(String code);
     boolean persistAirport(IAirportBean airportBean);
     boolean removeAirport(IAirportBean airportBean);
     
     //City
     List<ICityBean> getAllCities();
+    List<ICityBean> getAllCitiesByCountry(String code);
+    ICityBean getCityByName(String name);
     boolean persistCity(ICityBean cityBean);
     boolean removeCity(ICityBean cityBean);
     
     //Country
     List<ICountryBean> getAllCountries();
+    ICountryBean getCountryByName(String name);
     boolean persistCountry(ICountryBean countryBean);
     boolean removeCountry(ICountryBean countryBean);
     

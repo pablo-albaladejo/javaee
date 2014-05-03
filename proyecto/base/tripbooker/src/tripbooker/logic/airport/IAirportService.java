@@ -10,7 +10,7 @@ import tripbooker.dto.bean.airport.IAirportBean;
 
 public interface IAirportService {
     List<IAirportBean> getAllAirports();
-    List<IAirportBean> getAirportsByCity(String code);
+    List<IAirportBean> getAllAirportsByCity(String code);
     boolean persistAirport(IAirportBean airportBean);
     boolean removeAirport(IAirportBean airportBean);
 }

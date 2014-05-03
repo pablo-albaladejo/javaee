@@ -35,6 +35,38 @@ public class CityServiceImp implements ICityService{
     }
     
     @Override
+    public List<ICityBean> getAllCitiesByCountry(String code) {
+        List<ICityBean> result = new ArrayList<ICityBean>();
+        try {
+            ICountryDO countryDO = DAOFactory.getInstance().getCountryDAO().getCountryByCode(code);
+            if(countryDO != null){
+                List<ICityDO> list = DAOFactory.getInstance().getCityDAO().getAllCitiesByCountry(countryDO.getCountryID());
+                for(ICityDO cityDO : list){
+                    result.add(DTOMapper.getInstance().getCityBean(cityDO,countryDO));
+                }
+            }
+        } catch (TransactionException ex) {
+            //TODO
+        }
+        return result;
+    }
+    
+    @Override
+    public ICityBean getCityByName(String name) {
+        ICityDO cityDO = null;
+        ICountryDO countryDO = null;
+        try {
+            cityDO = DAOFactory.getInstance().getCityDAO().getCityByName(name);
+            if(cityDO != null){
+                countryDO = DAOFactory.getInstance().getCountryDAO().getCountryByID(cityDO.getCountryID());
+            }
+        } catch (TransactionException ex) {
+            //TODO
+        }
+        return DTOMapper.getInstance().getCityBean(cityDO,countryDO);
+    }
+    
+    @Override
     public boolean persistCity(ICityBean cityBean) {
         boolean result = false;
         try {

@@ -80,6 +80,26 @@ public class CountryDAOImp extends DAO implements ICountryDAO {
     }
 
     @Override
+    public ICountryDO getCountryByName(String name) throws TransactionException {
+        ICountryDO country = null;
+
+        String query = "SELECT * FROM country"
+                + " WHERE name = '" + name + "'";
+        try {
+            this.resultSet = this.statement.executeQuery(query);
+            if (resultSet.next()) {
+                country = DOFactory.getInstance().getCountryDO();
+                copyResultCountryData(resultSet, country);
+            } else {
+                country = null;
+            }
+        } catch (SQLException e) {
+            throw new TransactionException(e);
+        }
+        return country;
+    }
+    
+    @Override
     public boolean persistCountry(ICountryDO country) throws TransactionException {
         boolean InsertActionResult = false;
         String query = "";

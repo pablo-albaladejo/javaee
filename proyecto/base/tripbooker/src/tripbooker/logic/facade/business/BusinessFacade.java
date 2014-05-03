@@ -59,8 +59,8 @@ public class BusinessFacade implements IBusinessFacade{
     }
 
     @Override
-    public List<IAirportBean> getAirportsByCity(String code) {
-        return ServiceFactory.getInstance().getAirportService().getAirportsByCity(code);
+    public List<IAirportBean> getAllAirportsByCity(String code) {
+        return ServiceFactory.getInstance().getAirportService().getAllAirportsByCity(code);
     }
     
     @Override
@@ -80,6 +80,16 @@ public class BusinessFacade implements IBusinessFacade{
     }
     
     @Override
+    public List<ICityBean> getAllCitiesByCountry(String code) {
+        return ServiceFactory.getInstance().getCityService().getAllCitiesByCountry(code);
+    }
+    
+    @Override
+    public ICityBean getCityByName(String name) {
+        return ServiceFactory.getInstance().getCityService().getCityByName(name);
+    }
+    
+    @Override
     public boolean persistCity(ICityBean cityBean) {
         return ServiceFactory.getInstance().getCityService().persistCity(cityBean);
     }
@@ -89,11 +99,16 @@ public class BusinessFacade implements IBusinessFacade{
         return ServiceFactory.getInstance().getCityService().removeCity(cityBean);
     }
     
-        @Override
+    @Override
     public List<ICountryBean> getAllCountries() {
         return ServiceFactory.getInstance().getCountryService().getAllCountries();
     }
 
+    @Override
+    public ICountryBean getCountryByName(String name) {
+        return ServiceFactory.getInstance().getCountryService().getCountryByName(name);
+    }
+    
     @Override
     public boolean persistCountry(ICountryBean countryBean) {
         return ServiceFactory.getInstance().getCountryService().persistCountry(countryBean);

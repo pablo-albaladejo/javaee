@@ -31,6 +31,17 @@ public class CountryServiceImp implements ICountryService{
     }
 
     @Override
+    public ICountryBean getCountryByName(String name) {
+        ICountryDO countryDO = null;
+        try {
+            countryDO = DAOFactory.getInstance().getCountryDAO().getCountryByName(name);
+        } catch (TransactionException ex) {
+            //TODO
+        }
+        return DTOMapper.getInstance().getCountryBean(countryDO);
+    }
+    
+    @Override
     public boolean persistCountry(ICountryBean countryBean) {
         boolean result = false;
         try {

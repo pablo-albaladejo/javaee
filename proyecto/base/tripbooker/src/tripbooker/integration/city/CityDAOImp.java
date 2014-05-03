@@ -41,6 +41,23 @@ public class CityDAOImp extends DAO implements ICityDAO{
     }
 
     @Override
+    public List<ICityDO> getAllCitiesByCountry(int countryID) throws TransactionException {
+        List<ICityDO> list = new ArrayList<ICityDO>();
+        String query = "SELECT * FROM city WHERE countryID = '"+countryID+"'";
+        try {
+            this.resultSet = this.statement.executeQuery(query);
+            while (this.resultSet.next()) {
+                ICityDO city = DOFactory.getInstance().getCityDO();
+                copyResultCityData(resultSet, city);
+                list.add(city);
+            }
+        } catch (SQLException e) {
+                throw new TransactionException(e);
+        }
+        return list;
+    }
+    
+    @Override
     public ICityDO getCityByID(int id) throws TransactionException {
         ICityDO city = null;
 
@@ -77,6 +94,23 @@ public class CityDAOImp extends DAO implements ICityDAO{
         return city;
     }
 
+    @Override
+    public ICityDO getCityByName(String name) throws TransactionException {
+        ICityDO city = null;
+        String query = "SELECT * FROM city"
+                + " WHERE name = '" + name + "'";
+        try {
+            this.resultSet = this.statement.executeQuery(query);
+            if (resultSet.next()) {
+                city = DOFactory.getInstance().getCityDO();
+                copyResultCityData(resultSet, city);
+            }
+        } catch (SQLException e) {
+            throw new TransactionException(e);
+        }
+        return city;
+    }
+    
     @Override
     public boolean removeCity(int id) throws TransactionException {
         boolean deleteActionResult = false;

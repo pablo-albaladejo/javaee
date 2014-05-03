@@ -2,8 +2,6 @@ package tripbooker.logic.airline;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import tripbooker.dto.bean.airline.IAirlineBean;
 import tripbooker.dto.domain.airline.IAirlineDO;
 import tripbooker.dto.domain.country.ICountryDO;

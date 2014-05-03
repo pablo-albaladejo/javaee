@@ -33,7 +33,7 @@ public class AirportServiceImp implements IAirportService{
     }
 
     @Override
-    public List<IAirportBean> getAirportsByCity(String code) {
+    public List<IAirportBean> getAllAirportsByCity(String code) {
         ArrayList<IAirportBean> result = new ArrayList<IAirportBean>();
         try {
             ICityDO cityDO = DAOFactory.getInstance().getCityDAO().getCityByCode(code);

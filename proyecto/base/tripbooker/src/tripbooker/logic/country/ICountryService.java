@@ -10,6 +10,7 @@ import tripbooker.dto.bean.country.ICountryBean;
 
 public interface ICountryService {
     List<ICountryBean> getAllCountries();
+    ICountryBean getCountryByName(String name);
     boolean persistCountry(ICountryBean countryBean);
     boolean removeCountry(ICountryBean countryBean);
 }

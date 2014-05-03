@@ -8,7 +8,6 @@ import tripbooker.dto.domain.airline.IAirlineDO;
 import tripbooker.dto.domain.airport.IAirportDO;
 import tripbooker.dto.domain.flight.IFlightDO;
 import tripbooker.dto.domain.route.IRouteDO;
-import tripbooker.dto.domain.ticket.ITicketDO;
 import tripbooker.dto.mapper.DTOMapper;
 import tripbooker.integration.factory.DAOFactory;
 import tripbooker.persistence.database.exception.TransactionException;

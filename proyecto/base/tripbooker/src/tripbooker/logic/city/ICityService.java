@@ -10,6 +10,9 @@ import tripbooker.dto.bean.city.ICityBean;
 
 public interface ICityService {
     List<ICityBean> getAllCities();
+    List<ICityBean> getAllCitiesByCountry(String code);
+    ICityBean getCityByName(String name);
     boolean persistCity(ICityBean cityBean);
     boolean removeCity(ICityBean cityBean);
 }
+

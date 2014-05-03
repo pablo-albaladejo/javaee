@@ -1,4 +1,4 @@
-package tripbooker;
+package tripbooker.presentation.main;
 
 import java.util.Date;
 import tripbooker.dto.bean.aircraft.IAircraftBean;
@@ -15,8 +15,10 @@ import tripbooker.dto.bean.user.IUserBean;
 import tripbooker.dto.domain.factory.DOFactory;
 import tripbooker.logic.facade.factory.FacadeFactory;
 import tripbooker.logic.factory.ServiceFactory;
+import tripbooker.presentation.controller.Controller;
+import tripbooker.presentation.controller.event.BusinessEvent;
 
-public class Main {
+public class Test {
 
     public static void main(String[] args) {           
 //        //Country
@@ -217,7 +219,8 @@ public class Main {
         
         //Airline admin
         //System.out.println(FacadeFactory.getInstance().getAirlineFacade().getAllTicketsByAirline("IB"));
-        System.out.println(FacadeFactory.getInstance().getAirlineFacade().getAllFlightsSeats());
+        //System.out.println(FacadeFactory.getInstance().getAirlineFacade().getAllFlightsSeats());
+        
     }
     
 }
