@@ -11,6 +11,7 @@ import java.util.List;
 import tripbooker.dto.bean.airport.IAirportBean;
 import tripbooker.dto.bean.city.ICityBean;
 import tripbooker.dto.bean.country.ICountryBean;
+import tripbooker.dto.bean.route.IRouteBean;
 import tripbooker.logic.facade.factory.FacadeFactory;
 import tripbooker.presentation.controller.event.GUIEvent;
 
@@ -26,8 +27,8 @@ public class TripBookerGUIImp extends TripBookerGUI {
     public TripBookerGUIImp() {
         initComponents();
         this.update(GUIEvent.LOAD_DEPARTURE_COUNTRY, null);
-        this.update(GUIEvent.LOAD_DEPARTURE_CITY, DepartureCountryComboBox.getSelectedItem().toString());
-        this.update(GUIEvent.LOAD_DEPARTURE_AIRPORT, DepartureCityComboBox.getSelectedItem().toString());
+        //this.update(GUIEvent.LOAD_DEPARTURE_CITY, DepartureCountryComboBox.getSelectedItem().toString());
+        //this.update(GUIEvent.LOAD_DEPARTURE_AIRPORT, DepartureCityComboBox.getSelectedItem().toString());
     }
 
     /**
@@ -39,12 +40,20 @@ public class TripBookerGUIImp extends TripBookerGUI {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        DeparturePanel = new javax.swing.JPanel();
         DepartureCountryComboBox = new javax.swing.JComboBox();
-        DestinationCountryComboBox = new javax.swing.JComboBox();
         DepartureCityComboBox = new javax.swing.JComboBox();
         DepartureAirportComboBox = new javax.swing.JComboBox();
+        DepartureCountryLabel = new javax.swing.JLabel();
+        DepartureCityLabel = new javax.swing.JLabel();
+        DepartureAirportLabel = new javax.swing.JLabel();
+        DestinationPanel = new javax.swing.JPanel();
+        DestinationCountryComboBox = new javax.swing.JComboBox();
+        DestinationCountryLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        DeparturePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Departure"));
 
         DepartureCountryComboBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -64,31 +73,90 @@ public class TripBookerGUIImp extends TripBookerGUI {
             }
         });
 
+        DepartureCountryLabel.setText("Country");
+
+        DepartureCityLabel.setText("City");
+
+        DepartureAirportLabel.setText("Airport");
+
+        javax.swing.GroupLayout DeparturePanelLayout = new javax.swing.GroupLayout(DeparturePanel);
+        DeparturePanel.setLayout(DeparturePanelLayout);
+        DeparturePanelLayout.setHorizontalGroup(
+            DeparturePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DeparturePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(DeparturePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(DepartureCountryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DepartureCountryLabel))
+                .addGap(18, 18, 18)
+                .addGroup(DeparturePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(DepartureCityComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DepartureCityLabel))
+                .addGap(18, 18, 18)
+                .addGroup(DeparturePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(DepartureAirportLabel)
+                    .addComponent(DepartureAirportComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(194, Short.MAX_VALUE))
+        );
+        DeparturePanelLayout.setVerticalGroup(
+            DeparturePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DeparturePanelLayout.createSequentialGroup()
+                .addGroup(DeparturePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DepartureCityLabel)
+                    .addComponent(DepartureAirportLabel))
+                .addGap(5, 5, 5)
+                .addGroup(DeparturePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DepartureCityComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DepartureAirportComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DeparturePanelLayout.createSequentialGroup()
+                .addComponent(DepartureCountryLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(DepartureCountryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        DestinationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Destination"));
+
+        DestinationCountryLabel.setText("Country");
+
+        javax.swing.GroupLayout DestinationPanelLayout = new javax.swing.GroupLayout(DestinationPanel);
+        DestinationPanel.setLayout(DestinationPanelLayout);
+        DestinationPanelLayout.setHorizontalGroup(
+            DestinationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DestinationPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(DestinationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(DestinationCountryLabel)
+                    .addComponent(DestinationCountryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        DestinationPanelLayout.setVerticalGroup(
+            DestinationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DestinationPanelLayout.createSequentialGroup()
+                .addComponent(DestinationCountryLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(DestinationCountryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(DepartureCountryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(DepartureCityComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(DepartureAirportComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
-                .addComponent(DestinationCountryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(DeparturePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(DestinationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(DepartureCountryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DestinationCountryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DepartureCityComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DepartureAirportComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(241, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(DeparturePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(DestinationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(146, Short.MAX_VALUE))
         );
 
         pack();
@@ -96,13 +164,13 @@ public class TripBookerGUIImp extends TripBookerGUI {
 
     private void DepartureCountryComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_DepartureCountryComboBoxItemStateChanged
         if (evt.getStateChange() == evt.SELECTED) {
-            this.update(GUIEvent.LOAD_DEPARTURE_CITY, DepartureCountryComboBox.getSelectedItem().toString());
+            processNewDepartureCountry();//this.update(GUIEvent.LOAD_DEPARTURE_CITY, DepartureCountryComboBox.getSelectedItem().toString());
         }
     }//GEN-LAST:event_DepartureCountryComboBoxItemStateChanged
 
     private void DepartureCityComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_DepartureCityComboBoxItemStateChanged
         if (evt.getStateChange() == evt.SELECTED) {
-            this.update(GUIEvent.LOAD_DEPARTURE_AIRPORT, DepartureCityComboBox.getSelectedItem().toString());
+            processNewDepartureCity();//this.update(GUIEvent.LOAD_DEPARTURE_AIRPORT, DepartureCityComboBox.getSelectedItem().toString());
         }
     }//GEN-LAST:event_DepartureCityComboBoxItemStateChanged
 
@@ -114,9 +182,15 @@ public class TripBookerGUIImp extends TripBookerGUI {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox DepartureAirportComboBox;
+    private javax.swing.JLabel DepartureAirportLabel;
     private javax.swing.JComboBox DepartureCityComboBox;
+    private javax.swing.JLabel DepartureCityLabel;
     private javax.swing.JComboBox DepartureCountryComboBox;
+    private javax.swing.JLabel DepartureCountryLabel;
+    private javax.swing.JPanel DeparturePanel;
     private javax.swing.JComboBox DestinationCountryComboBox;
+    private javax.swing.JLabel DestinationCountryLabel;
+    private javax.swing.JPanel DestinationPanel;
     // End of variables declaration//GEN-END:variables
 
     private void loadComboBox(javax.swing.JComboBox ComboBox, String[] stringList){
@@ -156,8 +230,20 @@ public class TripBookerGUIImp extends TripBookerGUI {
         loadComboBox(DepartureAirportComboBox, stringList);
     }
     
-    private void loadDestinationCountries(){
-        List<ICountryBean> countryList = FacadeFactory.getInstance().getUserFacade().getAllCountries();
+    private void loadDestinationCountries(String airportCode){
+        List<IRouteBean> routeList = FacadeFactory.getInstance().getUserFacade().getAllRoutesByDeparture(airportCode);
+    }
+    
+    private void processNewDepartureCountry(){
+        this.update(GUIEvent.LOAD_DEPARTURE_CITY, DepartureCountryComboBox.getSelectedItem().toString());
+    }
+    
+    private void processNewDepartureCity(){
+        this.update(GUIEvent.LOAD_DEPARTURE_AIRPORT, DepartureCityComboBox.getSelectedItem().toString());
+    }
+
+    private void processNewDepartureAirport(){
+        this.update(GUIEvent.LOAD_DESTINATION_COUNTRY, DepartureAirportComboBox.getSelectedItem().toString());
     }
     
     @Override
@@ -165,15 +251,18 @@ public class TripBookerGUIImp extends TripBookerGUI {
         switch(event){
             case GUIEvent.LOAD_DEPARTURE_COUNTRY:
                 loadDepartureCountries();
+                processNewDepartureCountry();
                 break;
             case GUIEvent.LOAD_DEPARTURE_CITY:
                 loadDepartureCities((String)data);
+                processNewDepartureCity();
                 break;
             case GUIEvent.LOAD_DEPARTURE_AIRPORT:
                 loadDepartureAirports((String)data);
+                processNewDepartureAirport();
                 break;
             case GUIEvent.LOAD_DESTINATION_COUNTRY:
-                loadDestinationCountries();
+                loadDestinationCountries((String)data);
                 break;
             default:
                 break;

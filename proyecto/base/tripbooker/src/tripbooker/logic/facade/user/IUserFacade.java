@@ -4,6 +4,7 @@ import java.util.List;
 import tripbooker.dto.bean.airport.IAirportBean;
 import tripbooker.dto.bean.city.ICityBean;
 import tripbooker.dto.bean.country.ICountryBean;
+import tripbooker.dto.bean.route.IRouteBean;
 
 /**
  *
@@ -22,4 +23,7 @@ public interface IUserFacade {
     
     //Airport
     List<IAirportBean> getAllAirportsByCity(String code);
+    
+    //Route
+    List<IRouteBean> getAllRoutesByDeparture(String airportCode);
 }
