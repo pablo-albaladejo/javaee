@@ -22,9 +22,9 @@ public interface IAirlineFacade {
     List<IFlightBean> getAllFlights();
     List<IFlightBean> getAllFlightsSeats();
     List<IFlightBean> getAllFlightsByAirline(String airlineCode);
-    List<IFlightBean> getAllFlightsByDeparture(String airportCode);
-    List<IFlightBean> getAllFlightsByDestination(String airportCode);
-    List<IFlightBean> getAllFlightsByRoute(String depatureCode, String destinationCode);
+    List<IFlightBean> getAllFlightsByDepartureAirport(String airportCode);
+    List<IFlightBean> getAllFlightsByDestinationAirport(String airportCode);
+    List<IFlightBean> getAllFlightsByAirports(String depatureAirportCode, String destinationAirportCode);
     
 //Route
     //add-modify

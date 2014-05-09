@@ -129,7 +129,7 @@ public class FlightServiceImp implements IFlightService{
     }
 
     @Override
-    public List<IFlightBean> getAllFlightsByDeparture(String airportCode) {
+    public List<IFlightBean> getAllFlightsByDepartureAirport(String airportCode) {
         List<IFlightBean> resultBean = new ArrayList<IFlightBean>();
         try {
             //Get Airport
@@ -165,7 +165,7 @@ public class FlightServiceImp implements IFlightService{
     }
     
     @Override
-    public List<IFlightBean> getAllFlightsByDestination(String airportCode) {
+    public List<IFlightBean> getAllFlightsByDestinationAirport(String airportCode) {
         List<IFlightBean> resultBean = new ArrayList<IFlightBean>();
         try {
             //Get Airport
@@ -201,10 +201,31 @@ public class FlightServiceImp implements IFlightService{
     }
 
     @Override
-    public List<IFlightBean> getAllFlightsByRoute(String depatureCode, String destinationCode) {
-       List<IFlightBean> resultBean = new ArrayList<IFlightBean>();
-    
-       return resultBean;
+    public List<IFlightBean> getAllFlightsByAirports(String departureCode, String destinationCode) {
+        List<IFlightBean> resultBean = new ArrayList<IFlightBean>();
+        try{
+            IAirportDO departureDO = DAOFactory.getInstance().getAirportDAO().getAirportByCode(departureCode);
+            IAirportDO destinationDO = DAOFactory.getInstance().getAirportDAO().getAirportByCode(destinationCode);
+
+            IRouteDO routeDO = DAOFactory.getInstance().getRouteDAO().getRoute(departureDO.getAirportID(), destinationDO.getAirportID());           
+            
+            //Get all flights for each route
+            List<IFlightDO> flightsDO = DAOFactory.getInstance().getFlightDAO().getFlightsByRoute(routeDO.getRouteID());
+            for(IFlightDO flightDO : flightsDO){
+
+                //Get the Airline
+                IAirlineDO airlineDO = DAOFactory.getInstance().getAirlineDAO().getAirlineByID(flightDO.getAirlineID());
+
+                //Get the Aircraft
+                IAircraftDO aircraftDO = DAOFactory.getInstance().getAircraftDAO().getAircraftByID(flightDO.getAircraftID());
+
+                IFlightBean flightBean = DTOMapper.getInstance().getFlightBean(flightDO, airlineDO, departureDO, destinationDO, aircraftDO);
+                resultBean.add(flightBean);
+            }
+        }catch(Exception e){
+
+        }
+        return resultBean;
     }
 
     @Override

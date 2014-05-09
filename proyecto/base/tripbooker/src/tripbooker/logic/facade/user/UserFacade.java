@@ -4,7 +4,7 @@ import java.util.List;
 import tripbooker.dto.bean.airport.IAirportBean;
 import tripbooker.dto.bean.city.ICityBean;
 import tripbooker.dto.bean.country.ICountryBean;
-import tripbooker.dto.bean.route.IRouteBean;
+import tripbooker.dto.bean.flight.IFlightBean;
 import tripbooker.logic.factory.ServiceFactory;
 
 /**
@@ -36,9 +36,9 @@ public class UserFacade implements IUserFacade{
     public List<IAirportBean> getAllAirportsByCity(String code) {
         return ServiceFactory.getInstance().getAirportService().getAllAirportsByCity(code);
     }
-    
+
     @Override
-    public List<IRouteBean> getAllRoutesByDeparture(String airportCode){
-        return ServiceFactory.getInstance().getRouteService().getAllRoutesByDeparture(airportCode);
+    public List<IFlightBean> getAllFlightsByAirports(String depatureAirpotCode, String destinationAirpotCode) {
+        return ServiceFactory.getInstance().getFlightService().getAllFlightsByAirports(depatureAirpotCode, destinationAirpotCode);
     }
 }

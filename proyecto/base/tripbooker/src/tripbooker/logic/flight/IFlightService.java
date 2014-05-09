@@ -1,5 +1,6 @@
 package tripbooker.logic.flight;
 
+import java.util.Date;
 import java.util.List;
 import tripbooker.dto.bean.flight.IFlightBean;
 
@@ -12,9 +13,9 @@ public interface IFlightService {
     List<IFlightBean> getAllFlights();
     List<IFlightBean> getAllFlightsSeats();
     List<IFlightBean> getAllFlightsByAirline(String airlineCode);
-    List<IFlightBean> getAllFlightsByDeparture(String airportCode);
-    List<IFlightBean> getAllFlightsByDestination(String airportCode);
-    List<IFlightBean> getAllFlightsByRoute(String depatureCode, String destinationCode);
+    List<IFlightBean> getAllFlightsByDepartureAirport(String airportCode);
+    List<IFlightBean> getAllFlightsByDestinationAirport(String airportCode);
+    List<IFlightBean> getAllFlightsByAirports(String depatureAirpotCode, String destinationAirpotCode);
     boolean persistFlight(IFlightBean flightBean);
     boolean removeFlight(IFlightBean flightBean);
 }

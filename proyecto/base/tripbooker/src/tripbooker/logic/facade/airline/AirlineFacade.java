@@ -44,18 +44,18 @@ public class AirlineFacade implements IAirlineFacade{
     }
     
     @Override
-    public List<IFlightBean> getAllFlightsByDeparture(String airportCode) {
-        return ServiceFactory.getInstance().getFlightService().getAllFlightsByDeparture(airportCode);
+    public List<IFlightBean> getAllFlightsByDepartureAirport(String airportCode) {
+        return ServiceFactory.getInstance().getFlightService().getAllFlightsByDepartureAirport(airportCode);
     }
     
     @Override
-    public List<IFlightBean> getAllFlightsByDestination(String airportCode) {
-        return ServiceFactory.getInstance().getFlightService().getAllFlightsByDestination(airportCode);
+    public List<IFlightBean> getAllFlightsByDestinationAirport(String airportCode) {
+        return ServiceFactory.getInstance().getFlightService().getAllFlightsByDestinationAirport(airportCode);
     }
 
     @Override
-    public List<IFlightBean> getAllFlightsByRoute(String depatureCode, String destinationCode) {
-        return ServiceFactory.getInstance().getFlightService().getAllFlightsByRoute(depatureCode,destinationCode);
+    public List<IFlightBean> getAllFlightsByAirports(String depatureAirportCode, String destinationAirportCode) {
+        return ServiceFactory.getInstance().getFlightService().getAllFlightsByAirports(depatureAirportCode,destinationAirportCode);
     }
     
 //Route
