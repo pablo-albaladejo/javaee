@@ -1,4 +1,4 @@
-La idea del proyecto es que, partiendo de una aplicación rich-client desarrollada en J2SE (JDBC + MySQL + lógica de negocio + Swing), y aplicando arquitectura de del software y patrones de diseño, se vayan sustituyendo incrementalmente los componentes hasta llegar a una versión Java EE totalmente distribuida.
+La idea del proyecto es que, partiendo de una aplicación rich-client desarrollada en J2SE (JDBC + MySQL + lógica de negocio + Swing), y aplicando arquitectura del software y patrones de diseño, se vayan sustituyendo incrementalmente los componentes hasta llegar a una versión Java EE totalmente distribuida.
 Cada módulo contiene un readme que detalla el diseño y la evolución de la implementación.
 
 La aplicación es una librería que implmente las operaciones básica de alta/baja de libros, búsquedas por autor/titulo/isbn y carrito de la compra.
